@@ -16,3 +16,5 @@ For GPU based calculations CUDA in combination cuDNN has been used, utilizing th
 - CUDA 11.4
 - DNN 8.2.4
 - Driver 472.39
+
+# Test
