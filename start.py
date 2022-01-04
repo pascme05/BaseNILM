@@ -50,7 +50,7 @@ setup_Exp = {'experiment_name': "redd2Def",                                     
              'saveResults': 1}                                                                                           # if 1 results will be saved
 
 # Dataset
-setup_Data = {'dataset': "reddTrans",                                                                                         # name of the dataset: 1) redd, 2) ampds, 3) refit, 4)...
+setup_Data = {'dataset': "reddTrans",                                                                                    # name of the dataset: 1) redd, 2) ampds, 3) refit, 4)...
               'shape': 2,                                                                                                # if 2 shape is 2-dimensional (Tx[2+M], with T samples and M devices), if 3 shape is 3-dimensional (Tx[2+M]xF, where F is the number of features)
               'granularity': 3,                                                                                          # granularity of the data in Hz
               'downsample': 3,                                                                                           # down-samples the data with a integer value, use 1 for base sample rate
@@ -58,8 +58,8 @@ setup_Data = {'dataset': "reddTrans",                                           
               'houseTest': 2,                                                                                            # house used for testing, e.g. 2
               'houseVal': 5,                                                                                             # house used for validation, e.g. 2
               'testRatio': 0.1,                                                                                          # if only one house is used 'testRatio' defines the split of 'houseTrain'
-              'kfold': 10,                                                                                                # if 1 'testRatio' is used for data splitting, otherwise k-fold cross validation (tbi)
-              'selApp': [],                                                                               # appliances to be evaluated (note first appliance is '0')
+              'kfold': 10,                                                                                               # if 1 'testRatio' is used for data splitting, otherwise k-fold cross validation (tbi)
+              'selApp': [],                                                                                              # appliances to be evaluated (note first appliance is '0')
               'ghost': 1,                                                                                                # if 0) ghost data will not be used, 1) ghost data will be treated as own appliance, 2) ideal data will be used
               'normData': 2,                                                                                             # normalize data, if 0) none, 1) min-max (in this case meanX/meanY are interpreted as max values), 2) min/max one common value (meanX), 3) mean-std, 4) min/max using train-data
               'meanX': 5000,                                                                                             # normalization value (mean) for the aggregated signal
