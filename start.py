@@ -41,13 +41,13 @@ resultPath = pjoin(dirname(os.getcwd()), '02_Base_NILM', 'results')
 #######################################################################################################################
 
 # Experiment
-setup_Exp = {'experiment_name': "redd4Def",                                                                              # name of the experiment (name of files that will be saved)
+setup_Exp = {'experiment_name': "redd2Def",                                                                              # name of the experiment (name of files that will be saved)
              'author': "Pascal",                                                                                         # name of the person running the experiment
              'configuration_name': "baseNILM",                                                                           # name of the experiment configuration
              'train': 1,                                                                                                 # if 1 training will be performed (if 'experiment_name' exist the mdl will be retrained)
              'test': 1,                                                                                                  # if 1 testing will be performed
-             'plotting': 0,                                                                                              # if 1 results will be plotted
-             'saveResults': 0}                                                                                           # if 1 results will be saved
+             'plotting': 1,                                                                                              # if 1 results will be plotted
+             'saveResults': 1}                                                                                           # if 1 results will be saved
 
 # Dataset
 setup_Data = {'dataset': "reddTrans",                                                                                         # name of the dataset: 1) redd, 2) ampds, 3) refit, 4)...
@@ -55,7 +55,7 @@ setup_Data = {'dataset': "reddTrans",                                           
               'granularity': 3,                                                                                          # granularity of the data in Hz
               'downsample': 3,                                                                                           # down-samples the data with a integer value, use 1 for base sample rate
               'houseTrain': [1, 3],                                                                                      # houses used for training, e.g. [1, 3, 4, 5, 6]
-              'houseTest': 4,                                                                                            # house used for testing, e.g. 2
+              'houseTest': 2,                                                                                            # house used for testing, e.g. 2
               'houseVal': 5,                                                                                             # house used for validation, e.g. 2
               'testRatio': 0.1,                                                                                          # if only one house is used 'testRatio' defines the split of 'houseTrain'
               'kfold': 10,                                                                                                # if 1 'testRatio' is used for data splitting, otherwise k-fold cross validation (tbi)
@@ -72,7 +72,7 @@ setup_Data = {'dataset': "reddTrans",                                           
 
 # Architecture Parameters
 setup_Para = {'algorithm': 1,                                                                                            # if 0 classification is used, if 1 regression is used
-              'classifier': "CNN",                                                                                       # possible classifier: 1) ML: RF, CNN, LSTM \ 2) PM: DTW, MVM \ 3) SS: NMF, SCA
+              'classifier': "RF",                                                                                        # possible classifier: 1) ML: RF, CNN, LSTM \ 2) PM: DTW, MVM \ 3) SS: NMF, SCA
               'trans': 0,                                                                                                # if 1 transfer learning is applied, e.g. 'houseTrain' are used for training and 'houseTest' and 'houseVal' for testing and validation respectively
               'framelength': 10,                                                                                         # frame-length of the time-frames
               'overlap': 9,                                                                                              # overlap between two consecutive time frames
@@ -119,7 +119,7 @@ setup_Feat_One = {'Mean':      1,                                               
 
 # Multi-Dimensional Features (select one)
 setup_Feat_Mul = {'FFT': 0,                                                                                              # if 1) using amplitudes, 2) using phase angles, 3) use both (concatenated same dimension) 4) use both (concatenated new dimension)
-                  'PQ': 2}                                                                                               # if 1) raw values, 2) FFT amplitudes, 3) FFT phases (only for shape 3 data with P/Q as features)
+                  'PQ': 0}                                                                                               # if 1) raw values, 2) FFT amplitudes, 3) FFT phases (only for shape 3 data with P/Q as features)
 
 #######################################################################################################################
 # Non Transfer
