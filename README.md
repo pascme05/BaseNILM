@@ -16,3 +16,6 @@ For GPU based calculations CUDA in combination cuDNN has been used, utilizing th
 - CUDA 11.4
 - DNN 8.2.4
 - Driver 472.39
+
+# Test
+For a first test run use start.py to train, test and plot a 10-fold cross validation using the REDD-2 dataset with four loads. 
