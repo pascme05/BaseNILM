@@ -3,10 +3,10 @@
 # Title: Baseline NILM Architecture
 # Topic: Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File: start
-# Date: 23.11.2021
+# Date: 05.01.2022
 # Author: Dr. Pascal A. Schirmer
 # Version: V.0.0
-# Copyright: University of Hertfordshire, Hatfield UK
+# Copyright: Pascal A. Schirmer
 #######################################################################################################################
 #######################################################################################################################
 
