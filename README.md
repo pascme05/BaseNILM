@@ -1,5 +1,5 @@
 # Introduction
-BaseNILM is a tool for solving the energy dissagregation problem. It aims to give a baseline systems for both new and experience researchers within the area of energy disaggregation and Non-Intrusive Load Monitoring. For a full description please see the provided documentation in \docu.
+BaseNILM is a tool for solving the energy dissagregation problem. It aims to give a baseline systems for both new and experience researchers within the area of energy disaggregation and Non-Intrusive Load Monitoring. For a full description please see the provided documentation in BaseNILM\docu.
 
 # Publication
 The BaseNILM toolkit is part of the following NILM survey paper and tries to replicate the presented architectures and disaggregation approaches. Please cite the following paper when using the BaseNILM toolkit:
@@ -16,3 +16,9 @@ For GPU based calculations CUDA in combination cuDNN has been used, utilizing th
 - CUDA 11.4
 - DNN 8.2.4
 - Driver 472.39
+
+# Usage
+For a first test run use start.py to train, test and plot a 10-fold cross validation using the REDD-2 dataset with four loads. If you dont want to train simply set setup_Exp['train']=0 as the models for the example test run are already stored in BaseNILM\mdl. For changing parameters and adapting the parameters please refer to the documentation in BaseNILM\docu.
+
+# Development
+If you want to contribute to the BaseNILM toolkit, please contact me via: 
