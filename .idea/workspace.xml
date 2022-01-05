@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c32ab4a-b27b-44f6-bcc4-8de65a6a90cd" name="Default Changelist" comment="Dir_name while saving added" />
+    <list default="true" id="7c32ab4a-b27b-44f6-bcc4-8de65a6a90cd" name="Default Changelist" comment="Dir_name while saving added">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
