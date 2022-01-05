@@ -19,6 +19,8 @@ import sys
 import numpy as np
 from datetime import datetime
 from lib.fnc.printResults import printResults
+from pathlib import Path
+import json
 
 
 #######################################################################################################################
@@ -31,15 +33,38 @@ def save(resultsApp, resultsAvg, YTest, YPred, setup_Exp, setup_Data, resultPath
     print("Running NILM tool: Saving Results")
 
     ####################################################################################################################
+    # Directory
+    ####################################################################################################################
+    if setup_Data['kfold'] > 1:
+        org_string = setup_Exp['experiment_name']
+        split_string = org_string.split("kfold", 1)
+        dir_name = split_string[0] + 'kfold' + str(setup_Data['kfold'])
+        path = resultPath + '\\' + dir_name
+    else:
+        dir_name = setup_Exp['experiment_name']
+        path = resultPath + '\\' + dir_name
+    Path(path).mkdir(parents=True, exist_ok=True)
+
+    ####################################################################################################################
+    # Save Setup
+    ####################################################################################################################
+    setup_name = 'setup_' + dir_name + '.txt'
+    os.chdir(path)
+    with open(setup_name, 'w') as file:
+        file.write(json.dumps(setup_Exp))
+        file.write(json.dumps(setup_Data))
+
+    ####################################################################################################################
     # Output
     ####################################################################################################################
     now = datetime.now()
     dt_string = now.strftime("%d_%m_%Y_%H_%M_%S")
     resultName = 'result_' + setup_Exp['experiment_name'] + '_' + dt_string + '.txt'
-    os.chdir(resultPath)
+    temp = sys.stdout
     sys.stdout = open(resultName, "w")
     printResults(resultsApp, resultsAvg, setup_Data)
     sys.stdout.close()
+    sys.stdout = temp
 
     ####################################################################################################################
     # Saving results

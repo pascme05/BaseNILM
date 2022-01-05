@@ -30,11 +30,11 @@ warnings.filterwarnings('ignore')                                               
 #######################################################################################################################
 # Paths
 #######################################################################################################################
-basePath = pjoin(dirname(os.getcwd()), '02_Base_NILM')
-dataPath = pjoin(dirname(os.getcwd()), '02_Base_NILM', 'data')
-mdlPath = pjoin(dirname(os.getcwd()), '02_Base_NILM', 'mdl')
-libPath = pjoin(dirname(os.getcwd()), '02_Base_NILM', 'lib')
-resultPath = pjoin(dirname(os.getcwd()), '02_Base_NILM', 'results')
+basePath = pjoin(dirname(os.getcwd()), 'BaseNILM')
+dataPath = pjoin(dirname(os.getcwd()), 'BaseNILM', 'data')
+mdlPath = pjoin(dirname(os.getcwd()), 'BaseNILM', 'mdl')
+libPath = pjoin(dirname(os.getcwd()), 'BaseNILM', 'lib')
+resultPath = pjoin(dirname(os.getcwd()), 'BaseNILM', 'results')
 
 #######################################################################################################################
 # Configuration
@@ -44,9 +44,9 @@ resultPath = pjoin(dirname(os.getcwd()), '02_Base_NILM', 'results')
 setup_Exp = {'experiment_name': "redd2Def",                                                                              # name of the experiment (name of files that will be saved)
              'author': "Pascal",                                                                                         # name of the person running the experiment
              'configuration_name': "baseNILM",                                                                           # name of the experiment configuration
-             'train': 1,                                                                                                 # if 1 training will be performed (if 'experiment_name' exist the mdl will be retrained)
+             'train': 0,                                                                                                 # if 1 training will be performed (if 'experiment_name' exist the mdl will be retrained)
              'test': 1,                                                                                                  # if 1 testing will be performed
-             'plotting': 1,                                                                                              # if 1 results will be plotted
+             'plotting': 0,                                                                                              # if 1 results will be plotted
              'saveResults': 1}                                                                                           # if 1 results will be saved
 
 # Dataset
