@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c32ab4a-b27b-44f6-bcc4-8de65a6a90cd" name="Default Changelist" comment="Dir_name while saving added">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kfold.py" beforeDir="false" afterPath="$PROJECT_DIR$/kfold.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/fnc/features.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fnc/features.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/fnc/featuresMul.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fnc/featuresMul.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/fnc/framing.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fnc/framing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/fnc/save.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fnc/save.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/postprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/postprocessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/preprocessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/start.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trans.py" beforeDir="false" afterPath="$PROJECT_DIR$/trans.py" afterDir="false" />
-    </list>
+    <list default="true" id="7c32ab4a-b27b-44f6-bcc4-8de65a6a90cd" name="Default Changelist" comment="Changed copyright" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +18,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Studium/02_Herts/03_VRF/21_NILM/01_BaseNILM" />
   </component>
   <component name="RunManager">
     <configuration name="start" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -78,7 +64,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641377530829</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Changed copyright">
+      <created>1641379942771</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1641379942771</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,6 +118,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Dir_name while saving added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dir_name while saving added" />
+    <MESSAGE value="Changed copyright" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed copyright" />
   </component>
 </project>
