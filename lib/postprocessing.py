@@ -39,17 +39,17 @@ def postprocessing(XPred, YPred, XTest, YTest, setup_Para, setup_Data):
         YPred = YPred.reshape((YPred.shape[0] * YPred.shape[1], YPred.shape[2]))
 
     # ------------------------------------------
-    # Remove negative values
-    # ------------------------------------------
-    YPred[YPred < 0] = 0
-    XPred[XPred < 0] = 0
-
-    # ------------------------------------------
     # Inv Norm
     # ------------------------------------------
     [XPred, YPred] = invNormData(XPred, YPred, setup_Data)
     [XTest, YTest] = invNormData(XTest, YTest, setup_Data)
 
+    # ------------------------------------------
+    # Remove negative values
+    # ------------------------------------------
+    YPred[YPred < 0] = 0
+    XPred[XPred < 0] = 0
+    
     # ------------------------------------------
     # Add epsilon
     # ------------------------------------------
