@@ -20,8 +20,8 @@ import keras_tuner as kt
 import keras.backend as k
 import os
 import datetime
-from lib.mdl.mdlTF import createOptMdl
-from lib.mdl.mdlTF import creatOptMdl2
+from lib.mdl.models import createOptMdl
+from lib.mdl.models import creatOptMdl2
 from lib.fnc.smallFnc import reshapeMdlData
 
 #######################################################################################################################

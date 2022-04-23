@@ -44,7 +44,7 @@ def framing(data, framelength, overlap, dim):
     # Calc
     # ------------------------------------------
     if dim == 3:
-        dataFrame = np.zeros((data.shape[0], framelength, data.shape[1], data.shape[2]))
+        dataFrame = np.zeros((int(np.floor(data.shape[0]/step) + framelength), framelength, data.shape[1], data.shape[2]))
         for ii in range(0, data.shape[2]):
             for i in range(0, data.shape[1]):
                 temp = sliding_window(data[:, i, ii], framelength, step)
@@ -52,7 +52,7 @@ def framing(data, framelength, overlap, dim):
         dataFrame = dataFrame[0:len(temp), :, :, :]
     elif dim == 2:
         temp = np.shape(data)
-        dataFrame = np.zeros((temp[0], framelength, data.shape[1]))
+        dataFrame = np.zeros((int(np.floor(temp[0]/step) + framelength), framelength, data.shape[1]))
         for i in range(0, data.shape[1]):
             temp = sliding_window(data[:, i], framelength, step)
             dataFrame[0:len(temp), :, i] = sliding_window(data[:, i], framelength, step)

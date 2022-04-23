@@ -31,17 +31,19 @@ def trainMdlSK(XTrain, YTrain, setup_Data, setup_Para, setup_Exp, setup_Mdl, pat
     # ------------------------------------------
     # Init Variables
     # ------------------------------------------
+    # General
+    mdl = []
     # KNN
-    n_neighbors = setup_Mdl['n_neighbors']
+    n_neighbors = 5
     # RF
-    max_depth = setup_Mdl['max_depth']
-    random_state = setup_Mdl['random_state']
-    n_estimators = setup_Mdl['n_estimators']
+    max_depth = 10
+    random_state = 0
+    n_estimators = 32
     # SVM
-    kernel = setup_Mdl['kernel']
-    C = setup_Mdl['C']
-    gamma = setup_Mdl['gamma']
-    epsilon = setup_Mdl['epsilon']
+    kernel = 'rbf'
+    C = 100
+    gamma = 0.1
+    epsilon = 0.1
 
     # ------------------------------------------
     # Reshape data
@@ -54,10 +56,6 @@ def trainMdlSK(XTrain, YTrain, setup_Data, setup_Para, setup_Exp, setup_Mdl, pat
     # ------------------------------------------
     # Build model
     # ------------------------------------------
-    # Init
-    mdl = []
-
-    # Mdl
     if setup_Para['multiClass'] == 0:
         if setup_Para['classifier'] == "KNN":
             for ii, weights in enumerate(['uniform', 'distance']):
@@ -66,8 +64,6 @@ def trainMdlSK(XTrain, YTrain, setup_Data, setup_Para, setup_Exp, setup_Mdl, pat
             mdl = RandomForestRegressor(max_depth=max_depth, random_state=random_state, n_estimators=n_estimators)
         if setup_Para['classifier'] == "SVM":
             mdl = SVR(kernel=kernel, C=C, gamma=gamma, epsilon=epsilon)
-            # mdl = SVR(kernel='linear', C=C, gamma='auto')
-            # mdl = SVR(kernel='poly', C=C, gamma='auto', degree=3, epsilon=epsilon, coef0=1)
     elif setup_Para['multiClass'] == 1:
         if setup_Para['classifier'] == "KNN":
             for ii, weights in enumerate(['uniform', 'distance']):
@@ -76,8 +72,6 @@ def trainMdlSK(XTrain, YTrain, setup_Data, setup_Para, setup_Exp, setup_Mdl, pat
             mdl = MultiOutputRegressor(RandomForestRegressor(max_depth=max_depth, random_state=random_state, n_estimators=n_estimators))
         if setup_Para['classifier'] == "SVM":
             mdl = MultiOutputRegressor(SVR(kernel=kernel, C=C, gamma=gamma, epsilon=epsilon))
-            # mdl = MultiOutputRegressor(SVR(kernel='linear', C=C, gamma='auto'))
-            # mdl = MultiOutputRegressor(SVR(kernel='poly', C=C, gamma='auto', degree=3, epsilon=epsilon, coef0=1))
 
     # ------------------------------------------
     # Save initial weights

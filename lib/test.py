@@ -27,6 +27,7 @@ from lib.mdl.testMdlTF import testMdlTF
 from lib.mdl.testMdlCU import testMdlCU
 from lib.mdl.testMdlSK import testMdlSK
 from lib.mdl.testMdlPM import testMdlPM
+from lib.mdl.testMdlSS import testMdlSS
 from lib.mdl.testMdlPT import testMdlPT
 from lib.fnc.save import save
 
@@ -38,7 +39,7 @@ from lib.fnc.save import save
 #######################################################################################################################
 # Function
 #######################################################################################################################
-def test(dataTest, setup_Exp, setup_Data, setup_Para, setup_Feat_One, setup_Feat_Mul, basePath, mdlPath, resultPath):
+def test(dataTest, setup_Exp, setup_Data, setup_Para, setup_Mdl, setup_Feat_One, setup_Feat_Mul, basePath, mdlPath, resultPath):
     ####################################################################################################################
     # Welcome Message
     ####################################################################################################################
@@ -101,11 +102,15 @@ def test(dataTest, setup_Exp, setup_Data, setup_Para, setup_Feat_One, setup_Feat
 
     # PM mdl
     if setup_Para['solver'] == "PM":
-        [XPred, YPred] = testMdlPM(XTest, YTest, setup_Data, setup_Para, setup_Exp, basePath, mdlPath)
+        [XPred, YPred] = testMdlPM(XTest, setup_Mdl, setup_Data, setup_Para, setup_Exp, basePath, mdlPath)
 
     # PT mdl
     if setup_Para['solver'] == "PT":
         [XPred, YPred] = testMdlPT(XTest, YTest, setup_Data, setup_Para, setup_Exp, basePath, mdlPath)
+
+    # SS mdl
+    if setup_Para['solver'] == "SS":
+        [XPred, YPred] = testMdlSS(XTest, YTest, setup_Data, setup_Para, setup_Exp, basePath, mdlPath)
 
     # Custom
     if setup_Para['solver'] == "CU":

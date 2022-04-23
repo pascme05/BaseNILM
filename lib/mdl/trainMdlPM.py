@@ -27,19 +27,28 @@ def trainMdlPM(XTrain, YTrain, setup_Data, setup_Para, setup_Exp, path, mdlPath)
     # ------------------------------------------
     # Init Variables
     # ------------------------------------------
-    mdl = np.zeros((XTrain.shape[0], XTrain.shape[1], (setup_Data['numApp']+1)))
+    if setup_Para['classifier'] == 'MDTW' or setup_Para['classifier'] == 'MGAK' or setup_Para['classifier'] == 'MMVM':
+        mdl = np.zeros((XTrain.shape[0], XTrain.shape[1], XTrain.shape[2], (setup_Data['numApp'] + 1)))
+    else:
+        mdl = np.zeros((XTrain.shape[0], XTrain.shape[1], (setup_Data['numApp']+1)))
 
     # ------------------------------------------
     # Build Reference Signature Database
     # ------------------------------------------
-    if np.size(XTrain.shape) == 2:
-        mdl[:, :, 0] = XTrain
+    if setup_Para['classifier'] == 'MDTW' or setup_Para['classifier'] == 'MGAK' or setup_Para['classifier'] == 'MMVM':
+        mdl[:, :, :, 0] = XTrain
         for i in range(0, setup_Data['numApp']):
-            mdl[:, :, i+1] = YTrain[:, :, i]
+            for ii in range(0, XTrain.shape[2]):
+                mdl[:, :, ii, i + 1] = YTrain[:, :, i]
     else:
-        mdl[:, :, 0] = XTrain
-        for i in range(0, setup_Data['numApp']):
-            mdl[:, :, i+1] = YTrain[:, :, i]
+        if np.size(XTrain.shape) == 2:
+            mdl[:, :, 0] = XTrain
+            for i in range(0, setup_Data['numApp']):
+                mdl[:, :, i+1] = YTrain[:, :, i]
+        else:
+            mdl[:, :, 0] = XTrain[:, :, setup_Data['output']]
+            for i in range(0, setup_Data['numApp']):
+                mdl[:, :, i+1] = YTrain[:, :, i]
 
     # ------------------------------------------
     # Save Database

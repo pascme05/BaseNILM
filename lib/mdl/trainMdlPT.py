@@ -20,9 +20,9 @@ import os
 import torch
 from torch import nn
 from torch.utils.data import DataLoader
-from lib.mdl.mdlTF import ptMdlWaveNet
-from lib.mdl.mdlTF import ptMdlCNN1
-from lib.mdl.mdlTF import ptMdlCNN2
+from lib.mdl.models import ptMdlWaveNet
+from lib.mdl.models import ptMdlCNN1
+from lib.mdl.models import ptMdlCNN2
 from lib.fnc.smallFnc import PrepareData
 from lib.fnc.smallFnc import reshapeMdlData
 

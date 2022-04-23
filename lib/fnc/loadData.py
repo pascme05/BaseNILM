@@ -41,6 +41,7 @@ def loadDataTrans(setup_Data, train, path):
     name = 'data'
     mat_fname = pjoin(path, matfile)
     dataRaw = scipy.io.loadmat(mat_fname)
+    setup_Data['all_labels'] = dataRaw['labels']
     setup_Data['labels'] = dataRaw['labels']
     dataTotal = dataRaw[name]
 
@@ -99,6 +100,7 @@ def loadDataKfold(setup_Data, path):
     name = 'data'
     mat_fname = pjoin(path, matfile)
     dataRaw = scipy.io.loadmat(mat_fname)
+    setup_Data['all_labels'] = dataRaw['labels']
     setup_Data['labels'] = dataRaw['labels']
     dataRaw = dataRaw[name]
 
@@ -176,6 +178,7 @@ def loadData(setup_Data, path):
     name = 'data'
     mat_fname = pjoin(path, matfile)
     dataRaw = scipy.io.loadmat(mat_fname)
+    setup_Data['all_labels'] = dataRaw['labels']
     setup_Data['labels'] = dataRaw['labels']
     dataRaw = dataRaw[name]
 

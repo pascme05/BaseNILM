@@ -77,6 +77,9 @@ def reshapeMdlData(X, y, setup_Data, setup_Para, test):
     else:
         X = X.reshape((X.shape[0], X.shape[1], X.shape[2], X.shape[3]))
 
+    if setup_Para['classifier'] == "LSTM":
+        X = X.reshape((X.shape[0], X.shape[1], X.shape[2]))
+
     return [X, y]
 
 
@@ -123,7 +126,6 @@ def removeInactive(XTrain, YTrain, appIdx, setup_Para, setup_Data, BATCH_SIZE):
 # Balance data
 # ------------------------------------------
 def balanceData(XTrain, YTrain, appIdx, setup_Data, thres, ratio):
-
     appliance_positve = []
     main_positive = []
     appliance_negative = []
@@ -147,13 +149,13 @@ def balanceData(XTrain, YTrain, appIdx, setup_Data, thres, ratio):
 
     print('Appliance: positive: %d  negative: %d' % (len(appliance_positve), len(appliance_negative)))
 
-    if len(appliance_positve)*ratio < len(appliance_negative):
-        negative_length = len(appliance_positve)*ratio
+    if len(appliance_positve) * ratio < len(appliance_negative):
+        negative_length = len(appliance_positve) * ratio
     else:
         negative_length = len(appliance_negative)
-    negative_index = np.linspace(0, negative_length-1, negative_length).astype(int)
+    negative_index = np.linspace(0, negative_length - 1, negative_length).astype(int)
     random.shuffle(negative_index)
-    positive_index = np.linspace(0, len(appliance_positve)-1, len(appliance_positve)).astype(int)
+    positive_index = np.linspace(0, len(appliance_positve) - 1, len(appliance_positve)).astype(int)
     random.shuffle(positive_index)
 
     for i in positive_index:

@@ -44,10 +44,10 @@ resultPath = pjoin(dirname(os.getcwd()), 'BaseNILM', 'results')
 # ------------------------------------------
 # Experiment
 # ------------------------------------------
-setup_Exp = {'experiment_name': "testCNN",                                                                               # name of the experiment (name of files that will be saved)
+setup_Exp = {'experiment_name': "test",                                                                                  # name of the experiment (name of files that will be saved)
              'author': "Pascal Schirmer",                                                                                # name of the person running the experiment
              'configuration_name': "baseNILM",                                                                           # name of the experiment configuration
-             'train': 1,                                                                                                 # if 1) training will be performed (if 'experiment_name' exist the mdl will be retrained)
+             'train': 0,                                                                                                 # if 1) training will be performed (if 'experiment_name' exist the mdl will be retrained)
              'test': 1,                                                                                                  # if 1) testing will be performed
              'plotting': 0,                                                                                              # if 1) results will be plotted if 2) time series will be plotted
              'log': 0,                                                                                                   # if 1) logs are saved
@@ -66,7 +66,7 @@ setup_Data = {'dataset': "ampds",                                               
               'houseTest': 2,                                                                                            # house used for testing, e.g. 2
               'houseVal': 2,                                                                                             # house used for validation, e.g. 2
               'testRatio': 0.1,                                                                                          # if only one house is used 'testRatio' defines the split of 'houseTrain'
-              'kfold': 5,                                                                                                # if 1) 'testRatio' is used for data splitting, otherwise k-fold cross validation
+              'kfold': 10,                                                                                               # if 1) 'testRatio' is used for data splitting, otherwise k-fold cross validation
               'selApp': [6, 8, 9, 12, 14],                                                                               # appliances to be evaluated (note first appliance is '0')
               'ghost': 0,                                                                                                # if 0) ghost data will not be used, 1) ghost data will be treated as own appliance, 2) ideal data will be used
               'normData': 5,                                                                                             # normalize data, if 0) none, 1) min-max (in this case meanX/meanY are interpreted as max values), 2) min/max one common value (meanX), 3) mean-std, 4) min/max using train-data 5) mean-std using train data
@@ -105,14 +105,7 @@ setup_Mdl = {'batch_size': 1000,                                                
              'valsteps': 50,                                                                                             # number of validation steps
              'shuffle': "True",                                                                                          # either True or False for shuffling data
              'verbose': 2,                                                                                               # settings for displaying mdl progress
-             'n_neighbors': 5,                                                                                           # number of nearest neighbors for KNN
-             'max_depth': 10,                                                                                            # maximum depth for RF
-             'random_state': 0,                                                                                          # random state parameter for RF
-             'n_estimators': 32,                                                                                         # number of estimators for RF
-             'kernel': "rbf",                                                                                            # kernel for SVM
-             'C': 100,                                                                                                   # regularization parameter SVM
-             'epsilon': 0.1,                                                                                             # epsilon parameter SVM
-             'gamma': 0.1}                                                                                               # scale parameter SVM
+             'cDTW': 0.1}                                                                                                # pattern matching constraint on mdl size (%)
 
 #######################################################################################################################
 # Select Features
@@ -141,7 +134,7 @@ setup_Feat_One = {'Mean':      1,                                               
 # Multi-Dimensional Features (select one)
 # ------------------------------------------
 setup_Feat_Mul = {'FFT': 0,                                                                                              # if 1) using amplitudes, 2) using phase angles, 3) use both (concatenated same dimension) 4) use both (concatenated new dimension)
-                  'PQ': 0,                                                                                               # if 1) raw pq values are used (product for V and I as input) if 2) addition for P and Q as input
+                  'PQ': 2,                                                                                               # if 1) raw pq values are used (product for V and I as input) if 2) addition for P and Q as input
                   'VI': 0,                                                                                               # if 1) VI-Trajectory is used
                   'REC': 0,                                                                                              # if 1) Recurrent plot is used
                   'GAF': 0,                                                                                              # if 1) Gramian Angular Field is used

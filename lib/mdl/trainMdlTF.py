@@ -17,9 +17,9 @@
 import tensorflow as tf
 import numpy as np
 import os
-from lib.mdl.mdlTF import tfMdlCNN
-from lib.mdl.mdlTF import tfMdlDNN
-from lib.mdl.mdlTF import tfMdlLSTM
+from lib.mdl.models import tfMdlCNN
+from lib.mdl.models import tfMdlDNN
+from lib.mdl.models import tfMdlLSTM
 from lib.fnc.createMdlData import createMdlDataTF
 from lib.fnc.smallFnc import reshapeMdlData
 

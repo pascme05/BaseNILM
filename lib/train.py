@@ -23,6 +23,7 @@ from lib.mdl.trainMdlTF import trainMdlTF
 from lib.mdl.trainMdlSK import trainMdlSK
 from lib.mdl.trainMdlPM import trainMdlPM
 from lib.mdl.trainMdlPT import trainMdlPT
+from lib.mdl.trainMdlSS import trainMdlSS
 from lib.mdl.trainMdlCU import trainMdlCU
 
 #######################################################################################################################
@@ -99,6 +100,10 @@ def train(dataTrain, dataVal, setup_Exp, setup_Data, setup_Para, setup_Mdl, setu
     # PM mdl
     if setup_Para['solver'] == "PM":
         trainMdlPM(XTrain, YTrain, setup_Data, setup_Para, setup_Exp, basePath, mdlPath)
+
+    # SS mdl
+    if setup_Para['solver'] == "SS":
+        trainMdlSS(XTrain, YTrain, setup_Data, setup_Para, setup_Exp, setup_Mdl, basePath, mdlPath)
 
     # Custom
     if setup_Para['solver'] == "CU":

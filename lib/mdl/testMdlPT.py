@@ -17,9 +17,9 @@
 import numpy as np
 import os
 import torch
-from lib.mdl.mdlTF import ptMdlWaveNet
-from lib.mdl.mdlTF import ptMdlCNN1
-from lib.mdl.mdlTF import ptMdlCNN2
+from lib.mdl.models import ptMdlWaveNet
+from lib.mdl.models import ptMdlCNN1
+from lib.mdl.models import ptMdlCNN2
 from lib.fnc.smallFnc import reshapeMdlData
 
 

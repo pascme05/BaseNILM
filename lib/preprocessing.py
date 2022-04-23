@@ -85,16 +85,16 @@ def preprocessing(data, setup_Data):
             setup_Data['numApp'] = Ydata.shape[1]
         else:
             Ydata = Ydata[:, setup_Data['selApp']]
-            if len(setup_Data['labels']) != Ydata.shape[1]:
-                setup_Data['labels'] = setup_Data['labels'][setup_Data['selApp']]
+            if len(setup_Data['all_labels']) != Ydata.shape[1]:
+                setup_Data['labels'] = setup_Data['all_labels'][setup_Data['selApp']]
             setup_Data['numApp'] = len(setup_Data['selApp'])
     elif setup_Data['shape'] == 3:
         if len(setup_Data['selApp']) == 0:
             setup_Data['numApp'] = Ydata.shape[1]
         else:
             Ydata = Ydata[:, setup_Data['selApp'], :]
-            if len(setup_Data['labels']) != Ydata.shape[1]:
-                setup_Data['labels'] = setup_Data['labels'][setup_Data['selApp']]
+            if len(setup_Data['all_labels']) != Ydata.shape[1]:
+                setup_Data['labels'] = setup_Data['all_labels'][setup_Data['selApp']]
             setup_Data['numApp'] = len(setup_Data['selApp'])
 
     if setup_Data['normData'] >= 3 and setup_Data['normXY'] >= 2 and len(setup_Data['meanY']) != Ydata.shape[1]:
