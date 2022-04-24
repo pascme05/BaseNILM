@@ -1,8 +1,8 @@
 # Introduction
 BaseNILM is a tool for solving the energy dissagregation problem. 
-It aims to give a baseline systems for both new and experienced researchers within 
+It aims to provide a baseline systems for both new and experienced researchers within 
 the area of energy disaggregation and Non-Intrusive Load Monitoring. 
-For a full description please see the provided documentation in BaseNILM \docu.
+For a full description please see the provided documentation under BaseNILM \docu.
 
 # Publication
 The BaseNILM toolkit is part of the following NILM survey paper and tries to 
@@ -30,9 +30,9 @@ The BaseNILM Toolkit was implemented using the following dependencies:
 - Tensorflow 2.5.0
 - Keras 2.4.3
 
-For GPU based calculations CUDA in combination cuDNN has been used, 
+For GPU based calculations CUDA in combination with cuDNN has been used, 
 utilizing the Nvidia RTX 3000 series for calculation. 
-The following version have been tested and proven to work with the BaseNILM toolkit:
+The following versions have been tested and proven to work with the BaseNILM toolkit:
 - CUDA 11.4
 - DNN 8.2.4
 - Driver 472.39
