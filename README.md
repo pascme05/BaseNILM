@@ -1,5 +1,5 @@
 # Introduction
-BaseNILM is a tool for solving the energy dissagregation problem. 
+BaseNILM is a tool for solving the energy disaggregation problem. 
 It aims to provide a baseline systems for both new and experienced researchers within 
 the area of energy disaggregation and Non-Intrusive Load Monitoring. 
 For a full description please see the provided documentation under BaseNILM \docu.
