@@ -9,7 +9,7 @@ The BaseNILM toolkit is part of the following NILM survey paper and tries to
 replicate the presented architectures and disaggregation approaches. 
 Please cite the following paper when using the BaseNILM toolkit:
 
-P. A. Schirmer and I. Mporas, "Non-Intrusive Load Monitoring: A Review," in IEEE Transactions on Smart Grid, 2022, doi: 10.1109/TSG.2022.3189598 Titel anhand dieser DOI in Citavi-Projekt übernehmen.
+P. A. Schirmer and I. Mporas, "Non-Intrusive Load Monitoring: A Review," in IEEE Transactions on Smart Grid, 2022, doi: 10.1109/TSG.2022.3189598
 
 Furthermore, please do also cite the corresponding publicly available datasets. 
 As well as [1] when using the data balance option, [2] when using the WaveNet pytorch 
@@ -74,6 +74,8 @@ toolkit or spotted any mistake, please contact me via: p.schirmer@herts.ac.uk
 The software framework is provided under the MIT license.
 
 # Cite
+
+P. A. Schirmer and I. Mporas, "Non-Intrusive Load Monitoring: A Review," in IEEE Transactions on Smart Grid, 2022, doi: 10.1109/TSG.2022.3189598
 
 # References
 [1] Pan, Yungang, et al. "Sequence-to-subsequence learning with conditional gan for power disaggregation." ICASSP 2020-2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). IEEE, 2020.
