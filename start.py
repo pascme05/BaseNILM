@@ -1,171 +1,195 @@
 #######################################################################################################################
 #######################################################################################################################
-# Title: Baseline NILM Architecture
-# Topic: Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
-# File: start
-# Date: 05.01.2022
-# Author: Dr. Pascal A. Schirmer
-# Version: V.0.0
-# Copyright: Pascal A. Schirmer
+# Title:        BaseNILM toolkit for energy disaggregation
+# Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
+# File:         start
+# Date:         21.11.2023
+# Author:       Dr. Pascal A. Schirmer
+# Version:      V.0.2
+# Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
-
 
 #######################################################################################################################
 # Import external libs
 #######################################################################################################################
-from os.path import dirname, join as pjoin
-import os
-from main import main
-from trans import trans
-from kfold import kfold
-from opt import opt
-import warnings
+# ==============================================================================
+# Internal
+# ==============================================================================
+from src.main import main
+from src.optiHyp import optiHyp
+from src.optiGrid import optiGrid
+from src.general.helpFnc import initPath, initSetup
+from mdlPara import mdlPara
 
+# ==============================================================================
+# External
+# ==============================================================================
+import warnings
+import os
 
 #######################################################################################################################
 # Format
 #######################################################################################################################
-warnings.filterwarnings('ignore')                                                                                        # suppressing all warning
+warnings.filterwarnings("ignore")
 
 #######################################################################################################################
 # Paths
 #######################################################################################################################
-basePath = pjoin(dirname(os.getcwd()), 'BaseNILM')
-dataPath = pjoin(dirname(os.getcwd()), 'BaseNILM', 'data')
-mdlPath = pjoin(dirname(os.getcwd()), 'BaseNILM', 'mdl')
-libPath = pjoin(dirname(os.getcwd()), 'BaseNILM', 'lib')
-resultPath = pjoin(dirname(os.getcwd()), 'BaseNILM', 'results')
+setupPath = initPath('BaseNILM')
 
 #######################################################################################################################
-# Configuration
+# Init
 #######################################################################################################################
-
-# ------------------------------------------
-# Experiment
-# ------------------------------------------
-setup_Exp = {'experiment_name': "test",                                                                                  # name of the experiment (name of files that will be saved)
-             'author': "Pascal Schirmer",                                                                                # name of the person running the experiment
-             'configuration_name': "baseNILM",                                                                           # name of the experiment configuration
-             'train': 0,                                                                                                 # if 1) training will be performed (if 'experiment_name' exist the mdl will be retrained)
-             'test': 1,                                                                                                  # if 1) testing will be performed
-             'plotting': 0,                                                                                              # if 1) results will be plotted if 2) time series will be plotted
-             'log': 0,                                                                                                   # if 1) logs are saved
-             'saveResults': 0}                                                                                           # if 1) results will be saved
-
-# ------------------------------------------
-# Dataset
-# ------------------------------------------
-setup_Data = {'dataset': "ampds",                                                                                        # name of the dataset: 1) redd, 2) ampds, 3) refit, 4)...
-              'shape': 3,                                                                                                # if 2) shape is 2-dimensional (Tx[2+M], with T samples and M devices), if 3) shape is 3-dimensional (Tx[2+M]xF, where F is the number of features)
-              'output': 1,                                                                                               # select output if Y is multidimensional (e.g. AMPds 0) P, 1) I, 2) Q, 3) S)
-              'granularity': 60,                                                                                         # granularity of the data in sec
-              'downsample': 1,                                                                                           # down-samples the data with an integer value, use 1 for base sample rate
-              'limit': 0,                                                                                                # limit number of data points
-              'houseTrain': [2],                                                                                         # houses used for training, e.g. [1, 3, 4, 5, 6]
-              'houseTest': 2,                                                                                            # house used for testing, e.g. 2
-              'houseVal': 2,                                                                                             # house used for validation, e.g. 2
-              'testRatio': 0.1,                                                                                          # if only one house is used 'testRatio' defines the split of 'houseTrain'
-              'kfold': 10,                                                                                               # if 1) 'testRatio' is used for data splitting, otherwise k-fold cross validation
-              'selApp': [6, 8, 9, 12, 14],                                                                               # appliances to be evaluated (note first appliance is '0')
-              'ghost': 0,                                                                                                # if 0) ghost data will not be used, 1) ghost data will be treated as own appliance, 2) ideal data will be used
-              'normData': 5,                                                                                             # normalize data, if 0) none, 1) min-max (in this case meanX/meanY are interpreted as max values), 2) min/max one common value (meanX), 3) mean-std, 4) min/max using train-data 5) mean-std using train data
-              'normXY': 3,                                                                                               # 1) X is normalized, if 2) Y is normalized, if 3) X and Y are normalized
-              'meanX': 1,                                                                                                # normalization value (mean) for the aggregated signal
-              'meanY': [1, 1, 1, 1, 1],                                                                                  # normalization values (mean) for the appliance signals
-              'stdX': 0,                                                                                                 # normalization value (std) for the aggregated signal
-              'stdY': [0, 0, 0, 0, 0],                                                                                   # normalization values (std) for the aggregated signals
-              'neg': 0,                                                                                                  # if 1) negative data will be removed during pre-processing
-              'inactive': 0,                                                                                             # if 0) off, if >0 inactive period will be removed from the training data (multiclass 0)
-              'balance': 0,                                                                                              # if 0) data is not balanced >1) ratio of positive and negative batches is balanced (only when using seq2seq)
-              'filt': "none",                                                                                            # if 'none' no filter is used if 'median' median filter is used
-              'filt_len': 21}                                                                                            # length of the filter (must be an odd number)
-
-# ------------------------------------------
-# Architecture Parameters
-# ------------------------------------------
-setup_Para = {'solver': "TF",                                                                                            # TF: Tensorflow, PT: PyTorch, SK: sklearn, PM: Pattern Matching, SS: Source Separation and CU: Custom (placeholder for own ideas)
-              'algorithm': 1,                                                                                            # if 0 classification is used, if 1 regression is used
-              'classifier': "CNN",                                                                                       # possible classifier: 1) ML: RF, CNN, LSTM \ 2) PM: DTW, MVM \ 3) SS: NMF, SCA
-              'trans': 0,                                                                                                # if 1 transfer learning is applied, e.g. 'houseTrain' are used for training and 'houseTest' and 'houseVal' for testing and validation respectively
-              'opt': 0,                                                                                                  # if >0 models are optimized using keras tuner (note inputs and outputs of hypermodel must be set manually)
-              'framelength': 10,                                                                                         # frame-length of the time-frames
-              'overlap': 9,                                                                                              # overlap between two consecutive time frames
-              'p_Threshold': 0.5,                                                                                        # threshold for binary distinction of On/Off states
-              'multiClass': 1,                                                                                           # if 0 one model per appliance is used, if 1 one model for all appliances is used
-              'seq2seq': 0,                                                                                              # if 0) seq2point is used, if 1) seq2seq is used (only if multiClass=0) the values is equal to the length of the output sequence
-              'feat': 0}                                                                                                 # if 0) raw values are used, if 1) 1D features are calculated, if 2) 2D feature are calculated (only for shape 3 data)
-
-# ------------------------------------------
-# Mdl Parameters
-# ------------------------------------------
-setup_Mdl = {'batch_size': 1000,                                                                                         # batch size for DNN based approaches
-             'epochs': 50,                                                                                               # number of epochs for training
-             'patience': 15,                                                                                             # number of epochs patience when training
-             'valsteps': 50,                                                                                             # number of validation steps
-             'shuffle': "True",                                                                                          # either True or False for shuffling data
-             'verbose': 2,                                                                                               # settings for displaying mdl progress
-             'cDTW': 0.1}                                                                                                # pattern matching constraint on mdl size (%)
+[setupExp, setupDat, setupPar, setupMdl] = initSetup()
 
 #######################################################################################################################
-# Select Features
+# Setup and Configuration
 #######################################################################################################################
+# ==============================================================================
+# Experimental Parameters
+# ==============================================================================
 # ------------------------------------------
-# One-Dimensional Features (select multiple)
+# Names
 # ------------------------------------------
-setup_Feat_One = {'Mean':      1,                                                                                        # Mean value of the frame
-                  'Std':       1,                                                                                        # standard deviation of the frame
-                  'RMS':       1,                                                                                        # rms value of the frame
-                  'Peak2Rms':  1,                                                                                        # peak-to-RMS value of the frame
-                  'Median':    1,                                                                                        # median value of the frame
-                  'MIN':       1,                                                                                        # minimum value of the frame
-                  'MAX':       1,                                                                                        # maximum value of the frame
-                  'Per25':     1,                                                                                        # 25 percentile of the frame
-                  'Per75':     1,                                                                                        # 75 percentile of the frame
-                  'Energy':    1,                                                                                        # energy in the frame
-                  'Var':       1,                                                                                        # variance of the frame
-                  'Range':     1,                                                                                        # range of values in the frame
-                  '3rdMoment': 1,                                                                                        # 3rd statistical moment of the frame
-                  '4thMoment': 1,                                                                                        # 4th statistical moment of the frame
-                  'Diff':      0,                                                                                        # first derivative
-                  'DiffDiff':  0}                                                                                        # second derivative
+setupExp['name'] = 'Default'                                                                                            # Name of the simulation
+setupExp['author'] = 'Pascal Schirmer'                                                                                  # Name of the author
 
 # ------------------------------------------
-# Multi-Dimensional Features (select one)
+# General
 # ------------------------------------------
-setup_Feat_Mul = {'FFT': 0,                                                                                              # if 1) using amplitudes, 2) using phase angles, 3) use both (concatenated same dimension) 4) use both (concatenated new dimension)
-                  'PQ': 2,                                                                                               # if 1) raw pq values are used (product for V and I as input) if 2) addition for P and Q as input
-                  'VI': 0,                                                                                               # if 1) VI-Trajectory is used
-                  'REC': 0,                                                                                              # if 1) Recurrent plot is used
-                  'GAF': 0,                                                                                              # if 1) Gramian Angular Field is used
-                  'MKF': 0,                                                                                              # if 1) Markov Transition Field is used
-                  'DFIA': 0}                                                                                             # if 1) FFT amplitudes, 2) FFT phases (only for shape 3 data with P/Q as features)
+setupExp['sim'] = 0                                                                                                     # 0) simulation, 1) optimisation hyperparameters, 2) optimising grid
+setupExp['gpu'] = 1                                                                                                     # 0) cpu, 1) gpu
+setupExp['warn'] = 3                                                                                                    # 0) all msg are logged, 1) INFO not logged, 2) INFO and WARN not logged, 3) disabled
+
+# ------------------------------------------
+# Training/Testing
+# ------------------------------------------
+setupExp['method'] = 0                                                                                                  # 0) 1-fold with data split, 1) k-fold with cross validation, 2) transfer learning with different datasets, 3) id based
+setupExp['trainBatch'] = 0                                                                                              # 0) all no batching, 1) fixed batch size (see data batch parameter), 2) id based
+setupExp['kfold'] = 10                                                                                                  # number of folds for method 1)
+setupExp['train'] = 0                                                                                                   # 0) no training (trying to load model), 1) training new model (or retraining)
+setupExp['test'] = 1                                                                                                    # 0) no testing, 1) testing
+
+# ------------------------------------------
+# Output Control
+# ------------------------------------------
+setupExp['save'] = 0                                                                                                    # 0) results are not saved, 1) results are saved
+setupExp['log'] = 0                                                                                                     # 0) no data logging, 1) logging input data
+setupExp['plot'] = 1                                                                                                    # 0) no plotting, 1) plotting
+
+# ==============================================================================
+# Data Parameters
+# ==============================================================================
+# ------------------------------------------
+# General
+# ------------------------------------------
+setupDat['type'] = 'mat'                                                                                                # data input type: 1) 'xlsx', 2) 'csv', 3) 'mat', 4) 'pkl', 5) 'h5'
+setupDat['freq'] = 'LF'                                                                                                 # 'LF': low-frequency data, 'HF': high-frequency data
+setupDat['dim'] = 3                                                                                                     # 2) 2D input data, 3) 3D input data
+setupDat['batch'] = 100000                                                                                              # number of samples fed at once to training
+setupDat['Shuffle'] = False                                                                                             # False: no shuffling, True: shuffling data when splitting
+setupDat['rT'] = 10/12                                                                                                  # training proportion (0, 1)
+setupDat['rV'] = 0.2                                                                                                    # validation proportion (0, 1) as percentage from training proportion
+setupDat['idT'] = [2]                                                                                                   # list of testing ids for method 3)
+setupDat['idV'] = [2]                                                                                                   # list of validation ids for method 3)
+
+# ------------------------------------------
+# Datasets
+# ------------------------------------------
+setupDat['folder'] = 'ampds'                                                                                            # name of the folder for the dataset under \data
+setupDat['house'] = 1                                                                                                   # only when loading nilmtk converted files with '.h5' format
+setupDat['train'] = ['ampds2']                                                                                          # name of training datasets (multiple)
+setupDat['test'] = 'ampds2'                                                                                             # name of testing datasets (one)
+setupDat['val'] = 'ampds2'                                                                                              # name of validation dataset (one)
+
+# ------------------------------------------
+# Input/ Output Mapping
+# ------------------------------------------
+setupDat['inp'] = []                                                                                                    # names of the input variables (X), if empty all features are used
+setupDat['out'] = ['DWE', 'FRE', 'HPE', 'WOE', 'CDE']                                                                   # names of the output variables (y), if empty all appliances are used
+setupDat['outFeat'] = 0                                                                                                 # if data is three-dimensional, the output axis must be defined
+setupDat['outEnergy'] = 0.0                                                                                             # 0) appliances are selected based on the list, 1) appliances are selected to capture x % of the total energy
+
+# ------------------------------------------
+# Sampling
+# ------------------------------------------
+setupDat['fs'] = 1/60                                                                                                   # sampling frequency (Hz) for HF data this is the LF output frequency of (y)
+setupDat['lim'] = 365*24*60                                                                                             # 0) data is not limited, x) limited to x samples
+
+# ------------------------------------------
+# Pre-processing
+# ------------------------------------------
+setupDat['weightNorm'] = 0                                                                                              # 0) separate normalisation per input/output channel, 1) weighted normalisation
+setupDat['inpNorm'] = 3                                                                                                 # normalising input values (X): 0) None, 1) -1/+1, 2) 0/1, 3) avg/sig
+setupDat['outNorm'] = 2                                                                                                 # normalising output values (y): 0) None, 1) -1/+1, 2) 0/1, 3) avg/sig
+setupDat['inpNoise'] = 0                                                                                                # adding gaussian noise (dB) to input
+setupDat['outNoise'] = 0                                                                                                # adding gaussian noise (dB) to output
+setupDat['inpFil'] = 0                                                                                                  # filtering input data (X): 0) None, 1) Median
+setupDat['outFil'] = 0                                                                                                  # filtering output data (y): 0) None, 1) Median
+setupDat['inpFilLen'] = 61                                                                                              # filter length input data (samples)
+setupDat['outFilLen'] = 61                                                                                              # filter length output data (samples)
+setupDat['threshold'] = 50                                                                                              # 0) no threshold x) threshold to transform regressio into classification data
+setupDat['balance'] = 2                                                                                                 # 0) no balancing 1) balancing based classes (classification), 2) balancing based on threshold (regression)
+setupDat['ghost'] = 0                                                                                                   # 0) ghost data will not be used, 1) ghost data will be treated as own appliance, 2) ideal data will be used (only if X is 1D and has equal domain to y)
+
+# ==============================================================================
+# General Parameters
+# ==============================================================================
+# ------------------------------------------
+# Solver
+# ------------------------------------------
+setupPar['method'] = 0                                                                                                  # 0) regression, 1) classification
+setupPar['solver'] = 'TF'                                                                                               # TF: Tensorflow, PT: PyTorch, SK: sklearn, PM: Pattern Matching, SS: Source Separation and CU: Custom (placeholder for own ideas)
+setupPar['model'] = 'CNN'                                                                                               # possible classifier: 1) ML: RF, CNN, LSTM \ 2) PM: DTW, MVM \ 3) SS: NMF, SCA
+setupPar['modelInpDim'] = 3                                                                                             # model input dimension 3D or 4D (e.g. for CNN2D)
+
+# ------------------------------------------
+# Framing and Features
+# ------------------------------------------
+setupPar['frame'] = 1                                                                                                   # 0) no framing, 1) framing
+setupPar['feat'] = 0                                                                                                    # 0) raw data values, 1) statistical features (frame based), 2) statistical features (input based), 3) input and frame based features, 4) 2D features
+setupPar['window'] = 20                                                                                                 # window length (samples)
+setupPar['overlap'] = 19                                                                                                # overlap between consecutive windows (no overlap during test if -1)
+setupPar['outseq'] = 0                                                                                                  # 0) seq2point, x) length of the subsequence in samples
+setupPar['yFocus'] = 10                                                                                                 # focus point for seq2point (average if -1)
+setupPar['nDim'] = 2                                                                                                    # input dimension for model 1D (1), 2D (2), or 3D (3)
+
+# ------------------------------------------
+# Postprocessing
+# ------------------------------------------
+setupPar['ranking'] = 1                                                                                                 # 0) no feature ranking, 1) feature ranking using random forests
+setupPar['outMin'] = -1e9                                                                                               # limited output values (minimum)
+setupPar['outMax'] = +1e9                                                                                               # limited output values (maximum)
+
+# ==============================================================================
+# Model Parameters
+# ==============================================================================
+setupMdl = mdlPara(setupMdl)
+
 
 #######################################################################################################################
-# Optimize Mdl
+# Calculations
 #######################################################################################################################
-if setup_Para['opt'] > 0:
-    opt(setup_Exp, setup_Data, setup_Para, setup_Mdl, dataPath, setup_Feat_One, setup_Feat_Mul)
+# ==============================================================================
+# Warnings
+# ==============================================================================
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = str(setupExp['warn'])
 
-#######################################################################################################################
-# Non Transfer
-#######################################################################################################################
-# ------------------------------------------
-# Single-fold
-# ------------------------------------------
-if setup_Para['trans'] == 0 and setup_Data['kfold'] <= 1 and setup_Para['opt'] == 0:
-    main(setup_Exp, setup_Data, setup_Para, setup_Mdl, basePath, dataPath, mdlPath, resultPath, setup_Feat_One,
-         setup_Feat_Mul)
-# ------------------------------------------
-# k-fold
-# ------------------------------------------
-if setup_Para['trans'] == 0 and setup_Data['kfold'] > 1 and setup_Para['opt'] == 0:
-    kfold(setup_Exp, setup_Data, setup_Para, setup_Mdl, basePath, dataPath, mdlPath, resultPath, setup_Feat_One,
-          setup_Feat_Mul)
+# ==============================================================================
+# Model Parameters
+# ==============================================================================
+if setupExp['sim'] == 0:
+    main(setupExp, setupDat, setupPar, setupMdl, setupPath)
 
-#######################################################################################################################
-# Transfer
-#######################################################################################################################
-if setup_Para['trans'] == 1:
-    trans(setup_Exp, setup_Data, setup_Para, setup_Mdl, basePath, dataPath, mdlPath, resultPath, setup_Feat_One,
-          setup_Feat_Mul)
+# ==============================================================================
+# Optimising Hyperparameters
+# ==============================================================================
+if setupExp['sim'] == 1:
+    optiHyp(setupExp, setupDat, setupPar, setupMdl, setupPath)
+
+# ==============================================================================
+# Optimising Grid
+# ==============================================================================
+if setupExp['sim'] == 2:
+    optiGrid(setupExp, setupDat, setupPar, setupMdl, setupPath)

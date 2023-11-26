@@ -1,0 +1,1 @@
+The setup folder has been created to structure the existing start files and enabling reproduction of the presented results. To use one of the start files simply copy it to the root directory of the BaseNILM toolkit and execute the file.
