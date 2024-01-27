@@ -2,8 +2,8 @@
 #######################################################################################################################
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
-# File:         Tutorial_1
-# Date:         21.11.2023
+# File:         Tutorial_1_REDD
+# Date:         27.01.2024
 # Author:       Dr. Pascal A. Schirmer
 # Version:      V.0.2
 # Copyright:    Pascal Schirmer
@@ -52,7 +52,7 @@ setupPath = initPath('BaseNILM')
 # ------------------------------------------
 # Names
 # ------------------------------------------
-setupExp['name'] = 'Tutorial_1_AMPds2'                                                                                  # Name of the simulation
+setupExp['name'] = 'Tutorial_1_REDD'                                                                                    # Name of the simulation
 setupExp['author'] = 'Pascal Schirmer'                                                                                  # Name of the author
 
 # ------------------------------------------
@@ -97,11 +97,11 @@ setupDat['idV'] = [2]                                                           
 # ------------------------------------------
 # Datasets
 # ------------------------------------------
-setupDat['folder'] = 'ampds'                                                                                            # name of the folder for the dataset under \data
-setupDat['house'] = 1                                                                                                   # only when loading nilmtk converted files with '.h5' format
-setupDat['train'] = ['ampds2']                                                                                          # name of training datasets (multiple)
-setupDat['test'] = 'ampds2'                                                                                             # name of testing datasets (one)
-setupDat['val'] = 'ampds2'                                                                                              # name of validation dataset (one)
+setupDat['folder'] = 'redd'                                                                                             # name of the folder for the dataset under \data
+setupDat['house'] = 2                                                                                                   # only when loading nilmtk converted files with '.h5' format
+setupDat['train'] = ['redd2']                                                                                           # name of training datasets (multiple)
+setupDat['test'] = 'redd2'                                                                                              # name of testing datasets (one)
+setupDat['val'] = 'redd2'                                                                                               # name of validation dataset (one)
 
 # ------------------------------------------
 # Input/ Output Mapping

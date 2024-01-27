@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ac4843f-95cf-4407-9cec-7a436b18cbf4" name="Changes" comment="" />
+    <list default="true" id="0ac4843f-95cf-4407-9cec-7a436b18cbf4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Tutorial_1_AMPds.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tutorial_1_ECO.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tutorial_1_REDD.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tutorial_1_REFIT.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/BaseNILM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BaseNILM.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,20 +29,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM/BaseNILM&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\BaseNILM" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\BaseNILM\src\general" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\BaseNILM\src\data" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\BaseNILM\src\model" />
-      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\BaseNILM\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\BaseNILM\setup\tutorials" />
