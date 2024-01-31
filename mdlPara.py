@@ -87,7 +87,7 @@ def mdlPara(setupMdl):
     # ------------------------------------------
     # General
     # ------------------------------------------
-    setupMdl['PM_Gen_cDTW'] = 0.1                                                                                       # pattern matching constraint on mdl size (%)
+    setupMdl['PM_Gen_cDTW'] = 0.01                                                                                      # pattern matching constraint on mdl size (%)
 
     # ------------------------------------------
     # DTW
@@ -98,12 +98,12 @@ def mdlPara(setupMdl):
     # ------------------------------------------
     # GAK
     # ------------------------------------------
-    setupMdl['PM_GAK_sigma'] = 10                                                                                       # kernel parameter
+    setupMdl['PM_GAK_sigma'] = 2000                                                                                     # kernel parameter
 
     # ------------------------------------------
     # sDTW
     # ------------------------------------------
-    setupMdl['PM_sDTW_gamma'] = 0.1                                                                                     # soft alignment parameter
+    setupMdl['PM_sDTW_gamma'] = 0.5                                                                                     # soft alignment parameter
 
     # ------------------------------------------
     # MVM
@@ -142,20 +142,20 @@ def mdlPara(setupMdl):
     # ==============================================================================
     # Statistical (frame based)
     # ==============================================================================
-    setupMdl['feat']['Mean'] = 1                                                                                        # mean value
-    setupMdl['feat']['Std'] = 1                                                                                         # standard deviation
+    setupMdl['feat']['Mean'] = 0                                                                                        # mean value
+    setupMdl['feat']['Std'] = 0                                                                                         # standard deviation
     setupMdl['feat']['RMS'] = 1                                                                                         # rms value
-    setupMdl['feat']['Peak2Rms'] = 1                                                                                    # peak to rms value
+    setupMdl['feat']['Peak2Rms'] = 0                                                                                    # peak to rms value
     setupMdl['feat']['Median'] = 1                                                                                      # median value
     setupMdl['feat']['Min'] = 1                                                                                         # minimum value
     setupMdl['feat']['Max'] = 1                                                                                         # maximum value
     setupMdl['feat']['Per25'] = 1                                                                                       # 25% percentile
     setupMdl['feat']['Per75'] = 1                                                                                       # 75% percentile
-    setupMdl['feat']['Energy'] = 1                                                                                      # energy or sum
-    setupMdl['feat']['Var'] = 1                                                                                         # variance
+    setupMdl['feat']['Energy'] = 0                                                                                      # energy or sum
+    setupMdl['feat']['Var'] = 0                                                                                         # variance
     setupMdl['feat']['Range'] = 1                                                                                       # range of values (max - min)
-    setupMdl['feat']['3rdMoment'] = 1                                                                                   # 3rd statistical moment (skewness)
-    setupMdl['feat']['4thMoment'] = 1                                                                                   # 4th statistical moment (kurtosis)
+    setupMdl['feat']['3rdMoment'] = 0                                                                                   # 3rd statistical moment (skewness)
+    setupMdl['feat']['4thMoment'] = 0                                                                                   # 4th statistical moment (kurtosis)
 
     # ==============================================================================
     # 2D Features (select only one -> check index manually to select correct data)

@@ -12,6 +12,8 @@ tqdm==4.62.3
 joblib==1.1.0
 pandas==1.3.4
 texttable~=1.7.0
-seaborn~=0.13.0
+seaborn
 psutil~=5.9.6
 openpyxl
+dtw-python==1.3.0
+keras-tuner==1.3.0

@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ac4843f-95cf-4407-9cec-7a436b18cbf4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Tutorial_1_AMPds.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tutorial_1_ECO.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tutorial_1_REDD.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tutorial_1_REFIT.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/BaseNILM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BaseNILM.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Journal_Constraint_EM_AMPds.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Journal_Constraint_EM_REDD.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mdlPara.py" beforeDir="false" afterPath="$PROJECT_DIR$/mdlPara.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,13 +27,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM" />
@@ -45,11 +43,11 @@
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\BaseNILM\src\model" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\setup\tutorials" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\BaseNILM\setup\tutorials" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\BaseNILM\docu\images" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\BaseNILM\src\data" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\BaseNILM\data" />
-      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\BaseNILM\data\ampds" />
     </key>
   </component>
   <component name="RunManager">
@@ -114,11 +112,6 @@
           <url>file://$PROJECT_DIR$/src/model/trainMdlTF.py</url>
           <line>185</line>
           <option name="timeStamp" value="88" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/train.py</url>
-          <line>231</line>
-          <option name="timeStamp" value="92" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/model/testMdlSS.py</url>
