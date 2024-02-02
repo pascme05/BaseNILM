@@ -45,6 +45,7 @@ def trainMdlSK(data, setupPar, setupMdl, setupExp):
     # ==============================================================================
     # Parameters
     # ==============================================================================
+    nCPU = -1
     mdlName = 'mdl/mdl_' + setupPar['model'] + '_' + setupExp['name'] + '.joblib'
 
     # ==============================================================================
@@ -72,18 +73,18 @@ def trainMdlSK(data, setupPar, setupMdl, setupExp):
         if setupPar['model'] == "KNN":
             for ii, weights in enumerate(['uniform', 'distance']):
                 if setupPar['method'] == 0:
-                    mdl = neighbors.KNeighborsRegressor(n_neighbors=setupMdl['SK_KNN_neighbors'], weights=weights)
+                    mdl = neighbors.KNeighborsRegressor(n_neighbors=setupMdl['SK_KNN_neighbors'], weights=weights, n_jobs=nCPU)
                 else:
-                    mdl = neighbors.KNeighborsClassifier(n_neighbors=setupMdl['SK_KNN_neighbors'], weights=weights)
+                    mdl = neighbors.KNeighborsClassifier(n_neighbors=setupMdl['SK_KNN_neighbors'], weights=weights, n_jobs=nCPU)
 
         # RF
         if setupPar['model'] == "RF":
             if setupPar['method'] == 0:
                 mdl = RandomForestRegressor(max_depth=setupMdl['SK_RF_depth'], random_state=setupMdl['SK_RF_state'],
-                                            n_estimators=setupMdl['SK_RF_estimators'])
+                                            n_estimators=setupMdl['SK_RF_estimators'], n_jobs=nCPU)
             else:
                 mdl = RandomForestClassifier(max_depth=setupMdl['SK_RF_depth'], random_state=setupMdl['SK_RF_state'],
-                                             n_estimators=setupMdl['SK_RF_estimators'])
+                                             n_estimators=setupMdl['SK_RF_estimators'], n_jobs=nCPU)
 
         # SVM
         if setupPar['model'] == "SVM":
@@ -102,21 +103,21 @@ def trainMdlSK(data, setupPar, setupMdl, setupExp):
             for ii, weights in enumerate(['uniform', 'distance']):
                 if setupPar['method'] == 0:
                     mdl = MultiOutputRegressor(neighbors.KNeighborsRegressor(n_neighbors=setupMdl['SK_KNN_neighbors'],
-                                                                             weights=weights))
+                                                                             weights=weights, n_jobs=nCPU))
                 else:
                     mdl = MultiOutputClassifier(neighbors.KNeighborsClassifier(n_neighbors=setupMdl['SK_KNN_neighbors'],
-                                                                               weights=weights))
+                                                                               weights=weights, n_jobs=nCPU))
 
         # RF
         if setupPar['model'] == "RF":
             if setupPar['method'] == 0:
                 mdl = MultiOutputRegressor(RandomForestRegressor(max_depth=setupMdl['SK_RF_depth'],
                                                                  random_state=setupMdl['SK_RF_state'],
-                                                                 n_estimators=setupMdl['SK_RF_estimators']))
+                                                                 n_estimators=setupMdl['SK_RF_estimators'], n_jobs=nCPU))
             else:
                 mdl = MultiOutputClassifier(RandomForestClassifier(max_depth=setupMdl['SK_RF_depth'],
                                                                    random_state=setupMdl['SK_RF_state'],
-                                                                   n_estimators=setupMdl['SK_RF_estimators']))
+                                                                   n_estimators=setupMdl['SK_RF_estimators'], n_jobs=nCPU))
 
         # SVM
         if setupPar['model'] == "SVM":
