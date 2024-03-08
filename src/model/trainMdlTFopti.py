@@ -72,7 +72,10 @@ def trainMdlTFopti(data, setupDat, setupPar, setupMdl, setupExp):
     # ==============================================================================
     # Callbacks
     # ==============================================================================
-    callbacks = [tf.keras.callbacks.EarlyStopping(monitor='loss', patience=setupMdl['patience'], restore_best_weights=True)]
+    callbacks = [
+        tf.keras.callbacks.EarlyStopping(monitor='loss', patience=setupMdl['patience'], restore_best_weights=True),
+        tf.keras.callbacks.ReduceLROnPlateau(monitor='val_loss', verbose=1, factor=0.5,
+                                             patience=int(setupMdl['patience'] / 2), min_lr=1e-9)]
 
     ###################################################################################################################
     # Pre-Processing

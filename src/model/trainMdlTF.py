@@ -229,6 +229,12 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
                                                         save_best_only=False, save_weights_only=True,
                                                         mode='auto', save_freq=5*EVAL))
 
+    # ------------------------------------------
+    # Learning rate
+    # ------------------------------------------
+    callbacks.append(tf.keras.callbacks.ReduceLROnPlateau(monitor='val_loss', verbose=1, factor=0.5,
+                                                          patience=int(setupMdl['patience'] / 2), min_lr=1e-9))
+
     # ==============================================================================
     # Start timer
     # ==============================================================================
