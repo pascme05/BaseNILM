@@ -109,10 +109,10 @@ def trainMdlTFopti(data, setupDat, setupPar, setupMdl, setupExp):
     # Tuner
     # ==============================================================================
     if setupPar['method'] == 0:
-        tuner = kt.Hyperband(tfMdloptiRCNN, objective=kt.Objective("loss", direction="min"),
+        tuner = kt.Hyperband(tfMdloptiRCNN, objective=kt.Objective("val_loss", direction="min"),
                              max_epochs=EPOCHS, factor=3, overwrite=True, directory='mdl', project_name=mdlName)
     else:
-        tuner = kt.Hyperband(tfMdloptiC, objective=kt.Objective("loss", direction="min"),
+        tuner = kt.Hyperband(tfMdloptiC, objective=kt.Objective("val_loss", direction="min"),
                              max_epochs=EPOCHS, factor=3, overwrite=True, directory='mdl', project_name=mdlName)
 
     # ==============================================================================
