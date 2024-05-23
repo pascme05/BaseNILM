@@ -52,14 +52,14 @@ setupPath = initPath('BaseNILM')
 # ------------------------------------------
 # Names
 # ------------------------------------------
-setupExp['name'] = 'Default'                                                                                            # Name of the simulation
+setupExp['name'] = 'Default2'                                                                                            # Name of the simulation
 setupExp['author'] = 'Pascal Schirmer'                                                                                  # Name of the author
 
 # ------------------------------------------
 # General
 # ------------------------------------------
 setupExp['sim'] = 0                                                                                                     # 0) simulation, 1) optimisation hyperparameters, 2) optimising grid
-setupExp['gpu'] = 1                                                                                                     # 0) cpu, 1) gpu
+setupExp['gpu'] = 0                                                                                                     # 0) cpu, 1) gpu
 setupExp['warn'] = 3                                                                                                    # 0) all msg are logged, 1) INFO not logged, 2) INFO and WARN not logged, 3) disabled
 
 # ------------------------------------------
@@ -68,7 +68,7 @@ setupExp['warn'] = 3                                                            
 setupExp['method'] = 0                                                                                                  # 0) 1-fold with data split, 1) k-fold with cross validation, 2) transfer learning with different datasets, 3) id based
 setupExp['trainBatch'] = 0                                                                                              # 0) all no batching, 1) fixed batch size (see data batch parameter), 2) id based
 setupExp['kfold'] = 10                                                                                                  # number of folds for method 1)
-setupExp['train'] = 0                                                                                                   # 0) no training (trying to load model), 1) training new model (or retraining)
+setupExp['train'] = 1                                                                                                   # 0) no training (trying to load model), 1) training new model (or retraining)
 setupExp['test'] = 1                                                                                                    # 0) no testing, 1) testing
 
 # ------------------------------------------

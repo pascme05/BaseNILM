@@ -166,17 +166,17 @@ def testMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     # ------------------------------------------
     # RMSprop
     if setupMdl['opt'] == 'RMSprop':
-        opt = tf.keras.optimizers.RMSprop(learning_rate=setupMdl['lr'], rho=setupMdl['rho'],
-                                          momentum=setupMdl['mom'], epsilon=setupMdl['eps'])
+        opt = tf.keras.optimizers.legacy.RMSprop(learning_rate=setupMdl['lr'], rho=setupMdl['rho'],
+                                                 momentum=setupMdl['mom'], epsilon=setupMdl['eps'])
 
     # SGD
     elif setupMdl['opt'] == 'SDG':
-        opt = tf.keras.optimizers.SGD(learning_rate=setupMdl['lr'], momentum=setupMdl['mom'])
+        opt = tf.keras.optimizers.legacy.SGD(learning_rate=setupMdl['lr'], momentum=setupMdl['mom'])
 
     # Adam
     else:
-        opt = tf.keras.optimizers.Adam(learning_rate=setupMdl['lr'], beta_1=setupMdl['beta1'],
-                                       beta_2=setupMdl['beta2'], epsilon=setupMdl['eps'])
+        opt = tf.keras.optimizers.legacy.Adam(learning_rate=setupMdl['lr'], beta_1=setupMdl['beta1'],
+                                              beta_2=setupMdl['beta2'], epsilon=setupMdl['eps'])
 
     # ------------------------------------------
     # Compile

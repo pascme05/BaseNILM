@@ -42,7 +42,7 @@ def sanityCheck(X, y, setupExp, setupPar, setupMdl):
     F = len(X.columns) - 2
     M = len(y.columns) - 2
     L = len(X.id)
-    xBytes = X.size.nbytes
+    xBytes = 16
 
     # ==============================================================================
     # Other

@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ac4843f-95cf-4407-9cec-7a436b18cbf4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Tutorial_1_REDD.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/BaseNILM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BaseNILM.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/trainMdlSK.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlSK.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/req38.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/sanityCheck.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/sanityCheck.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/testMdlTF.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/testMdlTF.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/trainMdlTF.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlTF.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/start.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +33,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;review&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM/data&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
@@ -109,13 +114,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/model/trainMdlTF.py</url>
-          <line>185</line>
+          <line>187</line>
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/model/testMdlSS.py</url>
           <line>78</line>
           <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/general/sanityCheck.py</url>
+          <line>44</line>
+          <option name="timeStamp" value="100" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

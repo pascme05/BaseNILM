@@ -83,7 +83,8 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     # ==============================================================================
     # Callbacks
     # ==============================================================================
-    callbacks = [tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=setupMdl['patience'], restore_best_weights=True)]
+    callbacks = [
+        tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=setupMdl['patience'], restore_best_weights=True)]
 
     ###################################################################################################################
     # Pre-Processing
@@ -92,7 +93,8 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     # Balance Data
     # ==============================================================================
     if setupDat['balance'] == 1:
-        class_weights = class_weight.compute_class_weight(class_weight='balanced', classes=np.unique(data['T']['y']), y=data['T']['y'])
+        class_weights = class_weight.compute_class_weight(class_weight='balanced', classes=np.unique(data['T']['y']),
+                                                          y=data['T']['y'])
     else:
         class_weights = []
 
@@ -196,17 +198,17 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     # ------------------------------------------
     # RMSprop
     if setupMdl['opt'] == 'RMSprop':
-        opt = tf.keras.optimizers.RMSprop(learning_rate=setupMdl['lr'], rho=setupMdl['rho'],
-                                          momentum=setupMdl['mom'], epsilon=setupMdl['eps'])
+        opt = tf.keras.optimizers.legacy.RMSprop(learning_rate=setupMdl['lr'], rho=setupMdl['rho'],
+                                                 momentum=setupMdl['mom'], epsilon=setupMdl['eps'])
 
     # SGD
     elif setupMdl['opt'] == 'SDG':
-        opt = tf.keras.optimizers.SGD(learning_rate=setupMdl['lr'], momentum=setupMdl['mom'])
+        opt = tf.keras.optimizers.legacy.SGD(learning_rate=setupMdl['lr'], momentum=setupMdl['mom'])
 
     # Adam
     else:
-        opt = tf.keras.optimizers.Adam(learning_rate=setupMdl['lr'], beta_1=setupMdl['beta1'],
-                                       beta_2=setupMdl['beta2'], epsilon=setupMdl['eps'])
+        opt = tf.keras.optimizers.legacy.Adam(learning_rate=setupMdl['lr'], beta_1=setupMdl['beta1'],
+                                              beta_2=setupMdl['beta2'], epsilon=setupMdl['eps'])
 
     # ------------------------------------------
     # Compile
@@ -227,7 +229,7 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     # ------------------------------------------
     callbacks.append(tf.keras.callbacks.ModelCheckpoint(filepath=mdlName, monitor='val_loss', verbose=0,
                                                         save_best_only=False, save_weights_only=True,
-                                                        mode='auto', save_freq=5*EVAL))
+                                                        mode='auto', save_freq=5 * EVAL))
 
     # ------------------------------------------
     # Learning rate
@@ -257,5 +259,5 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     # Output
     ###################################################################################################################
     print("INFO: Total training time (sec): %.2f" % trainTime)
-    print("INFO: Training time per sample (ms): %.2f" % (trainTime/data['T']['X'].shape[0]*1000))
+    print("INFO: Training time per sample (ms): %.2f" % (trainTime / data['T']['X'].shape[0] * 1000))
     print("INFO: Model size (kB): %.2f" % (getsizeof(mdl) / 1024 / 8))

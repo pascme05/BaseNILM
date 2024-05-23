@@ -242,6 +242,12 @@ The software framework is provided under the MIT license.
 # Version History
 1) v.0.1: (11.07.2022) Initial version of BaseNILM
 2) v.0.2: (19.11.2023) First update of BaseNILM
+3) v.1.0: (22.05.2024) Second update of BaseNILM
+    - Complete code review including description of functions
+    - Update to Python 3.11 including Tensorflow 2.13
+    - Adding new DeepLearning models including: Transformers, Informers, DAEs, and GANs
+    - Creating benchmarking report for REDD, REFIT, ECO, UK-DALE and AMPds
+    - GUI based energy disaggregation
 
 
 # Cite
