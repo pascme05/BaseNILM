@@ -3,12 +3,23 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         featuresRoll
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
+
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function calculates rolling features based on the on input feature vector. In detail, derivatives, exponentially
+weighted averaging and standard deviation are implemented.
+Inputs:     1) X:       input data
+            2) setup:   includes all simulation variables
+Outputs:    1) Xout:    output feature vector
+"""
 
 #######################################################################################################################
 # Import libs

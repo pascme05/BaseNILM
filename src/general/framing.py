@@ -3,12 +3,23 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         framing
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
+
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function frames the input data into block-frames with length "window" and overlap between two different windows.
+Inputs:     1) data:    input data
+            2) window:  window length for framing
+            3) overlap: overlap between two windows
+Outputs:    1) out:     framed output feature vector
+"""
 
 #######################################################################################################################
 # Import libs

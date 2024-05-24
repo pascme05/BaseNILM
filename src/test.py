@@ -3,12 +3,27 @@
 # Title:        PyDTS (Python Deep Timeseries Simulation)
 # Topic:        Black-Box Modeling
 # File:         test
-# Date:         03.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.1
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
+
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function test an arbitrary disaggregation model. First the data is pre-processed, block-framed and features are
+extracted. Afterward the input feature vector is fed to a model predicting the results which are post-processed after.
+The trained models are loaded from \mdl and the results are saved to \results. Various models are implemented including
+machine learning, deep learning, pattern matching, and source separation.
+Inputs:     1) data:         includes all training and validation data files
+            2) setup:        includes all simulation variables
+            3) setupPath:    includes all path variables
+Outputs:    1) results:      simulation results
+            2) resultsAvg:   averaged results for cross-validation
+"""
 
 #######################################################################################################################
 # Import libs
@@ -97,7 +112,7 @@ def test(data, setupExp, setupDat, setupPar, setupMdl, setupPath):
     # ==============================================================================
     # Testing Data
     # ==============================================================================
-    [data['T'], t, _, setupExp] = preprocess(data['T'], setupDat, setupExp)
+    [data['T'], _, _, setupExp] = preprocess(data['T'], setupDat, setupExp)
 
     # ==============================================================================
     # Msg

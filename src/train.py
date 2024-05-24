@@ -3,13 +3,24 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         train
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
 
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function trains an arbitrary disaggregation model. First the data is pre-processed, block-framed and features are
+extracted. Afterward the input feature vector is fed to a model. Various models are implemented including machine
+learning, deep learning, pattern matching, and source separation.
+Inputs:     1) data:         includes all training and validation data files
+            2) setup:        includes all simulation variables
+Outputs:    None
+"""
 
 #######################################################################################################################
 # Import libs

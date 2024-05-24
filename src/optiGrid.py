@@ -3,12 +3,24 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         optiGrid
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
+
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function optimises up-to two input variable in an exhaustive grid search and report the accuracy. The accuracy
+metric can be changed. Under \Initialization the optimisation variables can be selected (these variables must exist in
+the setup input) as well as an accuracy metric can be chosen.
+Inputs:     1) setup:        includes all simulation variables
+            2) setupPath:    includes all path variables
+Outputs:    None
+"""
 
 #######################################################################################################################
 # Import libs

@@ -3,12 +3,29 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         addGhost
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
+
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function add ghost data to the existing data input. In detail, three different options are possible. First, the
+ghost data, i.e. the difference between all know appliances and the aggregated consumption, is modeled as an own device
+and added using concatenation to the output y. Second, the ghost data is subtracted from the aggregated data, i.e. the
+disaggregation problem becomes noiseless fulfilling the constraint X = sum(y). Third, ghost data is neither modeled nor
+subtracted.
+Inputs:     1) X:       input feature vector (based on aggregated consumption)
+            2) y:       output vector (electrical appliance consumption)
+            3) setup:   includes all simulation variables
+Outputs:    1) Xout:    modified input feature vector
+            2) yout:    modified output vector
+"""
+
 
 #######################################################################################################################
 # Import libs

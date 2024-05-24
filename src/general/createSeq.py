@@ -3,12 +3,22 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         createSeq
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
+
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function sequences the input using a specific window length with overlap.
+Inputs:     1) data:    input data
+            2) setup:   includes all simulation variables
+Outputs:    1) data:    sequenced output data
+"""
 
 #######################################################################################################################
 # Import libs

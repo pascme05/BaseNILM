@@ -3,12 +3,24 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         featureRank
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
+
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function ranks the input feature with respect to their importance at the output
+Inputs:     1) X:       input feature vector (based on aggregated consumption)
+            2) y:       output vector (electrical appliance consumption)
+            3) setup:   includes all simulation variables
+Outputs:    1) score:   feature scores
+            2) error:   standard deviation with respect to the output
+"""
 
 #######################################################################################################################
 # Import libs

@@ -3,13 +3,26 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         performance
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
 
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function calculates the performance based on the ground-truth and predicted power consumption values and appliance
+labels.
+Inputs:     1) yPred:       predicted power consumption
+            2) yTrue:       ground-truth power consumption
+            3) yPred_L:     predicted appliance labels
+            4) yTrue_L:     ground-truth appliance labels
+Outputs:    1) results:     results based on appliance level
+            2) resultsAvg:  average results over all appliances
+"""
 
 #######################################################################################################################
 # Import libs

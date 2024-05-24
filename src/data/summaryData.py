@@ -3,12 +3,24 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         summaryData
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
+
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function summarise the input and the output data by providing statistical information for each of the input features
+as well as for each output channel.
+Inputs:     1) X:       input feature vector (based on aggregated consumption)
+            2) y:       output vector (electrical appliance consumption)
+            3) setup:   includes all simulation variables
+Outputs:    None
+"""
 
 #######################################################################################################################
 # Import libs

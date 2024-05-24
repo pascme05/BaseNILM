@@ -3,13 +3,26 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         adaptDim
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
 
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function adapts the dimension of the input and output matrices depending on the model dimension.
+Inputs:     1) X:       input feature vector (based on aggregated consumption)
+            2) y:       output vector (electrical appliance consumption)
+            3) setup:   includes all simulation variables
+Outputs:    1) X:       adapted dimension input feature vector (based on aggregated consumption)
+            2) y:       adapted dimension output vector (electrical appliance consumption)
+            3) nDim:    dimension
+            4) setup:   includes all simulation variables
+"""
 
 #######################################################################################################################
 # Import libs

@@ -3,12 +3,23 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         features2D
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
+
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function calculates two-dimensional features including VI trajectories, PQ planes, DFIA, recurrent plots, gramian
+angular fields, and markov transition fields.
+Inputs:     1) data:    input data
+            2) feat:    feature selection
+Outputs:    1) out:     output feature vector
+"""
 
 #######################################################################################################################
 # Import libs

@@ -3,12 +3,27 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         normData
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
+
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function normalises or denormalizes the input and output data using different normalisation methods including
+0-1, min-max, and z-score.
+Inputs:     1) X:       input feature vector (based on aggregated consumption)
+            2) y:       output vector (electrical appliance consumption)
+            3) setup:   includes all simulation variables
+            4) inv:     if 0 normalisation, if 1 denormalization
+Outputs:    1) X:       normalised input feature vector
+            2) y:       normalised output vector
+            3) setup:   includes all simulation variables
+"""
 
 #######################################################################################################################
 # Import libs

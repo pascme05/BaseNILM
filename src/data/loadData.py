@@ -3,12 +3,27 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         loadData
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
+
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function loads the data from \data using different data formats. The data is processed and formatted into training
+testing and validation data.
+Inputs:     1) filename:    name of the datafile to be loaded without file extension
+            2) setupDat:    includes all simulation variables
+            3) method:      method for loading data, e.g. k-fold or transfer learning
+            4) train:       if 1 training, if 2 testing, if 0 validation
+            5) fold:        number of folds for loading data
+Outputs:    1) data:        loaded data
+            2) setup:       modified setup files
+"""
 
 #######################################################################################################################
 # Import libs

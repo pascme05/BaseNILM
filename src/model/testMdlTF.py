@@ -3,12 +3,19 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         testMdlTF
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
+
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function implements the testing case of the deep learning based energy disaggregation using tensorflow.
+"""
 
 #######################################################################################################################
 # Import libs
@@ -17,7 +24,7 @@
 # Internal
 # ==============================================================================
 from src.general.helpFnc import reshapeMdlData
-from src.model.models import tfMdlCNN, tfMdlDNN, tfMdlLSTM, tfMdlCNN2
+from src.model.models import tfMdlCNN, tfMdlDNN, tfMdlLSTM, tfMdlCNN2, tfMdlTran, tfMdlDAE, tfMdlINF
 
 # ==============================================================================
 # External
@@ -125,6 +132,24 @@ def testMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     # ------------------------------------------
     elif setupPar['model'] == "LSTM":
         mdl = tfMdlLSTM(data['T']['X'], out, activation)
+
+    # ------------------------------------------
+    # Transformer
+    # ------------------------------------------
+    elif setupPar['model'] == "TRAN":
+        mdl = tfMdlTran(data['T']['X'], out, activation)
+
+    # ------------------------------------------
+    # DAE
+    # ------------------------------------------
+    elif setupPar['model'] == "DAE":
+        mdl = tfMdlDAE(data['T']['X'], out, activation)
+
+    # ------------------------------------------
+    # INF
+    # ------------------------------------------
+    elif setupPar['model'] == "INF":
+        mdl = tfMdlINF(data['T']['X'], out, activation)
 
     # ------------------------------------------
     # Default

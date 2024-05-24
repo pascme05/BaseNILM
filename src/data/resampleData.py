@@ -3,12 +3,24 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         resampleData
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
+
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function resamples data using a zero-order-hold (zoh) approach
+Inputs:     1) data:    input data
+            2) fs_raw:  raw sampling frequency (Hz)
+            3) setup:   includes all simulation variables
+Outputs:    1) out:     resampled data
+            2) t:       output time vector (sec)
+"""
 
 #######################################################################################################################
 # Import libs

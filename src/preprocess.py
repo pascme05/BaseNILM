@@ -3,12 +3,26 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         preprocess
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
+
+#######################################################################################################################
+# Function Description
+#######################################################################################################################
+"""
+This function pre-processes the input data. In detail, the data is resampled, filtered, and normalised. While ghost data
+or additional noise can be added.
+Inputs:     1) data:         includes all training and validation data files
+            2) setup:        includes all simulation variables
+Outputs:    1) data:         pre-processed data
+            2) timeY:        temporal vector
+            3) idY:          dataset ID
+            4) setupExp:     updated setup variables
+"""
 
 #######################################################################################################################
 # Import libs
