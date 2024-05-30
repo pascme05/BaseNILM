@@ -5,50 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ac4843f-95cf-4407-9cec-7a436b18cbf4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/benchAMPds_ALL.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchAMPds_DEF.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gui/mainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/addGhost.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/addGhost.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/filterData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/filterData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/loadData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/loadData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/normData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/normData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/resampleData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/resampleData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/summaryData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/summaryData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/adaptDim.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/adaptDim.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/createSeq.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/createSeq.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/featureRank.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/featureRank.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/features1D.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/features1D.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/features2D.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/features2D.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/featuresRoll.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/featuresRoll.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/framing.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/framing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/helpFnc.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/helpFnc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/performance.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/performance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/plotting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/printResults.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/printResults.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/sanityCheck.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/sanityCheck.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/save.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/save.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/testMdlCU.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/testMdlCU.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/testMdlPM.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/testMdlPM.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/testMdlPT.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/testMdlPT.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/testMdlSK.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/testMdlSK.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/testMdlSS.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/testMdlSS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/testMdlTF.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/testMdlTF.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/trainMdlCU.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlCU.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/trainMdlPM.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlPM.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/trainMdlPT.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlPT.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/trainMdlSK.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlSK.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/trainMdlSKopti.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlSKopti.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/trainMdlSS.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlSS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/trainMdlTF.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlTF.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/trainMdlTFopti.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlTFopti.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/optiGrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/optiGrid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/optiHyp.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/optiHyp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/postprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/postprocess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/preprocess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/start.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,20 +26,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;git-widget-placeholder&quot;: &quot;review&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM/data&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "git-widget-placeholder": "review",
+    "last_opened_file_path": "C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM/gui",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\data" />
+      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\gui" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM" />
+      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\data" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\BaseNILM" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\BaseNILM\src\general" />
-      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\BaseNILM\src\data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM" />

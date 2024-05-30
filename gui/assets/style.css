@@ -1,0 +1,107 @@
+/**********************************************************************************************************************/
+/**********************************************************************************************************************/
+/* Targeting tabs specifically */
+#profile-tabs .tab {
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+}
+
+#profile-tabs .tab > * {
+    font-size: 14px;
+}
+
+/* Adjusting the content area below the tabs */
+.profile-content {
+    margin-top: 35px; /* Adjust based on the actual height of your tabs */
+}
+
+/**********************************************************************************************************************/
+/**********************************************************************************************************************/
+/* Tight margin */
+.custom-card-margin {
+    margin-left: -10px !important;  /* Force override if necessary */
+    margin-right: -10px !important;  /* Force override if necessary */
+}
+
+/**********************************************************************************************************************/
+/**********************************************************************************************************************/
+/* Targeting tabs specifically */
+#para-tabs .tab {
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+}
+
+#para-tabs .tab > * {
+    font-size: 14px;
+}
+
+/* Adjusting the content area below the tabs */
+.para-content {
+    margin-top: 35px; /* Adjust based on the actual height of your tabs */
+}
+
+/**********************************************************************************************************************/
+/**********************************************************************************************************************/
+/* Targeting tabs specifically */
+#mdl-tabs .tab {
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+}
+
+#mdl-tabs .tab > * {
+    font-size: 14px;
+}
+
+/* Adjusting the content area below the tabs */
+.mdl-content {
+    margin-top: 35px; /* Adjust based on the actual height of your tabs */
+}
+
+/**********************************************************************************************************************/
+/**********************************************************************************************************************/
+/* Targeting tabs specifically */
+#tool-tabs .tab {
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+}
+
+#tool-tabs .tab > * {
+    font-size: 14px;
+}
+
+/* Adjusting the content area below the tabs */
+.tool-content {
+    margin-top: 35px; /* Adjust based on the actual height of your tabs */
+}
+
+/**********************************************************************************************************************/
+/**********************************************************************************************************************/
+/* Targeting tabs specifically */
+#result-tabs .tab {
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+}
+
+#result-tabs .tab > * {
+    font-size: 14px;
+}
+
+/* Adjusting the content area below the tabs */
+.result-content {
+    margin-top: 35px; /* Adjust based on the actual height of your tabs */
+}
