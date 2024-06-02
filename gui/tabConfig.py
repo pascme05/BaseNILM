@@ -44,7 +44,6 @@ def get_config_content():
     # ==============================================================================
     # Variables
     # ==============================================================================
-
     config_content = dbc.Container(fluid=True, children=[
         # ==============================================================================
         # Spacing to Tabs
@@ -68,7 +67,7 @@ def get_config_content():
                         dbc.Row([
                             dbc.Label("Method", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'config-var', 'index': 'config-gen-method'},
+                                id={'type': 'setup', 'index': 'method'},
                                 options=[{'label': 'Regression', 'value': 'A'},
                                          {'label': 'Classification', 'value': 'B'}],
                                 value='A',
@@ -80,7 +79,7 @@ def get_config_content():
                         dbc.Row([
                             dbc.Label("Solver Framework", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'config-var', 'index': 'config-gen-solver'},
+                                id={'type': 'setup', 'index': 'solver'},
                                 options=[{'label': 'Tensorflow', 'value': 'A'},
                                          {'label': 'Pytorch', 'value': 'B'},
                                          {'label': 'Sk-learn', 'value': 'C'},
@@ -96,7 +95,7 @@ def get_config_content():
                         dbc.Row([
                             dbc.Label("Model", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'config-var', 'index': 'config-gen-model'},
+                                id={'type': 'setup', 'index': 'model'},
                                 options=[{'label': 'SVM', 'value': 'A'},
                                          {'label': 'RF', 'value': 'B'},
                                          {'label': 'KNN', 'value': 'C'},
@@ -122,7 +121,7 @@ def get_config_content():
                             dbc.Col(dbc.Label("Model Dimension", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1, max=4, step=1,
-                                              id={'type': 'config-var', 'index': 'config-gen-dim'},
+                                              id={'type': 'setup', 'index': 'dim'},
                                               value=3), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -130,7 +129,7 @@ def get_config_content():
                         dbc.Row([
                             dbc.Label("Feature Ranking", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'config-var', 'index': 'config-gen-rank'},
+                                id={'type': 'setup', 'index': 'rank'},
                                 options=[{'label': 'Ranking Off', 'value': 'A'},
                                          {'label': 'Ranking On', 'value': 'B'}],
                                 value='B',
@@ -155,7 +154,7 @@ def get_config_content():
                         dbc.Row([
                             dbc.Label("Framing", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'config-var', 'index': 'config-gen-frame'},
+                                id={'type': 'setup', 'index': 'frame'},
                                 options=[{'label': 'Raw Data', 'value': 'A'},
                                          {'label': 'Framed Data', 'value': 'B'}],
                                 value='B',
@@ -167,7 +166,7 @@ def get_config_content():
                         dbc.Row([
                             dbc.Label("Features", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'config-var', 'index': 'config-gen-frame'},
+                                id={'type': 'setup', 'index': 'feat'},
                                 options=[{'label': 'Raw Data', 'value': 'A'},
                                          {'label': 'Statistical Features', 'value': 'B'},
                                          {'label': 'Rolling Features', 'value': 'C'},
@@ -183,7 +182,7 @@ def get_config_content():
                             dbc.Col(dbc.Label("Input Window", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=3, step=1,
-                                              id={'type': 'para-var', 'index': 'para-mvm-window'},
+                                              id={'type': 'setup', 'index': 'window'},
                                               value=20), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -192,7 +191,7 @@ def get_config_content():
                             dbc.Col(dbc.Label("Window Overlap", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=2, step=1,
-                                              id={'type': 'para-var', 'index': 'para-mvm-overlap'},
+                                              id={'type': 'setup', 'index': 'overlap'},
                                               value=19), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -201,7 +200,7 @@ def get_config_content():
                             dbc.Col(dbc.Label("Output Sequence", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=0, step=1,
-                                              id={'type': 'para-var', 'index': 'para-mvm-outseq'},
+                                              id={'type': 'setup', 'index': 'outseq'},
                                               value=0), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -210,7 +209,7 @@ def get_config_content():
                             dbc.Col(dbc.Label("Focus Sample", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1, step=1,
-                                              id={'type': 'para-var', 'index': 'para-mvm-yfocus'},
+                                              id={'type': 'setup', 'index': 'yfocus'},
                                               value=10), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -219,7 +218,7 @@ def get_config_content():
                             dbc.Col(dbc.Label("Model Input Dimension", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1, max=3, step=1,
-                                              id={'type': 'para-var', 'index': 'para-mvm-nDim'},
+                                              id={'type': 'setup', 'index': 'nDim'},
                                               value=2), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -240,7 +239,7 @@ def get_config_content():
                         dbc.Row([
                             dbc.Label("Normalization", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'config-var', 'index': 'config-gen-norm'},
+                                id={'type': 'setup', 'index': 'norm'},
                                 options=[{'label': 'Separated', 'value': 'A'},
                                          {'label': 'Weighted', 'value': 'B'}],
                                 value='A',
@@ -252,7 +251,7 @@ def get_config_content():
                         dbc.Row([
                             dbc.Label("Input Norm.", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'config-var', 'index': 'config-gen-normInp'},
+                                id={'type': 'setup', 'index': 'normInp'},
                                 options=[{'label': 'None', 'value': 'A'},
                                          {'label': '-1/+1', 'value': 'B'},
                                          {'label': '0/1', 'value': 'C'},
@@ -266,7 +265,7 @@ def get_config_content():
                         dbc.Row([
                             dbc.Label("Output Norm.", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'config-var', 'index': 'config-gen-normOut'},
+                                id={'type': 'setup', 'index': 'normOut'},
                                 options=[{'label': 'None', 'value': 'A'},
                                          {'label': '-1/+1', 'value': 'B'},
                                          {'label': '0/1', 'value': 'C'},
@@ -280,7 +279,7 @@ def get_config_content():
                         dbc.Row([
                             dbc.Label("Input Filter", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'config-var', 'index': 'config-gen-filtInp'},
+                                id={'type': 'setup', 'index': 'filtInp'},
                                 options=[{'label': 'None', 'value': 'A'},
                                          {'label': 'Median', 'value': 'B'}],
                                 value='A',
@@ -292,7 +291,7 @@ def get_config_content():
                         dbc.Row([
                             dbc.Label("Output Filter", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'config-var', 'index': 'config-gen-filtOut'},
+                                id={'type': 'setup', 'index': 'filtOut'},
                                 options=[{'label': 'None', 'value': 'A'},
                                          {'label': '-1/+1', 'value': 'B'}],
                                 value='A',
@@ -305,7 +304,7 @@ def get_config_content():
                             dbc.Col(dbc.Label("Input Filter Length", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=3, max=1001, step=2,
-                                              id={'type': 'para-var', 'index': 'config-gen-filtInpLen'},
+                                              id={'type': 'setup', 'index': 'filtInpLen'},
                                               value=61), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -314,7 +313,7 @@ def get_config_content():
                             dbc.Col(dbc.Label("Output Filter Length", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=3, max=1001, step=2,
-                                              id={'type': 'para-var', 'index': 'config-gen-filtOutLen'},
+                                              id={'type': 'setup', 'index': 'filtOutLen'},
                                               value=61), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -323,7 +322,7 @@ def get_config_content():
                             dbc.Col(dbc.Label("Input Noise", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric",
-                                              id={'type': 'para-var', 'index': 'config-gen-noiseInp'},
+                                              id={'type': 'setup', 'index': 'noiseInp'},
                                               value=0), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -332,7 +331,7 @@ def get_config_content():
                             dbc.Col(dbc.Label("Output Noise", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric",
-                                              id={'type': 'para-var', 'index': 'config-gen-noiseOut'},
+                                              id={'type': 'setup', 'index': 'noiseOut'},
                                               value=0), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -340,7 +339,7 @@ def get_config_content():
                         dbc.Row([
                             dbc.Label("Data Balancing", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'config-var', 'index': 'config-gen-balance'},
+                                id={'type': 'setup', 'index': 'balance'},
                                 options=[{'label': 'None', 'value': 'A'},
                                          {'label': 'Class based', 'value': 'B'},
                                          {'label': 'Threshold based', 'value': 'C'}],
@@ -354,7 +353,7 @@ def get_config_content():
                             dbc.Col(dbc.Label("Threshold", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=0,
-                                              id={'type': 'para-var', 'index': 'config-gen-thres'},
+                                              id={'type': 'setup', 'index': 'thres'},
                                               value=50), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -362,7 +361,7 @@ def get_config_content():
                         dbc.Row([
                             dbc.Label("Ghost Data", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'config-var', 'index': 'config-gen-ghost'},
+                                id={'type': 'setup', 'index': 'ghost'},
                                 options=[{'label': 'Noisy', 'value': 'A'},
                                          {'label': 'Ghost as Appliance', 'value': 'B'},
                                          {'label': 'Noiseless', 'value': 'C'}],
@@ -376,7 +375,7 @@ def get_config_content():
                             dbc.Col(dbc.Label("Minimum Output", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric",
-                                              id={'type': 'para-var', 'index': 'config-gen-minOut'},
+                                              id={'type': 'setup', 'index': 'minOut'},
                                               value=-1e9), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -385,7 +384,7 @@ def get_config_content():
                             dbc.Col(dbc.Label("Maximum Output", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric",
-                                              id={'type': 'para-var', 'index': 'config-gen-maxOut'},
+                                              id={'type': 'setup', 'index': 'maxOut'},
                                               value=1e9), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 

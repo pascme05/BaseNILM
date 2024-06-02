@@ -122,14 +122,13 @@ sidebar = html.Div(
             dbc.Button("Tutorial", color="secondary", className="me-2", id="sidebar-button-tutorial"),
             dbc.Button("Documentation", color="secondary", className="me-2", id="sidebar-button-docu"),
             dbc.Button("Theory", color="secondary", className="me-2", id="sidebar-button-theory"),
-            dbc.Button("Version", color="secondary", className="me-2", id="sidebar-button-version"),
         ], className="d-grid gap-2 mt-3"),
         html.Hr(),
 
         # Control
         html.Div([
-            dbc.Button("Load Profile Data", color="primary", className="me-2", id="sidebar-button-load"),
-            dbc.Button("Start Simulation", color="primary", className="me-2", id="sidebar-button-start"),
+            dbc.Button("Load Profile Data", color="primary", className="me-2", id="sidebar-button-load", n_clicks=0),
+            dbc.Button("Start Simulation", color="primary", className="me-2", id="sidebar-button-start", n_clicks=0),
         ], className="d-grid gap-2 mt-3"),
         html.Hr(),
 
@@ -148,7 +147,7 @@ sidebar = html.Div(
 # ==============================================================================
 main_content = dbc.Card(
     dbc.CardBody([
-        dcc.Tabs(id="tabs", value="tab-profile", children=[
+        dcc.Tabs(id="tabs", value="tab-main", children=[
             dcc.Tab(label="Main", value="main"),
             dcc.Tab(label="Configuration", value="tab-config"),
             dcc.Tab(label="Parameter", value="tab-parameter"),

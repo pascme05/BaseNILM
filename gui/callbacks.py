@@ -31,6 +31,8 @@ Note:
 # ==============================================================================
 from app import app
 from mainGUI import main
+from formatSetup import formatSetup
+from src.general.helpFnc import initPath
 from tabMain import get_main_content
 from tabProfile import get_profile_content
 from tabConfig import get_config_content
@@ -136,25 +138,31 @@ def update_message_store(*args):
 # Main Tab
 #######################################################################################################################
 @app.callback(
-    Output('output', 'children'),
-    Input('start-button', 'n_clicks'),
-    State({'type': 'config-var', 'index': ALL}, 'value')
+    Output('main-console', 'children'),
+    Input('sidebar-button-start', 'n_clicks'),
+    State({'type': 'setup', 'index': ALL}, 'value')
 )
 def update_output(n_clicks, values):
     if n_clicks > 0:
+        print(f"Button clicked {n_clicks} times")  # Debug print
+        print(f"Values received: {values}")  # Debug print
+
         # ------------------------------------------
-        # Loading GUI Data
+        # Path Variables
         # ------------------------------------------
+        setupPath = initPath('BaseNILM')
 
         # ------------------------------------------
         # Formatting Data
         # ------------------------------------------
-        input1, input2, dropdown = values
+        [setupExp, setupDat, setupPar, setupMdl] = formatSetup(values)
 
         # ------------------------------------------
         # Running GUI Main
         # ------------------------------------------
-        main(setupExp, setupDat, setupPar, setupMdl, setupPath)
+        #  main(setupExp, setupDat, setupPar, setupMdl, setupPath)
+
+        return f'Function output:'
 
     return 'Press the start button to run the function'
 

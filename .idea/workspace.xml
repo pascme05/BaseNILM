@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ac4843f-95cf-4407-9cec-7a436b18cbf4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/benchAMPds_ALL.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchAMPds_DEF.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gui/mainGUI.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gui/formatSetup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/assets/GUI2.png.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/assets/IMG_1143.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/callbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/tabConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/tabConfig.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/tabMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/tabMain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/tabPara.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/tabPara.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,13 +31,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "review",
-    "last_opened_file_path": "C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM/gui",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;git-widget-placeholder&quot;: &quot;review&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM/gui&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\gui" />
@@ -121,6 +126,11 @@
           <url>file://$PROJECT_DIR$/src/general/sanityCheck.py</url>
           <line>55</line>
           <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/gui/formatSetup.py</url>
+          <line>57</line>
+          <option name="timeStamp" value="104" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

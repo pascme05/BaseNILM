@@ -69,7 +69,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Batch Size", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1,
-                                              id={'type': 'para-var', 'index': 'para-batch'},
+                                              id={'type': 'setup', 'index': 'batch'},
                                               value=1000), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -78,7 +78,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Training Epochs", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1,
-                                              id={'type': 'para-var', 'index': 'para-epoch'},
+                                              id={'type': 'setup', 'index': 'epoch'},
                                               value=100), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -87,7 +87,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Patience Epochs", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1,
-                                              id={'type': 'para-var', 'index': 'para-patience'},
+                                              id={'type': 'setup', 'index': 'patience'},
                                               value=10), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -96,7 +96,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Validation Steps", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1,
-                                              id={'type': 'para-var', 'index': 'para-valsteps'},
+                                              id={'type': 'setup', 'index': 'valsteps'},
                                               value=25), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -105,7 +105,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Information Verbose", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=0, max=2,
-                                              id={'type': 'para-var', 'index': 'para-verbose'},
+                                              id={'type': 'setup', 'index': 'verbose'},
                                               value=2), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -113,7 +113,7 @@ def get_para_content():
                         dbc.Row([
                             dbc.Label("Data Shuffle", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'para-var', 'index': 'para-shuffle'},
+                                id={'type': 'setup', 'index': 'shuffle'},
                                 options=[{'label': 'True', 'value': 'A'},
                                          {'label': 'False', 'value': 'B'}],
                                 value='B',
@@ -125,7 +125,7 @@ def get_para_content():
                         dbc.Row([
                             dbc.Label("Loss Function", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'para-var', 'index': 'para-loss'},
+                                id={'type': 'setup', 'index': 'loss'},
                                 options=[{'label': 'mae', 'value': 'A'},
                                          {'label': 'mse', 'value': 'B'},
                                          {'label': 'BinaryCrossentropy', 'value': 'C'},
@@ -140,7 +140,7 @@ def get_para_content():
                         dbc.Row([
                             dbc.Label("Loss Metric", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'para-var', 'index': 'para-metric'},
+                                id={'type': 'setup', 'index': 'metric'},
                                 options=[{'label': 'mae', 'value': 'A'},
                                          {'label': 'mse', 'value': 'B'},
                                          {'label': 'BinaryCrossentropy', 'value': 'C'},
@@ -156,7 +156,7 @@ def get_para_content():
                         dbc.Row([
                             dbc.Label("Solver", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'para-var', 'index': 'para-solver'},
+                                id={'type': 'setup', 'index': 'solverML'},
                                 options=[{'label': 'Adam', 'value': 'A'},
                                          {'label': 'RMSprop', 'value': 'B'},
                                          {'label': 'SGD', 'value': 'C'}],
@@ -170,7 +170,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Learning Rate", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1e-9, max=0.1,
-                                              id={'type': 'para-var', 'index': 'para-lr'},
+                                              id={'type': 'setup', 'index': 'lr'},
                                               value=1e-3), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -179,7 +179,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Beta-1", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=0, max=1,
-                                              id={'type': 'para-var', 'index': 'para-beta1'},
+                                              id={'type': 'setup', 'index': 'beta1'},
                                               value=0.9), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -188,7 +188,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Beta-2", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=0, max=1,
-                                              id={'type': 'para-var', 'index': 'para-beta2'},
+                                              id={'type': 'setup', 'index': 'beta2'},
                                               value=0.999), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -197,7 +197,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Epsilon", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1e-12, max=1e-3,
-                                              id={'type': 'para-var', 'index': 'para-eps'},
+                                              id={'type': 'setup', 'index': 'eps'},
                                               value=1e-8), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -206,7 +206,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Rho", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1e-12, max=10,
-                                              id={'type': 'para-var', 'index': 'para-rho'},
+                                              id={'type': 'setup', 'index': 'rho'},
                                               value=0.9), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -215,7 +215,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Momentum", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric",
-                                              id={'type': 'para-var', 'index': 'para-mom'},
+                                              id={'type': 'setup', 'index': 'mom'},
                                               value=0), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -237,7 +237,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Random Forest Depth", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1,
-                                              id={'type': 'para-var', 'index': 'para-rf-depth'},
+                                              id={'type': 'setup', 'index': 'depth'},
                                               value=5), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -246,7 +246,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Random Forest State", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=0,
-                                              id={'type': 'para-var', 'index': 'para-rf-state'},
+                                              id={'type': 'setup', 'index': 'state'},
                                               value=0), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -255,7 +255,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Random Forest Estimator", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1,
-                                              id={'type': 'para-var', 'index': 'para-rf-estimate'},
+                                              id={'type': 'setup', 'index': 'estimate'},
                                               value=16), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -263,7 +263,7 @@ def get_para_content():
                         dbc.Row([
                             dbc.Label("SVM Kernel", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'para-var', 'index': 'para-svm-kernel'},
+                                id={'type': 'setup', 'index': 'kernel'},
                                 options=[{'label': 'linear', 'value': 'A'},
                                          {'label': 'poly', 'value': 'B'},
                                          {'label': 'rbf', 'value': 'C'},
@@ -278,7 +278,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("SVM C", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric",
-                                              id={'type': 'para-var', 'index': 'para-svm-c'},
+                                              id={'type': 'setup', 'index': 'c'},
                                               value=100), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -287,7 +287,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("State Random Forest", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric",
-                                              id={'type': 'para-var', 'index': 'para-svm-gamma'},
+                                              id={'type': 'setup', 'index': 'gamma'},
                                               value=0.1), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -296,7 +296,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("SVM Epsilon", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric",
-                                              id={'type': 'para-var', 'index': 'para-svm-epsilon'},
+                                              id={'type': 'setup', 'index': 'epsilon'},
                                               value=0.1), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -305,7 +305,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("KNN Neighbours", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1, step=1,
-                                              id={'type': 'para-var', 'index': 'para-knn-nn'},
+                                              id={'type': 'setup', 'index': 'nn'},
                                               value=5), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
                         html.Hr(),
@@ -315,7 +315,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("DTW Constraint", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=0, max=1,
-                                              id={'type': 'para-var', 'index': 'para-dtw-c'},
+                                              id={'type': 'setup', 'index': 'dtw-c'},
                                               value=0.01), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -323,7 +323,7 @@ def get_para_content():
                         dbc.Row([
                             dbc.Label("DTW Metric", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'para-var', 'index': 'para-dtw-metric'},
+                                id={'type': 'setup', 'index': 'dtw-metric'},
                                 options=[{'label': 'euclidean', 'value': 'A'},
                                          {'label': 'cityblock', 'value': 'B'},
                                          {'label': 'Kulback-Leibler', 'value': 'C'}],
@@ -336,7 +336,7 @@ def get_para_content():
                         dbc.Row([
                             dbc.Label("DTW Constraint", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'para-var', 'index': 'para-dtw-con'},
+                                id={'type': 'setup', 'index': 'dtw-con'},
                                 options=[{'label': 'none', 'value': 'A'},
                                          {'label': 'sakoechiba', 'value': 'B'},
                                          {'label': 'itakura', 'value': 'C'}],
@@ -350,7 +350,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("GAK Sigma", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric",
-                                              id={'type': 'para-var', 'index': 'para-gak-sigma'},
+                                              id={'type': 'setup', 'index': 'gak-sigma'},
                                               value=2000), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -359,7 +359,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("sDTW Gamma", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric",
-                                              id={'type': 'para-var', 'index': 'para-dtw-gamma'},
+                                              id={'type': 'setup', 'index': 'dtw-gamma'},
                                               value=0.5), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -368,7 +368,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("sDTW Gamma", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric",
-                                              id={'type': 'para-var', 'index': 'para-mvm-steps'},
+                                              id={'type': 'setup', 'index': 'mvm-steps'},
                                               value=10), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -376,7 +376,7 @@ def get_para_content():
                         dbc.Row([
                             dbc.Label("MVM Metric", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'para-var', 'index': 'para-mvm-metric'},
+                                id={'type': 'setup', 'index': 'mvm-metric'},
                                 options=[{'label': 'euclidean', 'value': 'A'},
                                          {'label': 'cityblock', 'value': 'B'},
                                          {'label': 'Kulback-Leibler', 'value': 'C'}],
@@ -389,7 +389,7 @@ def get_para_content():
                         dbc.Row([
                             dbc.Label("MVM Constraint", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'para-var', 'index': 'para-mvm-con'},
+                                id={'type': 'setup', 'index': 'mvm-con'},
                                 options=[{'label': 'none', 'value': 'A'},
                                          {'label': 'sakoechiba', 'value': 'B'},
                                          {'label': 'itakura', 'value': 'C'}],
@@ -404,7 +404,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("sDTW Gamma", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1e-12, max=0.1,
-                                              id={'type': 'para-var', 'index': 'para-ss-lr'},
+                                              id={'type': 'setup', 'index': 'ss-lr'},
                                               value=1e-9), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -413,7 +413,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("DSC Model Order", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1, max=1000, step=1,
-                                              id={'type': 'para-var', 'index': 'para-ss-n'},
+                                              id={'type': 'setup', 'index': 'ss-n'},
                                               value=20), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -435,7 +435,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Rolling EWMA", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1, step=1,
-                                              id={'type': 'para-var', 'index': 'para-feat-ewma'},
+                                              id={'type': 'setup', 'index': 'feat-ewma'},
                                               value=0), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -444,7 +444,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Rolling EWMS", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1, step=1,
-                                              id={'type': 'para-var', 'index': 'para-feat-ewms'},
+                                              id={'type': 'setup', 'index': 'feat-ewms'},
                                               value=0), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
 
@@ -453,7 +453,7 @@ def get_para_content():
                             dbc.Col(dbc.Label("Differentiation", className="text-start"),
                                     width={"size": 7, "offset": 0}),
                             dbc.Col(dbc.Input(type="numeric", min=1, step=1,
-                                              id={'type': 'para-var', 'index': 'para-feat-diff'},
+                                              id={'type': 'setup', 'index': 'feat-diff'},
                                               value=1), width={"size": 4, "offset": 1})
                         ], className="mb-3"),
                         html.Hr(),
@@ -617,7 +617,7 @@ def get_para_content():
                         dbc.Row([
                             dbc.Label("2D Features", width=7, className="text-start"),
                             dbc.Col(dcc.Dropdown(
-                                id={'type': 'para-var', 'index': 'para-feat-2D'},
+                                id={'type': 'setup', 'index': 'feat-2D'},
                                 options=[{'label': 'PQ-Raw', 'value': 'A'},
                                          {'label': 'PQ-Add', 'value': 'B'},
                                          {'label': 'VI', 'value': 'C'},

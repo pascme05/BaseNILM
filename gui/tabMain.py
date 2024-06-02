@@ -57,7 +57,7 @@ def get_main_content():
             dbc.Col(
                 dbc.Card([
                     dbc.CardBody([
-                        html.Img(src="IMG_1143.jpg", style={"width": "100%", "height": "auto"})
+                        html.Img(src="Arch.jpg", style={"width": "100%", "height": "auto"})
                     ], className='mb-2'),
                 ]), width=6),
 
