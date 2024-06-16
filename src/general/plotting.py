@@ -104,7 +104,7 @@ def plotting(dataRaw, data, dataPred, resultsAvg, feaScore, feaError, setupDat):
     df_std = df_std.melt(var_name='Column', value_name='Normalized')
     ax = sns.violinplot(x='Column', y='Normalized', data=df_std)
     _ = ax.set_xticklabels(inpLabel, rotation=90)
-    plt.grid('on')
+    plt.grid(True)
     plt.title('Input Feature Distribution')
     plt.xlabel('')
 
@@ -123,32 +123,27 @@ def plotting(dataRaw, data, dataPred, resultsAvg, feaScore, feaError, setupDat):
     feaScore[:cols].plot.bar(yerr=feaError[:cols])
     plt.title("Feature Ranking using RF")
     plt.ylabel("Mean Accuracy")
-    plt.grid('on')
+    plt.grid(True)
 
     # ==============================================================================
     # Input Features Time Domain
     # ==============================================================================
     # ------------------------------------------
-    # General
+    # Plotting
     # ------------------------------------------
-    plt.figure()
+    fig, axs = plt.subplots(row_max, 1, sharex=True)
     txt = "Time-domain plots of input features"
     plt.suptitle(txt, size=18)
     plt.subplots_adjust(hspace=0.35, wspace=0.35, left=0.075, right=0.925, top=0.90, bottom=0.075)
 
-    # ------------------------------------------
-    # Plotting
-    # ------------------------------------------
     for i in range(0, row_max):
-        plt.subplot(row_max, 1, i+1)
-        plt.plot(traw, dataRaw['T']['X'].iloc[:, i])
-        plt.title('Input Feature: ' + inpLabel[i])
-        plt.xticks([])
+        axs[i].plot(traw, dataRaw['T']['X'].iloc[:, i])
+        axs[i].set_title('Input Feature: ' + inpLabel[i])
+        axs[i].grid(True)
         try:
-            plt.ylabel(inpLabel[i] + ' (' + setupDat['inpUnits'][inpLabel[i]][0] + ')')
+            axs[i].set_ylabel(inpLabel[i] + ' (' + setupDat['inpUnits'][inpLabel[i]][0] + ')')
         except:
-            plt.ylabel(inpLabel[i] + ' (-)')
-        plt.grid('on')
+            axs[i].set_ylabel(inpLabel[i] + ' (-)')
 
     # ==============================================================================
     # Average Performance
@@ -168,7 +163,7 @@ def plotting(dataRaw, data, dataPred, resultsAvg, feaScore, feaError, setupDat):
     for i in range(0, setupDat['numOut']):
         plt.scatter(data['y'][:, i]/np.max(data['y'][:, i]), dataPred['y'][:, i]/np.max(dataPred['y'][:, i]))
         plt.plot(range(1), range(1))
-    plt.grid('on')
+    plt.grid(True)
     plt.xlabel('True Values ' + '(' + setupDat['outUnits'][outLabel[0]][0] + ')')
     plt.ylabel('Pred Values ' + '(' + setupDat['outUnits'][outLabel[0]][0] + ')')
     plt.title("Scattering Prediction and Residuals")
@@ -197,7 +192,7 @@ def plotting(dataRaw, data, dataPred, resultsAvg, feaScore, feaError, setupDat):
     plt.xlabel('Error ' + '(' + setupDat['outUnits'][outLabel[0]][0] + ')')
     plt.ylabel("Density")
     plt.legend(outLabel)
-    plt.grid('on')
+    plt.grid(True)
 
     # ------------------------------------------
     # Classical Learning
@@ -206,49 +201,48 @@ def plotting(dataRaw, data, dataPred, resultsAvg, feaScore, feaError, setupDat):
     plt.bar(accLabels1, accResults[0:4])
     plt.title('Average Accuracy Values')
     plt.ylabel('Accuracy (%)')
-    plt.grid('on')
+    plt.grid(True)
     plt.subplot(2, 2, 4)
     plt.bar(accLabels2, accResults[4:7])
     plt.title('Average Error Rates')
     plt.ylabel('Error ' + '(' + setupDat['outUnits'][outLabel[0]][0] + ')')
-    plt.grid('on')
+    plt.grid(True)
 
     # ==============================================================================
     # Temporal Performance
     # ==============================================================================
     for i in range(0, setupDat['numOut']):
         ii = i + 1
-        plt.figure()
-        plt.subplot(411)
-        plt.plot(t, data['y'][:, i])
-        plt.plot(t, dataPred['y'][:, i])
-        plt.title('Values prediction ' + outLabel[ii - 1])
-        plt.xticks([])
-        plt.ylabel(outLabel[ii - 1] + ' (' + setupDat['outUnits'][outLabel[ii - 1]][0] + ')')
-        plt.grid('on')
-        plt.legend(['True', 'Pred'])
+        fig, axs = plt.subplots(4, 1, sharex=True)
+        txt = "Power Consumption and State Prediction for Appliance: " + outLabel[ii - 1]
+        plt.suptitle(txt, size=18)
+        plt.subplots_adjust(hspace=0.35, wspace=0.35, left=0.075, right=0.925, top=0.90, bottom=0.075)
 
-        plt.subplot(412)
-        plt.plot(t, data['y'][:, i]-dataPred['y'][:, i])
-        plt.title('Error prediction ' + outLabel[ii - 1])
-        plt.xticks([])
-        plt.ylabel(outLabel[ii - 1] + ' (' + setupDat['outUnits'][outLabel[ii - 1]][0] + ')')
-        plt.grid('on')
+        axs[0].plot(t, data['y'][:, i])
+        axs[0].plot(t, dataPred['y'][:, i])
+        axs[0].set_title('Values prediction ' + outLabel[ii - 1])
+        axs[0].set_ylabel(outLabel[ii - 1] + ' (' + setupDat['outUnits'][outLabel[ii - 1]][0] + ')')
+        axs[0].grid(True)
+        axs[0].legend(['True', 'Pred'])
 
-        plt.subplot(413)
-        plt.plot(t, 2 * data['L'][:, i], color=colors[0])
-        plt.plot(t, dataPred['L'][:, i], color=colors[1])
-        plt.title('States labels ' + outLabel[ii - 1])
-        plt.xticks([])
-        plt.ylabel(outLabel[ii - 1] + ' (On/Off)')
-        plt.legend(['True', 'Pred'])
-        plt.grid('on')
+        axs[1].plot(t, data['y'][:, i] - dataPred['y'][:, i])
+        axs[1].set_title('Error prediction ' + outLabel[ii - 1])
+        axs[1].set_ylabel(outLabel[ii - 1] + ' (' + setupDat['outUnits'][outLabel[ii - 1]][0] + ')')
+        axs[1].grid(True)
 
-        plt.subplot(414)
-        plt.plot(t, data['L'][:, i] - dataPred['L'][:, i])
-        plt.title('Error labels ' + outLabel[ii - 1])
-        plt.xlabel('time (hrs)')
-        plt.ylabel(outLabel[ii - 1] + ' (On/Off)')
-        plt.grid('on')
+        axs[2].plot(t, 2 * data['L'][:, i], color=colors[0])
+        axs[2].plot(t, dataPred['L'][:, i], color=colors[1])
+        axs[2].set_title('States labels ' + outLabel[ii - 1])
+        axs[2].set_ylabel(outLabel[ii - 1] + ' (On/Off)')
+        axs[2].legend(['True', 'Pred'])
+        axs[2].grid(True)
+
+        axs[3].plot(t, data['L'][:, i] - dataPred['L'][:, i])
+        axs[3].set_title('Error labels ' + outLabel[ii - 1])
+        axs[3].set_xlabel('time (hrs)')
+        axs[3].set_ylabel(outLabel[ii - 1] + ' (On/Off)')
+        axs[3].grid(True)
+
+        plt.tight_layout()
 
     plt.show()

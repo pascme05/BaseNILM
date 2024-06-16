@@ -57,8 +57,11 @@ toolkit was implemented using the following dependencies:
 - Pandas
 - Scipy
 
-For GPU based calculations CUDA in combination with cuDNN has been used, 
-utilizing the Nvidia RTX 3000 series for calculation. 
+Additionally, Python 3.11 with tensorflow 2.13 was tested. The requirements.txt file was updated for version 3.11, while
+the old requirements have been store using req38.txt. Furthermore, when changing back to Python 3.8 the optimizer must
+be changed from "tf.keras.optimizers.legacy.Adam" to "tf.keras.optimizers.Adam" (similarly for all other optimizers).
+
+For GPU based calculations CUDA in combination with cuDNN has been used, utilizing the Nvidia RTX 3000 series for calculation. 
 The following versions have been tested and proven to work with the BaseNILM toolkit:
 - CUDA 11.4
 - DNN 8.2.4
@@ -142,11 +145,11 @@ predict the power consumption of the AMPDs2 dataset (first year) using the five 
 The average results for different models and different performance metrics are provided in the table below. All results
 have been obtained using the default parameters of the toolkit. 
 
-| Output | MAE (W)   | RMSE (W)  | SAE (p.u.) | TECA (%)  |
-|--------|-----------|-----------|------------|-----------|
-| DNN    | 12.98     | 92.36     | 0.06       | 93.25     | 
-| CNN    | **10.17** | **95.63** | **0.01**   | **94.71** | 
-| LSTM   | 14.55     | 97.92     | 0.03       | 92.43     |
+| Output | MAE (W)  | RMSE (W)  | SAE (p.u.) | TECA (%)  |
+|--------|----------|-----------|------------|-----------|
+| DNN    | 12.63    | 92.33     | 0.06       | 93.43     | 
+| CNN    | **9.37** | **59.60** | **0.02**   | **95.13** | 
+| LSTM   | 14.46    | 97.91     | 0.03       | 92.48     |
 
 As can be seen in the table above CNN outperforms all other approaches for all performance metrics.
 
