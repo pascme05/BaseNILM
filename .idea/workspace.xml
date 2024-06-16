@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ac4843f-95cf-4407-9cec-7a436b18cbf4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/gui/formatSetup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/assets/GUI2.png.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/assets/IMG_1143.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/callbacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/tabConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/tabConfig.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/tabMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/tabMain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/tabPara.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/tabPara.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

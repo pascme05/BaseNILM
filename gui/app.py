@@ -148,7 +148,7 @@ sidebar = html.Div(
 main_content = dbc.Card(
     dbc.CardBody([
         dcc.Tabs(id="tabs", value="tab-main", children=[
-            dcc.Tab(label="Main", value="main"),
+            dcc.Tab(label="Main", value="tab-main"),
             dcc.Tab(label="Configuration", value="tab-config"),
             dcc.Tab(label="Parameter", value="tab-parameter"),
             dcc.Tab(label="Profile", value="tab-profile"),
@@ -167,6 +167,7 @@ main_content = dbc.Card(
 # ------------------------------------------
 def serve_layout():
     return dbc.Container([
+        dcc.Store(id='store-inputs'),
         dbc.Row([
             dbc.Col(sidebar, md=2),
             dbc.Col(main_content, md=10)

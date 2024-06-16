@@ -247,7 +247,6 @@ The software framework is provided under the MIT license.
     - Update to Python 3.11 including Tensorflow 2.13
     - Adding new deep learning models including: Transformers, Informers, DAEs, and GANs
     - Creating benchmarking report for REDD, REFIT, ECO, UK-DALE and AMPds
-    - GUI based energy disaggregation
 
 
 # Cite

@@ -38,6 +38,7 @@ from tabProfile import get_profile_content
 from tabConfig import get_config_content
 from tabPara import get_para_content
 from tabResult import get_result_content
+from loadData import loadData
 
 # ==============================================================================
 # External
@@ -45,9 +46,8 @@ from tabResult import get_result_content
 from dash import no_update, ALL, callback_context, MATCH
 from dash.dependencies import Input, Output, State
 import json
-import os
-from dash.exceptions import PreventUpdate
-import plotly.graph_objects as go
+import dash
+import plotly.graph_objs as go
 
 
 #######################################################################################################################
@@ -61,7 +61,7 @@ import plotly.graph_objects as go
     Input("tabs", "value")
 )
 def switch_tab(at):
-    if at == "main":
+    if at == "tab-main":
         return get_main_content()
     elif at == "tab-profile":
         return get_profile_content()
@@ -72,6 +72,45 @@ def switch_tab(at):
     elif at == "tab-result":
         return get_result_content()
     return "Please select a tab."
+
+
+#######################################################################################################################
+# Storing Information
+#######################################################################################################################
+# ==============================================================================
+# Store
+# ==============================================================================
+@app.callback(
+    Output('store-inputs', 'data'),
+    [Input({'type': 'config-var', 'index': ALL}, 'value')],
+    [State({'type': 'config-var', 'index': ALL}, 'id')]
+)
+def store_inputs(values, ids):
+    if not dash.callback_context.triggered:
+        raise dash.exceptions.PreventUpdate
+
+    # Store the inputs in a dictionary
+    input_data = {id['index']: val for id, val in zip(ids, values)}
+    return input_data
+
+
+# ==============================================================================
+# Restore
+# ==============================================================================
+@app.callback(
+    Output({'type': 'config-var', 'index': ALL}, 'value'),
+    [Input('tabs', 'value')],
+    [State('store-inputs', 'data')]
+)
+def restore_inputs(tab, data):
+    if data is None:
+        raise dash.exceptions.PreventUpdate
+
+    # Extract the ids of the config-var inputs
+    ids = [{'type': 'config-var', 'index': key} for key in data.keys()]
+
+    # Return the values in the same order as the ids
+    return [data.get(id['index'], '') for id in ids]
 
 
 #######################################################################################################################
@@ -166,38 +205,96 @@ def update_output(n_clicks, values):
 
     return 'Press the start button to run the function'
 
+
 #######################################################################################################################
 # Profile
 #######################################################################################################################
 @app.callback(
-    [Output({'type': 'profile-fig-single-time', 'index': MATCH}, 'figure'),
-     Output({'type': 'profile-fig-single-dist', 'index': MATCH}, 'figure')],
-    Input({'type': 'profile-axis-single', 'index': MATCH}, 'value')
+    [
+        Output("profile-name", "value"),
+        Output("profile-sampling", "value"),
+        Output("profile-duration", "value"),
+        Output("profile-axis-agg", "options"),
+        Output("profile-axis-app", "options"),
+        Output("profile-time-fig1", "figure"),
+        Output("profile-dist-fig1", "figure"),
+        Output("profile-time-fig2", "figure"),
+        Output("profile-dist-fig2", "figure")
+    ],
+    [Input("sidebar-button-load", "n_clicks")],
+    [
+        State({'type': 'config-var', 'index': 'folder'}, 'value'),
+        State({'type': 'config-var', 'index': 'file'}, 'value'),
+        State({'type': 'config-var', 'index': 'train'}, 'value'),
+        State({'type': 'config-var', 'index': 'freq'}, 'value'),
+        State({'type': 'config-var', 'index': 'dim'}, 'value'),
+        State({'type': 'config-var', 'index': 'outFeat'}, 'value')
+    ]
 )
-def update_profile_plot_single(axis):
-    # Time Figure
-    fig = {
-        'data': [],
-        'layout': {
-            'height': 275,
-            'xaxis': {'title': 'time (sec)'},
-            'yaxis': {'title': axis},
-            'margin': dict(l=50, r=50, b=45, t=10, pad=4)
-        }
-    }
+def update_fields(n_clicks, dataType, folder, name, freq, dim, outFeat):
+    if n_clicks is None:
+        # Prevent callback from firing when the page first loads
+        raise dash.exceptions.PreventUpdate
 
-    # Dist Figure
-    fig2 = {
-        'data': [],
-        'layout': {
-            'height': 275,
-            'xaxis': {'title': axis},
-            'yaxis': {'title': 'prob (%)'},
-            'margin': dict(l=50, r=50, b=45, t=10, pad=4)
-        }
-    }
+    # Init setupMat
+    setupMat = {'freq': freq, 'dim': dim, 'outFeat': outFeat}
 
-    return [fig, fig2]
+    # Load data when the button is clicked
+    setupPath = initPath('BaseNILM')
+    path = setupPath['datPath']
+    _, dataset_name, sampling_rate, duration, dropdown1_options, dropdown2_options = loadData(dataType, path, folder, name, setupMat)
+
+    # Prepare the options for the dropdowns
+    dropdown1_options = [{'label': opt, 'value': opt} for opt in dropdown1_options]
+    dropdown2_options = [{'label': opt, 'value': opt} for opt in dropdown2_options]
+
+    # Create the time series plot Figure 1
+    fig11 = go.Figure(
+        data=[go.Scatter(x=[], y=[], mode='lines', name='Time Series Aggregated')],
+        layout=go.Layout(
+            title='Time Series Aggregated',
+            xaxis=dict(title='time (sec)'),
+            yaxis=dict(title='value'),
+            width=750,  # Set the width of the plot
+            height=325  # Set the height of the plot
+        )
+    )
+
+    fig12 = go.Figure(
+        data=[go.Scatter(x=[], y=[], mode='lines', name='Distribution Aggregated')],
+        layout=go.Layout(
+            title='Distribution Aggregated',
+            xaxis=dict(title='value'),
+            yaxis=dict(title='prob (%)'),
+            width=400,  # Set the width of the plot
+            height=325  # Set the height of the plot
+        )
+    )
+
+    # Create the time series plot Figure 1
+    fig21 = go.Figure(
+        data=[go.Scatter(x=[], y=[], mode='lines', name='Time Series Appliance')],
+        layout=go.Layout(
+            title='Time Series Appliance',
+            xaxis=dict(title='time (sec)'),
+            yaxis=dict(title='value'),
+            width=750,  # Set the width of the plot
+            height=325  # Set the height of the plot
+        )
+    )
+
+    fig22 = go.Figure(
+        data=[go.Scatter(x=[], y=[], mode='lines', name='Distribution Appliance')],
+        layout=go.Layout(
+            title='Distribution Appliance',
+            xaxis=dict(title='value'),
+            yaxis=dict(title='prob (%)'),
+            width=400,  # Set the width of the plot
+            height=325  # Set the height of the plot
+        )
+    )
+
+    return [dataset_name, sampling_rate, duration, dropdown1_options, dropdown2_options, fig11, fig12, fig21, fig22]
 
 #######################################################################################################################
 # Results
