@@ -3,9 +3,9 @@
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
 # File:         start
-# Date:         21.11.2023
+# Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
-# Version:      V.0.2
+# Version:      V.1.0
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
@@ -52,14 +52,14 @@ setupPath = initPath('BaseNILM')
 # ------------------------------------------
 # Names
 # ------------------------------------------
-setupExp['name'] = 'OptiHyper'                                                                                          # Name of the simulation
+setupExp['name'] = 'Default'                                                                                            # Name of the simulation
 setupExp['author'] = 'Pascal Schirmer'                                                                                  # Name of the author
 
 # ------------------------------------------
 # General
 # ------------------------------------------
-setupExp['sim'] = 1                                                                                                     # 0) simulation, 1) optimisation hyperparameters, 2) optimising grid
-setupExp['gpu'] = 1                                                                                                     # 0) cpu, 1) gpu
+setupExp['sim'] = 0                                                                                                     # 0) simulation, 1) optimisation hyperparameters, 2) optimising grid
+setupExp['gpu'] = 0                                                                                                     # 0) cpu, 1) gpu
 setupExp['warn'] = 3                                                                                                    # 0) all msg are logged, 1) INFO not logged, 2) INFO and WARN not logged, 3) disabled
 
 # ------------------------------------------
@@ -68,7 +68,7 @@ setupExp['warn'] = 3                                                            
 setupExp['method'] = 0                                                                                                  # 0) 1-fold with data split, 1) k-fold with cross validation, 2) transfer learning with different datasets, 3) id based
 setupExp['trainBatch'] = 0                                                                                              # 0) all no batching, 1) fixed batch size (see data batch parameter), 2) id based
 setupExp['kfold'] = 10                                                                                                  # number of folds for method 1)
-setupExp['train'] = 1                                                                                                   # 0) no training (trying to load model), 1) training new model (or retraining)
+setupExp['train'] = 0                                                                                                   # 0) no training (trying to load model), 1) training new model (or retraining)
 setupExp['test'] = 1                                                                                                    # 0) no testing, 1) testing
 
 # ------------------------------------------
@@ -76,7 +76,7 @@ setupExp['test'] = 1                                                            
 # ------------------------------------------
 setupExp['save'] = 0                                                                                                    # 0) results are not saved, 1) results are saved
 setupExp['log'] = 0                                                                                                     # 0) no data logging, 1) logging input data
-setupExp['plot'] = 0                                                                                                    # 0) no plotting, 1) plotting
+setupExp['plot'] = 1                                                                                                    # 0) no plotting, 1) plotting
 
 # ==============================================================================
 # Data Parameters
@@ -149,16 +149,16 @@ setupPar['modelInpDim'] = 3                                                     
 # ------------------------------------------
 setupPar['frame'] = 1                                                                                                   # 0) no framing, 1) framing
 setupPar['feat'] = 0                                                                                                    # 0) raw data values, 1) statistical features (frame based), 2) statistical features (input based), 3) input and frame based features, 4) 2D features
-setupPar['window'] = 30                                                                                                 # window length (samples)
-setupPar['overlap'] = 29                                                                                                # overlap between consecutive windows (no overlap during test if -1)
+setupPar['window'] = 20                                                                                                 # window length (samples)
+setupPar['overlap'] = 19                                                                                                # overlap between consecutive windows (no overlap during test if -1)
 setupPar['outseq'] = 0                                                                                                  # 0) seq2point, x) length of the subsequence in samples
-setupPar['yFocus'] = 15                                                                                                 # focus point for seq2point (average if -1)
+setupPar['yFocus'] = 10                                                                                                 # focus point for seq2point (average if -1)
 setupPar['nDim'] = 2                                                                                                    # input dimension for model 1D (1), 2D (2), or 3D (3)
 
 # ------------------------------------------
 # Postprocessing
 # ------------------------------------------
-setupPar['ranking'] = 0                                                                                                 # 0) no feature ranking, 1) feature ranking using random forests
+setupPar['ranking'] = 1                                                                                                 # 0) no feature ranking, 1) feature ranking using random forests
 setupPar['outMin'] = -1e9                                                                                               # limited output values (minimum)
 setupPar['outMax'] = +1e9                                                                                               # limited output values (maximum)
 
