@@ -12,3 +12,5 @@ matplotlib~=3.9.0
 seaborn~=0.13.2
 pyts~=0.13.0
 psutil~=5.9.8
+dtw-python==1.4.4
+keras-tuner==1.4.7
