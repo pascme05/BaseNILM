@@ -39,7 +39,7 @@ def mdlPara(setupMdl):
     # Hyperparameters
     # ==============================================================================
     setupMdl['batch'] = 512                                                                                              # batch size for training and testing
-    setupMdl['epoch'] = 100                                                                                              # number of epochs for training
+    setupMdl['epoch'] = 250                                                                                              # number of epochs for training
     setupMdl['patience'] = 15                                                                                            # number of epochs as patience during training
     setupMdl['valsteps'] = 25                                                                                            # number of validation steps
     setupMdl['shuffle'] = 'False'                                                                                        # shuffling data before training (after splitting data)

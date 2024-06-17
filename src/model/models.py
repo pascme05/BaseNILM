@@ -188,7 +188,7 @@ def tfMdlTran(X_train, output, activation):
     x = transformer_block(x)
     x = tf.keras.layers.GlobalAveragePooling1D()(x)
     x = tf.keras.layers.Dropout(0.1)(x)
-    outputs = tf.keras.layers.Dense(output, activation=activation)(x)  # Adjust output layer for your specific task
+    outputs = tf.keras.layers.Dense(output, activation=activation)(x)
     mdl = tf.keras.models.Model(inputs=inputs, outputs=outputs)
     mdl.set_weights(mdl.get_weights())
 
@@ -234,15 +234,12 @@ class InformerBlock(tf.keras.layers.Layer):
 
 def tfMdlINF(X_train, output, activation):
     inputs = tf.keras.layers.Input(shape=X_train.shape[1:])
-
-    # Project input features to the embedding dimension
     x = tf.keras.layers.Dense(32)(inputs)
-
     informer_block = InformerBlock(32, 2, 32)
     x = informer_block(x)
     x = tf.keras.layers.GlobalAveragePooling1D()(x)
     x = tf.keras.layers.Dropout(0.1)(x)
-    outputs = tf.keras.layers.Dense(output, activation=activation)(x)  # Adjust output layer for your specific task
+    outputs = tf.keras.layers.Dense(output, activation=activation)(x)
     mdl = tf.keras.models.Model(inputs=inputs, outputs=outputs)
 
     return mdl
@@ -263,11 +260,11 @@ def tfMdlDAE(X_train, output, activation):
     encoded = tf.keras.layers.Dense(32, activation='relu')(x)
 
     # Decoder
-    x = tf.keras.layers.Dense(32 * output, activation='relu')(encoded)  # Map to a larger dense layer
+    x = tf.keras.layers.Dense(32 * output, activation='relu')(encoded)
     x = tf.keras.layers.Reshape((output, 32))(x)
     x = tf.keras.layers.Conv1D(32, kernel_size=3, padding='same', activation='relu')(x)
     x = tf.keras.layers.Flatten()(x)
-    decoded = tf.keras.layers.Dense(output, activation=activation)(x)  # Produce a 1D output
+    decoded = tf.keras.layers.Dense(output, activation=activation)(x)
 
     # Autoencoder
     mdl = tf.keras.models.Model(inputs, decoded)

@@ -76,7 +76,7 @@ setupExp['test'] = 1                                                            
 # ------------------------------------------
 setupExp['save'] = 0                                                                                                     # 0) results are not saved, 1) results are saved
 setupExp['log'] = 0                                                                                                      # 0) no data logging, 1) logging input data
-setupExp['plot'] = 1                                                                                                     # 0) no plotting, 1) plotting
+setupExp['plot'] = 0                                                                                                     # 0) no plotting, 1) plotting
 
 # ==============================================================================
 # Data Parameters
@@ -140,8 +140,8 @@ setupDat['ghost'] = 0                                                           
 # Solver
 # ------------------------------------------
 setupPar['method'] = 0                                                                                                   # 0) regression, 1) classification
-setupPar['solver'] = 'TF'                                                                                                # TF: Tensorflow, PT: PyTorch, SK: sklearn, PM: Pattern Matching, SS: Source Separation and CU: Custom (placeholder for own ideas)
-setupPar['model'] = 'CNN'                                                                                                # possible classifier: 1) ML: RF, CNN, LSTM \ 2) PM: DTW, MVM \ 3) SS: NMF, SCA
+setupPar['solver'] = 'SK'                                                                                                # TF: Tensorflow, PT: PyTorch, SK: sklearn, PM: Pattern Matching, SS: Source Separation and CU: Custom (placeholder for own ideas)
+setupPar['model'] = 'KNN'                                                                                                # possible classifier: 1) ML: RF, CNN, LSTM \ 2) PM: DTW, MVM \ 3) SS: NMF, SCA
 setupPar['modelInpDim'] = 3                                                                                              # model input dimension 3D or 4D (e.g. for CNN2D)
 
 # ------------------------------------------
