@@ -206,8 +206,8 @@ class ProbSparseSelfAttention(tf.keras.layers.Layer):
         super(ProbSparseSelfAttention, self).__init__()
         self.multi_head_attention = tf.keras.layers.MultiHeadAttention(num_heads=num_heads, key_dim=embed_dim)
 
-    def call(self, inputs, training):
-        attn_output = self.multi_head_attention(inputs, inputs)
+    def call(self, inputs, training=None):
+        attn_output = self.multi_head_attention(inputs, inputs, training=training)
         return attn_output
 
 
@@ -223,8 +223,8 @@ class InformerBlock(tf.keras.layers.Layer):
         self.dropout1 = tf.keras.layers.Dropout(rate)
         self.dropout2 = tf.keras.layers.Dropout(rate)
 
-    def call(self, inputs, training):
-        attn_output = self.att(inputs, training)
+    def call(self, inputs, training=None):
+        attn_output = self.att(inputs, training=training)
         attn_output = self.dropout1(attn_output, training=training)
         out1 = self.layernorm1(inputs + attn_output)
         ffn_output = self.ffn(out1)
