@@ -45,6 +45,8 @@ from sys import getsizeof
 # Loss Metric
 # ==============================================================================
 def lossMetric(y_true, y_pred):
+    y_true = k.cast(y_true, dtype=tf.float32)
+    y_pred = k.cast(y_pred, dtype=tf.float32)
     return 1 - k.sum(k.abs(y_pred - y_true)) / (k.sum(y_true) + k.epsilon()) / 2
 
 
@@ -85,7 +87,7 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     # ==============================================================================
     # Name
     # ==============================================================================
-    mdlName = 'mdl/mdl_' + setupPar['model'] + '_' + setupExp['name'] + '/cp.ckpt'
+    mdlName = 'mdl/mdl_' + setupPar['model'] + '_' + setupExp['name'] + '.weights.h5'
 
     # ==============================================================================
     # Callbacks
@@ -103,7 +105,7 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
         class_weights = class_weight.compute_class_weight(class_weight='balanced', classes=np.unique(data['T']['y']),
                                                           y=data['T']['y'])
     else:
-        class_weights = []
+        class_weights = dict(enumerate(np.ones(data['T']['y'].shape[0])))
 
     # ==============================================================================
     # Reshape Data
@@ -223,22 +225,22 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     # ------------------------------------------
     # RMSprop
     if setupMdl['opt'] == 'RMSprop':
-        opt = tf.keras.optimizers.legacy.RMSprop(learning_rate=setupMdl['lr'], rho=setupMdl['rho'],
-                                                 momentum=setupMdl['mom'], epsilon=setupMdl['eps'])
+        opt = tf.keras.optimizers.RMSprop(learning_rate=setupMdl['lr'], rho=setupMdl['rho'],
+                                          momentum=setupMdl['mom'], epsilon=setupMdl['eps'])
 
     # SGD
     elif setupMdl['opt'] == 'SDG':
-        opt = tf.keras.optimizers.legacy.SGD(learning_rate=setupMdl['lr'], momentum=setupMdl['mom'])
+        opt = tf.keras.optimizers.SGD(learning_rate=setupMdl['lr'], momentum=setupMdl['mom'])
 
     # Adam
     else:
-        opt = tf.keras.optimizers.legacy.Adam(learning_rate=setupMdl['lr'], beta_1=setupMdl['beta1'],
-                                              beta_2=setupMdl['beta2'], epsilon=setupMdl['eps'])
+        opt = tf.keras.optimizers.Adam(learning_rate=setupMdl['lr'], beta_1=setupMdl['beta1'],
+                                       beta_2=setupMdl['beta2'], epsilon=setupMdl['eps'])
 
     # ------------------------------------------
     # Compile
     # ------------------------------------------
-    mdl.compile(optimizer=opt, loss=setupMdl['loss'], metrics=lossM)
+    mdl.compile(optimizer=opt, loss=setupMdl['loss'], metrics=[lossM])
 
     # ==============================================================================
     # Callbacks
@@ -253,8 +255,8 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     # Setting
     # ------------------------------------------
     callbacks.append(tf.keras.callbacks.ModelCheckpoint(filepath=mdlName, monitor='val_loss', verbose=0,
-                                                        save_best_only=False, save_weights_only=True,
-                                                        mode='auto', save_freq=5 * EVAL))
+                                                        save_best_only=True, save_weights_only=True,
+                                                        mode='auto', save_freq='epoch'))
 
     # ------------------------------------------
     # Learning rate
@@ -271,8 +273,7 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     # Train
     # ==============================================================================
     mdl.fit(train, epochs=EPOCHS, steps_per_epoch=EVAL, validation_data=val, validation_steps=VALSTEPS,
-            use_multiprocessing=True, verbose=VERBOSE, shuffle=SHUFFLE, batch_size=BATCH_SIZE, callbacks=callbacks,
-            class_weight=class_weights)
+            verbose=VERBOSE, shuffle=SHUFFLE, batch_size=BATCH_SIZE, callbacks=callbacks, class_weight=class_weights)
 
     # ==============================================================================
     # End timer

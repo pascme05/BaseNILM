@@ -68,7 +68,7 @@ setupExp['warn'] = 3                                                            
 setupExp['method'] = 0                                                                                                   # 0) 1-fold with data split, 1) k-fold with cross validation, 2) transfer learning with different datasets, 3) id based
 setupExp['trainBatch'] = 0                                                                                               # 0) all no batching, 1) fixed batch size (see data batch parameter), 2) id based
 setupExp['kfold'] = 10                                                                                                   # number of folds for method 1)
-setupExp['train'] = 0                                                                                                    # 0) no training (trying to load model), 1) training new model (or retraining)
+setupExp['train'] = 1                                                                                                    # 0) no training (trying to load model), 1) training new model (or retraining)
 setupExp['test'] = 1                                                                                                     # 0) no testing, 1) testing
 
 # ------------------------------------------
@@ -130,7 +130,7 @@ setupDat['outFil'] = 0                                                          
 setupDat['inpFilLen'] = 61                                                                                               # filter length input data (samples)
 setupDat['outFilLen'] = 61                                                                                               # filter length output data (samples)
 setupDat['threshold'] = 50                                                                                               # 0) no threshold x) threshold to transform regressio into classification data
-setupDat['balance'] = 2                                                                                                  # 0) no balancing 1) balancing based classes (classification), 2) balancing based on threshold (regression)
+setupDat['balance'] = 0                                                                                                  # 0) no balancing 1) balancing based classes (classification), 2) balancing based on threshold (regression)
 setupDat['ghost'] = 0                                                                                                    # 0) ghost data will not be used, 1) ghost data will be treated as own appliance, 2) ideal data will be used (only if X is 1D and has equal domain to y)
 
 # ==============================================================================
@@ -141,7 +141,7 @@ setupDat['ghost'] = 0                                                           
 # ------------------------------------------
 setupPar['method'] = 0                                                                                                   # 0) regression, 1) classification
 setupPar['solver'] = 'TF'                                                                                                # TF: Tensorflow, PT: PyTorch, SK: sklearn, PM: Pattern Matching, SS: Source Separation and CU: Custom (placeholder for own ideas)
-setupPar['model'] = 'CNN'                                                                                                # possible classifier: 1) ML: RF, CNN, LSTM \ 2) PM: DTW, MVM \ 3) SS: NMF, SCA
+setupPar['model'] = 'LSTM'                                                                                                # possible classifier: 1) ML: RF, CNN, LSTM \ 2) PM: DTW, MVM \ 3) SS: NMF, SCA
 setupPar['modelInpDim'] = 3                                                                                              # model input dimension 3D or 4D (e.g. for CNN2D)
 
 # ------------------------------------------

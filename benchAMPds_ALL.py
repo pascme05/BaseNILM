@@ -107,7 +107,7 @@ setupDat['val'] = 'ampds2'                                                      
 # Input/ Output Mapping
 # ------------------------------------------
 setupDat['inp'] = []                                                                                                     # names of the input variables (X), if empty all features are used
-setupDat['out'] = ['DWE', 'FRE', 'HPE', 'WOE', 'CDE']                                                                    # names of the output variables (y), if empty all appliances are used
+setupDat['out'] = []                                                                                                     # names of the output variables (y), if empty all appliances are used
 setupDat['outFeat'] = 0                                                                                                  # if data is three-dimensional, the output axis must be defined
 setupDat['outEnergy'] = 0.0                                                                                              # 0) appliances are selected based on the list, 1) appliances are selected to capture x % of the total energy
 
@@ -130,7 +130,7 @@ setupDat['outFil'] = 0                                                          
 setupDat['inpFilLen'] = 61                                                                                               # filter length input data (samples)
 setupDat['outFilLen'] = 61                                                                                               # filter length output data (samples)
 setupDat['threshold'] = 50                                                                                               # 0) no threshold x) threshold to transform regressio into classification data
-setupDat['balance'] = 2                                                                                                  # 0) no balancing 1) balancing based classes (classification), 2) balancing based on threshold (regression)
+setupDat['balance'] = 0                                                                                                  # 0) no balancing 1) balancing based classes (classification), 2) balancing based on threshold (regression)
 setupDat['ghost'] = 0                                                                                                    # 0) ghost data will not be used, 1) ghost data will be treated as own appliance, 2) ideal data will be used (only if X is 1D and has equal domain to y)
 
 # ==============================================================================

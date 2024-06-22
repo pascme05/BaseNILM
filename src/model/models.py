@@ -236,7 +236,7 @@ def tfMdlINF(X_train, output, activation):
     inputs = tf.keras.layers.Input(shape=X_train.shape[1:])
     x = tf.keras.layers.Dense(32)(inputs)
     informer_block = InformerBlock(32, 2, 32)
-    x = informer_block(x)
+    x = informer_block(x, training=True)
     x = tf.keras.layers.GlobalAveragePooling1D()(x)
     x = tf.keras.layers.Dropout(0.1)(x)
     outputs = tf.keras.layers.Dense(output, activation=activation)(x)

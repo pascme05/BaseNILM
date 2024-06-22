@@ -47,8 +47,8 @@ complete list of all publicly available datasets please see the NILM survey pape
 
 
 # Dependencies
-The requirements of the BaseNILM toolkit are summarized in the requirements.txt data file. In detail, the BaseNILM
-toolkit was implemented using the following dependencies:
+The requirements of the BaseNILM toolkit are summarized in the requirements.txt data file (CPU based). In detail, the 
+BaseNILM toolkit was implemented using the following dependencies:
 - Python 3.8
 - Tensorflow 2.5.0
 - Keras 2.4.3
@@ -57,12 +57,10 @@ toolkit was implemented using the following dependencies:
 - Pandas
 - Scipy
 
-Additionally, Python 3.11 with tensorflow 2.13 was tested. The requirements.txt file was updated for version 3.11, while
-the old requirements have been store using req38.txt. Furthermore, when changing back to Python 3.8 the optimizer must
-be changed from "tf.keras.optimizers.legacy.Adam" to "tf.keras.optimizers.Adam" (similarly for all other optimizers).
-
-For GPU based calculations CUDA in combination with cuDNN has been used, utilizing the Nvidia RTX 3000 series for calculation. 
-The following versions have been tested and proven to work with the BaseNILM toolkit:
+Additionally, Python 3.11 with tensorflow 2.16 was tested. The requirements.txt file was updated for version 3.11, while
+the old requirements have been store using req38.txt. For GPU based calculations CUDA in combination with cuDNN has been
+used, utilizing the Nvidia RTX 3000 series for calculation. The following versions have been tested and proven to work
+with the BaseNILM toolkit:
 - CUDA 11.4
 - DNN 8.2.4
 - Driver 472.39
@@ -226,6 +224,15 @@ feature):
 | [7]      | 2021 | CNN   | 95.8% | -        | -       |
 | BaseNILM | 2023 | CNN   | 94.7% | 56.85    | 7.52    |
  
+# Benchmark
+In this section benchmarking results are presented. The aim is to compare different datasets and regression algorithms
+using multiple accuracy metrics providing a baseline system for other researchers. In detail, the results have been 
+obtained using 10-fold cross validation. The simulation setups can be found under \setup\benchmark and details of the
+parameters and models in the documentation und \docu.
+
+## AMPds2
+
+## REDD
 
 # Development
 As failure and mistakes are inextricably linked to human nature, the toolkit is obviously not perfect, thus suggestions

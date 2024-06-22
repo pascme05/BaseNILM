@@ -94,7 +94,7 @@ def trainMdlTFopti(data, setupDat, setupPar, setupMdl, setupExp):
         class_weights = class_weight.compute_class_weight(class_weight='balanced', classes=np.unique(data['T']['y']),
                                                           y=data['T']['y'])
     else:
-        class_weights = []
+        class_weights = dict(enumerate(np.ones(data['T']['y'].shape[0])))
 
     # ==============================================================================
     # Reshape Data
@@ -126,8 +126,8 @@ def trainMdlTFopti(data, setupDat, setupPar, setupMdl, setupExp):
     # Optimiser
     # ==============================================================================
     tuner.search(data['T']['X'], data['T']['y'], epochs=EPOCHS, validation_data=(data['V']['X'], data['V']['y']),
-                 steps_per_epoch=EVAL, validation_steps=VALSTEPS, use_multiprocessing=True, verbose=VERBOSE,
-                 shuffle=SHUFFLE, batch_size=BATCH_SIZE, callbacks=callbacks)
+                 steps_per_epoch=EVAL, validation_steps=VALSTEPS, verbose=VERBOSE, shuffle=SHUFFLE,
+                 batch_size=BATCH_SIZE, callbacks=callbacks)
     best_hps = tuner.get_best_hyperparameters(num_trials=1)[0]
 
     # ==============================================================================
@@ -135,8 +135,8 @@ def trainMdlTFopti(data, setupDat, setupPar, setupMdl, setupExp):
     # ==============================================================================
     mdl = tuner.hypermodel.build(best_hps)
     history = mdl.fit(data['T']['X'], data['T']['y'], epochs=EPOCHS, validation_data=(data['V']['X'], data['V']['y']),
-                      steps_per_epoch=EVAL, validation_steps=VALSTEPS, use_multiprocessing=True, verbose=VERBOSE,
-                      shuffle=SHUFFLE, batch_size=BATCH_SIZE, callbacks=callbacks, class_weight=class_weights)
+                      steps_per_epoch=EVAL, validation_steps=VALSTEPS, verbose=VERBOSE, shuffle=SHUFFLE,
+                      batch_size=BATCH_SIZE, callbacks=callbacks, class_weight=class_weights)
 
     ###################################################################################################################
     # Output
