@@ -141,7 +141,7 @@ setupDat['ghost'] = 0                                                           
 # ------------------------------------------
 setupPar['method'] = 0                                                                                                   # 0) regression, 1) classification
 setupPar['solver'] = 'TF'                                                                                                # TF: Tensorflow, PT: PyTorch, SK: sklearn, PM: Pattern Matching, SS: Source Separation and CU: Custom (placeholder for own ideas)
-setupPar['model'] = 'LSTM'                                                                                                # possible classifier: 1) ML: RF, CNN, LSTM \ 2) PM: DTW, MVM \ 3) SS: NMF, SCA
+setupPar['model'] = 'CNN'                                                                                                # possible classifier: 1) ML: RF, CNN, LSTM \ 2) PM: DTW, MVM \ 3) SS: NMF, SCA
 setupPar['modelInpDim'] = 3                                                                                              # model input dimension 3D or 4D (e.g. for CNN2D)
 
 # ------------------------------------------
