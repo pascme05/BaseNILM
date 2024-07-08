@@ -138,7 +138,7 @@ def testMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     # ------------------------------------------
     # Transformer
     # ------------------------------------------
-    elif setupPar['model'] == "TRAN":
+    elif setupPar['model'] == "TRA":
         mdl = tfMdlTran(data['T']['X'], out, activation)
 
     # ------------------------------------------

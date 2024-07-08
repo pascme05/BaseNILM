@@ -2,7 +2,7 @@
 #######################################################################################################################
 # Title:        BaseNILM toolkit for energy disaggregation
 # Topic:        Non-intrusive load monitoring utilising machine learning, pattern matching and source separation
-# File:         benchAMPds_ALL
+# File:         benchREDD_DEF
 # Date:         23.05.2024
 # Author:       Dr. Pascal A. Schirmer
 # Version:      V.1.0
@@ -52,7 +52,7 @@ setupPath = initPath('BaseNILM')
 # ------------------------------------------
 # Names
 # ------------------------------------------
-setupExp['name'] = 'benchAMPds_ALL'                                                                                      # Name of the simulation
+setupExp['name'] = 'benchREDD_DEF'                                                                                       # Name of the simulation
 setupExp['author'] = 'Pascal Schirmer'                                                                                   # Name of the author
 
 # ------------------------------------------
@@ -97,11 +97,11 @@ setupDat['idV'] = [2]                                                           
 # ------------------------------------------
 # Datasets
 # ------------------------------------------
-setupDat['folder'] = 'ampds'                                                                                             # name of the folder for the dataset under \data
+setupDat['folder'] = 'redd'                                                                                              # name of the folder for the dataset under \data
 setupDat['house'] = 1                                                                                                    # only when loading nilmtk converted files with '.h5' format
-setupDat['train'] = ['ampds2']                                                                                           # name of training datasets (multiple)
-setupDat['test'] = 'ampds2'                                                                                              # name of testing datasets (one)
-setupDat['val'] = 'ampds2'                                                                                               # name of validation dataset (one)
+setupDat['train'] = ['redd4']                                                                                            # name of training datasets (multiple)
+setupDat['test'] = 'redd4'                                                                                               # name of testing datasets (one)
+setupDat['val'] = 'redd4'                                                                                                # name of validation dataset (one)
 
 # ------------------------------------------
 # Input/ Output Mapping
@@ -109,12 +109,12 @@ setupDat['val'] = 'ampds2'                                                      
 setupDat['inp'] = []                                                                                                     # names of the input variables (X), if empty all features are used
 setupDat['out'] = []                                                                                                     # names of the output variables (y), if empty all appliances are used
 setupDat['outFeat'] = 0                                                                                                  # if data is three-dimensional, the output axis must be defined
-setupDat['outEnergy'] = 0.0                                                                                              # 0) appliances are selected based on the list, 1) appliances are selected to capture x % of the total energy
+setupDat['outEnergy'] = 0.8                                                                                              # 0) appliances are selected based on the list, 1) appliances are selected to capture x % of the total energy
 
 # ------------------------------------------
 # Sampling
 # ------------------------------------------
-setupDat['fs'] = 1/60                                                                                                    # sampling frequency (Hz) for HF data this is the LF output frequency of (y)
+setupDat['fs'] = 1/3                                                                                                     # sampling frequency (Hz) for HF data this is the LF output frequency of (y)
 setupDat['lim'] = 0                                                                                                      # 0) data is not limited, x) limited to x samples
 
 # ------------------------------------------
@@ -140,8 +140,8 @@ setupDat['ghost'] = 0                                                           
 # Solver
 # ------------------------------------------
 setupPar['method'] = 0                                                                                                   # 0) regression, 1) classification
-setupPar['solver'] = 'TF'                                                                                                # TF: Tensorflow, PT: PyTorch, SK: sklearn, PM: Pattern Matching, SS: Source Separation and CU: Custom (placeholder for own ideas)
-setupPar['model'] = 'CNN'                                                                                                # possible classifier: 1) ML: RF, CNN, LSTM \ 2) PM: DTW, MVM \ 3) SS: NMF, SCA
+setupPar['solver'] = 'PM'                                                                                                # TF: Tensorflow, PT: PyTorch, SK: sklearn, PM: Pattern Matching, SS: Source Separation and CU: Custom (placeholder for own ideas)
+setupPar['model'] = 'MVM'                                                                                                # possible classifier: 1) ML: RF, CNN, LSTM \ 2) PM: DTW, MVM \ 3) SS: NMF, SCA
 setupPar['modelInpDim'] = 3                                                                                              # model input dimension 3D or 4D (e.g. for CNN2D)
 
 # ------------------------------------------
@@ -151,7 +151,7 @@ setupPar['frame'] = 1                                                           
 setupPar['feat'] = 0                                                                                                     # 0) raw data values, 1) statistical features (frame based), 2) statistical features (input based), 3) input and frame based features, 4) 2D features
 setupPar['window'] = 30                                                                                                  # window length (samples)
 setupPar['overlap'] = 29                                                                                                 # overlap between consecutive windows (no overlap during test if -1)
-setupPar['outseq'] = 0                                                                                                   # 0) seq2point, x) length of the subsequence in samples
+setupPar['outseq'] = 30                                                                                                   # 0) seq2point, x) length of the subsequence in samples
 setupPar['yFocus'] = 15                                                                                                  # focus point for seq2point (average if -1)
 setupPar['nDim'] = 2                                                                                                     # input dimension for model 1D (1), 2D (2), or 3D (3)
 

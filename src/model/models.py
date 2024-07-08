@@ -185,7 +185,7 @@ def tfMdlTran(X_train, output, activation):
     inputs = tf.keras.layers.Input(shape=X_train.shape[1:])
     x = tf.keras.layers.Dense(32)(inputs)
     transformer_block = TransformerBlock(32, 2, 32)
-    x = transformer_block(x)
+    x = transformer_block(x, training=True)
     x = tf.keras.layers.GlobalAveragePooling1D()(x)
     x = tf.keras.layers.Dropout(0.1)(x)
     outputs = tf.keras.layers.Dense(output, activation=activation)(x)

@@ -101,7 +101,7 @@ def printResults(resultsApp, resultsAvg, setupDat, setupExp):
     for i in range(0, setupDat['numOut']):
         print('| %-8s |  %6.2f%% | %6.2f%% |  %6.2f%%   |  %6.2f%%   |  %8.2f  |  %8.2f   |  %8.2f   |  %8.2f   |  %6.2f%%  | %6.2f%% |' % (
             setupDat['outLabel'][i], resultsApp[i, 0] * 100, resultsApp[i, 1] * 100, resultsApp[i, 2] * 100, resultsApp[i, 3]*100,
-            resultsApp[i, 4], resultsApp[i, 5], resultsApp[i, 6], abs(resultsApp[i, 7]-resultsApp[i, 8])/resultsApp[i, 8], resultsApp[i, 7] * 100, resultsApp[i, 8] * 100))
+            resultsApp[i, 4], resultsApp[i, 5], resultsApp[i, 6], abs(resultsApp[i, 7]-resultsApp[i, 8])/(resultsApp[i, 8] + 1e-9), resultsApp[i, 7] * 100, resultsApp[i, 8] * 100))
         print('|----------|----------|---------|------------|------------|------------|-------------|-------------|-------------|-----------|---------|')
 
     # ------------------------------------------
@@ -110,6 +110,6 @@ def printResults(resultsApp, resultsAvg, setupDat, setupExp):
     print('|----------|----------|---------|------------|------------|------------|-------------|-------------|-------------|-----------|---------|')
     print('|    AVG   |  %6.2f%% | %6.2f%% |  %6.2f%%   |  %6.2f%%   |  %8.2f  |  %8.2f   |  %8.2f   |  %8.2f   |  %6.2f%%  | %6.2f%% |' % (
         resultsAvg[0] * 100, resultsAvg[1] * 100, resultsAvg[2] * 100, resultsAvg[3]*100, resultsAvg[4], resultsAvg[5], resultsAvg[6],
-        abs(resultsAvg[7] - resultsAvg[8])/resultsAvg[8], resultsAvg[7] * 100, resultsAvg[8] * 100))
+        abs(resultsAvg[7] - resultsAvg[8])/(resultsAvg[8] + 1e-9), resultsAvg[7] * 100, resultsAvg[8] * 100))
     print('------------------------------------------------------------------------------------------------------------------------------------------')
     print('------------------------------------------------------------------------------------------------------------------------------------------')

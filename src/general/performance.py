@@ -98,8 +98,8 @@ def performance(yPred, yTrue, yPred_L, yTrue_L, setupDat):
     Rmse_avg = np.nanmean(Rmse)
     Mae_avg = np.nanmean(Mae)
     Max_avg = np.nanmean(Max)
-    Est_avg = np.nanmean(Est) * len(setupDat['out'])
-    Tru_avg = np.nanmean(Tru) * len(setupDat['out'])
+    Est_avg = np.nanmean(Est) * len(Est)
+    Tru_avg = np.nanmean(Tru) * len(Tru)
 
     ###################################################################################################################
     # Post-Processing

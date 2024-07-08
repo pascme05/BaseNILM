@@ -255,8 +255,8 @@ The software framework is provided under the MIT license.
 3) v.1.0: (22.05.2024) Second update of BaseNILM
     - Complete code review including description of functions
     - Update to Python 3.11 including Tensorflow 2.13
-    - Adding new deep learning models including: Transformers, Informers, DAEs, and GANs
-    - Creating benchmarking report for REDD, REFIT, ECO, UK-DALE and AMPds
+    - Adding new deep learning models including: Transformers, Informers, and DAEs
+    - Creating benchmarking report for REDD and AMPds
 
 
 # Cite
