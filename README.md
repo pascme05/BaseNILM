@@ -231,8 +231,23 @@ obtained using 10-fold cross validation. The simulation setups can be found unde
 parameters and models in the documentation und \docu.
 
 ## AMPds2
+The results for all loads as well as for the deferrable loads are presented for different models are presented below 
+using four different accuracy metrics.
+
+![img.png](docu/images/benchAMPds2.png)
 
 ## REDD
+The results for all loads as well as for disaggregating 80% of the total energy are presented for the different houses
+of REDD are presented below using four different accuracy metrics using the CNN model.
+
+![img_2.png](docu/images/benchREDD.png)
+
+## REFIT
+
+## UK-DALE
+
+## ECO
+
 
 # Development
 As failure and mistakes are inextricably linked to human nature, the toolkit is obviously not perfect, thus suggestions
