@@ -76,9 +76,9 @@ def summaryData(X, y, setupDat):
     # ------------------------------------------
     table = Texttable()
     table.set_deco(Texttable.HEADER)
-    table.set_cols_dtype(['i', 't', 't', 'a', 'a', 'a', 'a', 'a', 'a'])
-    table.set_cols_align(["l", "l", "l", "l", "l", "l", "l", "l", "l"])
-    table.header(['ID', 'Feature', 'Unit', 'MIN', 'MAX', 'AVG', 'RMS', 'SUM', 'STD'])
+    table.set_cols_dtype(['i', 't', 't', 'a', 'a', 'a', 'a', 'a', 'a', 'a'])
+    table.set_cols_align(["l", "l", "l", "l", "l", "l", "l", "l", "l", "l"])
+    table.header(['ID', 'Feature', 'Unit', 'MIN', 'MAX', 'AVG', 'RMS', 'SUM', 'STD', 'Noise'])
 
     # ------------------------------------------
     # Msg In
@@ -92,7 +92,8 @@ def summaryData(X, y, setupDat):
     # ------------------------------------------
     for i in range(0, F):
         table.add_row([i, namesF[i], unitsF[namesF[i]][0], np.min(X.iloc[:, i]), np.max(X.iloc[:, i]), np.mean(X.iloc[:, i]),
-                      rms(X.iloc[:, i]), np.sum(X.iloc[:, i]) / 3.6e6, np.std(X.iloc[:, i])])
+                       rms(X.iloc[:, i]), np.sum(X.iloc[:, i]) / 3.6e6, np.std(X.iloc[:, i]),
+                       (1 - np.sum(np.sum(y.iloc[:, :]))/np.sum(X.iloc[:, i]))*100])
 
     # ------------------------------------------
     # Msg In

@@ -255,7 +255,7 @@ functionality, please see the restrictions below:
 # ------------------------------------------
 - Reference:            [3]
 - Location:		        UK
-- Year:			        2014 - 201
+- Year:			        2014 - 2017
 - Duration: 		    2-4 weeks
 - Houses:		        5
 - Sampling: 		    8 sec
@@ -395,7 +395,7 @@ only the different appliances and their labels are listed here:
 3) COM:     Coffee Maker (no. days: 113, coverage: 85.36%)
 4) KET:     Kettle (no. days: 203, coverage: 77.65%)
 5) WME:     Washing machine (no. days: 231, coverage: 98.56%)
-6) CSE:     PC (no,. days: 66, coverage: 84.77%)
+6) CSE:     PC (no. days: 66, coverage: 84.77%)
 7) FRZ:     Freezer (no. days: 231, coverage: 98.56%)
 
 # House-2
