@@ -258,7 +258,7 @@ functionality, please see the restrictions below:
 - Year:			        2014 - 2017
 - Duration: 		    2-4 weeks
 - Houses:		        5
-- Sampling: 		    8 sec
+- Sampling: 		    6 sec
 - Samples:		        1520000 - 90438000
 - Appliances: 		    5-40
 - Deferrable Loads:     -
