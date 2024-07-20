@@ -393,6 +393,7 @@ def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, tr
 
             # Unit
             units['Output'] = units['Output'].drop([col], axis=1)
+            setupDat['numOut'] = setupDat['numOut'] - 1
 
             # Warn
             msg = "WARN: Constant column in X data " + str(col) + " will be removed"
