@@ -242,12 +242,6 @@ of REDD are presented below using four different accuracy metrics using the CNN 
 
 ![img_2.png](docu/images/benchREDD.png)
 
-## REFIT
-
-## UK-DALE
-
-## ECO
-
 
 # Development
 As failure and mistakes are inextricably linked to human nature, the toolkit is obviously not perfect, thus suggestions
