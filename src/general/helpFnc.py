@@ -34,6 +34,7 @@ import numpy as np
 import random
 from torch.utils.data import Dataset
 import torch
+from sklearn.preprocessing import QuantileTransformer
 
 
 #######################################################################################################################
@@ -114,6 +115,8 @@ def warnMsg(msg, level, flag, setupExp):
 # Normalisation Values
 #######################################################################################################################
 def normVal(X, y):
+    qX = QuantileTransformer(output_distribution='normal', random_state=0)
+    qY = QuantileTransformer(output_distribution='normal', random_state=0)
     maxX = np.nanmax(X, axis=0)
     maxY = np.nanmax(y, axis=0)
     minX = np.nanmin(X, axis=0)
@@ -122,8 +125,16 @@ def normVal(X, y):
     uY = np.nanmean(y, axis=0)
     sX = np.nanvar(X, axis=0)
     sY = np.nanvar(y, axis=0)
+    Xnorm = (X - minX) / (maxX - minX)
+    ynorm = (y - minY) / (maxY - minY)
+    qX.fit_transform(Xnorm)
+    qY.fit_transform(ynorm)
+    q1X = Xnorm.quantile(0.25)
+    q1Y = Xnorm.quantile(0.25)
+    q3X = ynorm.quantile(0.75)
+    q3Y = ynorm.quantile(0.75)
 
-    return [maxX, maxY, minX, minY, uX, uY, sX, sY]
+    return [maxX, maxY, minX, minY, uX, uY, sX, sY, qX, qY, q1X, q1Y, q3X, q3Y]
 
 
 #######################################################################################################################

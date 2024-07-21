@@ -72,8 +72,8 @@ def printResults(resultsApp, resultsAvg, setupDat, setupExp):
     # ------------------------------------------
     # Print
     # ------------------------------------------
-    for i in range(0, setupExp['status']['warnL']['count']):
-        print("%d) %s:" % (i + 1, setupExp['status']['warnL']['msg'][i]))
+    for i in range(0, setupExp['status']['warnH']['count']):
+        print("%d) %s:" % (i + 1, setupExp['status']['warnH']['msg'][i]))
 
     ####################################################################################################################
     # Accuracy values

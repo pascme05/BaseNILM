@@ -121,8 +121,8 @@ setupDat['lim'] = 365*24*60                                                     
 # Pre-processing
 # ------------------------------------------
 setupDat['weightNorm'] = 0                                                                                               # 0) separate normalisation per input/output channel, 1) weighted normalisation
-setupDat['inpNorm'] = 3                                                                                                  # normalising input values (X): 0) None, 1) -1/+1, 2) 0/1, 3) avg/sig
-setupDat['outNorm'] = 2                                                                                                  # normalising output values (y): 0) None, 1) -1/+1, 2) 0/1, 3) avg/sig
+setupDat['inpNorm'] = 3                                                                                                  # normalising input values (X): 0) None, 1) -1/+1, 2) 0/1, 3) avg/sig, 4) Q1/Q3, 5) QT
+setupDat['outNorm'] = 2                                                                                                  # normalising output values (y): 0) None, 1) -1/+1, 2) 0/1, 3) avg/sig, 4) Q1/Q3, 5) QT
 setupDat['inpNoise'] = 0                                                                                                 # adding gaussian noise (dB) to input
 setupDat['outNoise'] = 0                                                                                                 # adding gaussian noise (dB) to output
 setupDat['inpFil'] = 0                                                                                                   # filtering input data (X): 0) None, 1) Median

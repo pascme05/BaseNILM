@@ -574,8 +574,8 @@ def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, tr
     # ==============================================================================
     # Norm
     # ==============================================================================
-    [maxX, maxY, minX, minY, uX, uY, sX, sY] = normVal(data['X'].drop(['time', 'id'], axis=1),
-                                                       data['y'].drop(['time', 'id'], axis=1))
+    [maxX, maxY, minX, minY, uX, uY, sX, sY, qX, qY, q1X, q1Y, q3X, q3Y] = normVal(data['X'].drop(['time', 'id'], axis=1),
+                                                                           data['y'].drop(['time', 'id'], axis=1))
 
     # ==============================================================================
     # Labels
@@ -652,6 +652,12 @@ def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, tr
     setupDat['normAvgY'] = uY
     setupDat['normVarX'] = sX
     setupDat['normVarY'] = sY
+    setupDat['normQ1X'] = q1X
+    setupDat['normQ1Y'] = q1Y
+    setupDat['normQ3X'] = q3X
+    setupDat['normQ3Y'] = q3Y
+    setupDat['normQX'] = qX
+    setupDat['normQY'] = qY
 
     ###################################################################################################################
     # Return
