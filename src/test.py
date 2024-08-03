@@ -331,7 +331,7 @@ def test(data, setupExp, setupDat, setupPar, setupMdl, setupPath):
     # Plotting
     # ==============================================================================
     if setupExp['plot'] != 0:
-        plotting(data, dataTest['T'], dataPred['T'], resultAvg, feaScore, feaError, setupDat)
+        plotting(data, dataTest['T'], dataPred['T'], resultAvg, feaScore, feaError, setupDat, setupPar, setupExp)
 
     # ==============================================================================
     # Saving

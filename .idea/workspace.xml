@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ac4843f-95cf-4407-9cec-7a436b18cbf4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mdl/mdl_CNN_Default/training_log.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mdl/mdl_DNN_Default/training_log.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mdl/mdl_LSTM_Default/training_log.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/plotting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/trainMdlTF.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlTF.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/start.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,20 +37,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM/mdl/mdl_LSTM_Default",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\mdl\mdl_LSTM_Default" />
+      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\mdl\mdl_CNN_Default" />
+      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\mdl\mdl_DNN_Default" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\setup\benchmark" />
-      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\setup\default" />
-      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\gui" />
-      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\setup\benchmark" />
@@ -113,7 +120,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/model/trainMdlTF.py</url>
-          <line>214</line>
+          <line>218</line>
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -127,14 +134,14 @@
           <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/general/performance.py</url>
-          <line>100</line>
-          <option name="timeStamp" value="105" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/train.py</url>
           <line>107</line>
           <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/general/plotting.py</url>
+          <line>218</line>
+          <option name="timeStamp" value="107" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

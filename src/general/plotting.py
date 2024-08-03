@@ -32,12 +32,13 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 from scipy.stats import norm, kstest
+import os
 
 
 #######################################################################################################################
 # Function
 #######################################################################################################################
-def plotting(dataRaw, data, dataPred, resultsAvg, feaScore, feaError, setupDat):
+def plotting(dataRaw, data, dataPred, resultsAvg, feaScore, feaError, setupDat, setupPar, setupExp):
     ###################################################################################################################
     # MSG IN
     ###################################################################################################################
@@ -207,6 +208,62 @@ def plotting(dataRaw, data, dataPred, resultsAvg, feaScore, feaError, setupDat):
     plt.title('Average Error Rates')
     plt.ylabel('Error ' + '(' + setupDat['outUnits'][outLabel[0]][0] + ')')
     plt.grid(True)
+
+    # ==============================================================================
+    # Convergence
+    # ==============================================================================
+    try:
+        # ------------------------------------------
+        # Loading
+        # ------------------------------------------
+        save_dir = 'mdl/mdl_' + setupPar['model'] + '_' + setupExp['name']
+        log_file = os.path.join(save_dir, 'training_log.csv')
+        df = pd.read_csv(log_file)
+
+        # ------------------------------------------
+        # Plotting
+        # ------------------------------------------
+        # Plot training and validation loss and accuracy with logarithmic y-axis
+        plt.figure()
+        txt = "Convergence for Training and Validation and Learning Rate Update"
+        plt.suptitle(txt, size=18)
+        plt.subplots_adjust(hspace=0.35, wspace=0.35, left=0.075, right=0.925, top=0.90, bottom=0.075)
+
+        # Change Epoch
+        df['epoch'] = np.linspace(1, df['epoch'].shape[0], df['epoch'].shape[0])
+
+        # Loss plot
+        plt.subplot(1, 3, 1)
+        plt.plot(df['epoch'], df['loss'], label='Training Loss')
+        plt.plot(df['epoch'], df['val_loss'], label='Validation Loss')
+        plt.xlabel('Epoch')
+        plt.ylabel('Loss')
+        plt.yscale('log')
+        plt.title('Training and Validation Loss')
+        plt.legend()
+        plt.grid(True)
+
+        # Metric plot (assuming 'accuracy' is the metric)
+        plt.subplot(1, 3, 2)
+        plt.plot(df['epoch'], df.iloc[:, 3], label='Training Accuracy')
+        plt.plot(df['epoch'], df.iloc[:, 5], label='Validation Accuracy')
+        plt.xlabel('Epoch')
+        plt.ylabel('Metric')
+        plt.yscale('log')
+        plt.title('Training and Validation Metric')
+        plt.legend()
+        plt.grid(True)
+
+        # Learning rate plot
+        plt.subplot(1, 3, 3)
+        plt.plot(df['epoch'], df['learning_rate'], label='Learning Rate')
+        plt.xlabel('Epoch')
+        plt.ylabel('Learning Rate')
+        plt.title('Learning Rate')
+        plt.grid(True)
+
+    except:
+        print("WARN: Could not load training log file.")
 
     # ==============================================================================
     # Temporal Performance
