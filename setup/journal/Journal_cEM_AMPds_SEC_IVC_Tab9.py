@@ -9,10 +9,43 @@
 #######################################################################################################################
 #######################################################################################################################
 """
-This script reproduces the results from Table 8 using ALL input features with a constraint model of 5% (not default in
-mdlPara). The maximum accuracy after calculating 10-fold CV is 92.91% when using only one sample between successive
-frames. For reference generation using an overlap of zero samples leads to 90.71%.
+This function calculates the results for the constrained elastic matching using MVM and the def loads for the AMPds
+dataset (first year of AMPds2). The approach uses the full sampling resolution of 1/60 Hz and all four input features
+with a frame length of 10 samples (9 samples overlap), the model size is 1% of the total data (unlike in the paper where
+5% is used). The average accuracy metric for 10-fold cross-validation are (not identical as reported in Table 8/9 of
+Sub-Section V-A due to the smaller model size):
+
+ACC:    97.80 %  (97.83 %)
+F1:     97.74 %  (97.77 %)
+TECA:   93.38 %  (93.55 %)
+MAE:    0.10  (0.10)
+RMSE:   0.83  (0.79)
+SAE:    0.00 (due to displaying only 2 decimal digits)
+
+Using 5% model data in mdlPara.py can reproduce the exact same results (shown in brackets). Below the per appliance
+results can be found when using 5% model size.
+
+------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
+|          |    FINITE STATES   |                                  ESTIMATION                                    |   PERCENT OF TOTAL  |
+| item ID  | ACCURACY | F-SCORE |  R2-Score  |    TECA    |    RMSE    |     MAE     |     MAX     |     SAE     |    EST    |  TRUTH  |
+|----------|----------|---------|------------|------------|------------|-------------|-------------|-------------|-----------|---------|
+| DWE      |   97.06% |  97.03% |   -7.92%   |   46.03%   |      0.88  |      0.13   |      6.66   |      0.02   |    3.46%  |   3.39% |
+|----------|----------|---------|------------|------------|------------|-------------|-------------|-------------|-----------|---------|
+| FRE      |   99.85% |  99.82% |  -47.90%   |   94.35%   |      0.26  |      0.15   |      3.31   |      0.00   |   37.91%  |  37.92% |
+|----------|----------|---------|------------|------------|------------|-------------|-------------|-------------|-----------|---------|
+| HPE      |   92.84% |  92.60% |   53.29%   |   95.82%   |      1.01  |      0.13   |     30.80   |      0.01   |   42.02%  |  41.69% |
+|----------|----------|---------|------------|------------|------------|-------------|-------------|-------------|-----------|---------|
+| WOE      |   99.56% |  99.54% |   42.07%   |   89.62%   |      0.83  |      0.03   |     30.59   |      0.06   |    4.08%  |   4.32% |
+|----------|----------|---------|------------|------------|------------|-------------|-------------|-------------|-----------|---------|
+| CDE      |   99.84% |  99.84% |   93.02%   |   95.48%   |      0.97  |      0.04   |     40.94   |      0.03   |   13.01%  |  12.68% |
+|----------|----------|---------|------------|------------|------------|-------------|-------------|-------------|-----------|---------|
+|----------|----------|---------|------------|------------|------------|-------------|-------------|-------------|-----------|---------|
+|    AVG   |   97.83% |  97.77% |   26.51%   |   93.55%   |      0.79  |      0.10   |     22.46   |      0.00   |  100.48%  | 100.00% |
+------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 """
+
 
 #######################################################################################################################
 # Import external libs
@@ -119,7 +152,7 @@ setupDat['outEnergy'] = 0.0                                                     
 # Sampling
 # ------------------------------------------
 setupDat['fs'] = 1/60                                                                                                   # sampling frequency (Hz) for HF data this is the LF output frequency of (y)
-setupDat['lim'] = 365*24*60                                                                                             # 0) data is not limited, x) limited to x samples
+setupDat['lim'] = 60*24*365                                                                                             # 0) data is not limited, x) limited to x samples
 
 # ------------------------------------------
 # Pre-processing
@@ -145,7 +178,7 @@ setupDat['ghost'] = 0                                                           
 # ------------------------------------------
 setupPar['method'] = 0                                                                                                  # 0) regression, 1) classification
 setupPar['solver'] = 'PM'                                                                                               # TF: Tensorflow, PT: PyTorch, SK: sklearn, PM: Pattern Matching, SS: Source Separation and CU: Custom (placeholder for own ideas)
-setupPar['model'] = 'GAK'                                                                                               # possible classifier: 1) ML: RF, CNN, LSTM \ 2) PM: DTW, MVM \ 3) SS: NMF, SCA
+setupPar['model'] = 'MVM'                                                                                               # possible classifier: 1) ML: RF, CNN, LSTM \ 2) PM: DTW, MVM \ 3) SS: NMF, SCA
 setupPar['modelInpDim'] = 3                                                                                             # model input dimension 3D or 4D (e.g. for CNN2D)
 
 # ------------------------------------------

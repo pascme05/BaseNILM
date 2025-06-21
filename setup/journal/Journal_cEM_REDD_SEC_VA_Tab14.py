@@ -8,6 +8,18 @@
 # Copyright:    Pascal Schirmer
 #######################################################################################################################
 #######################################################################################################################
+"""
+This function calculates the results for the constrained elastic matching using MVM and the three deferrable loads
+(microwave, dishwasher, and fridge) loads for the REDD-2 dataset training on REDD-1. The approach uses the full sampling
+resolution of 1/3 Hz and active power as input feature, the model size is 1% of the total data. The average accuracy are
+(identical as reported in Table 14 of Sub-Section V-A):
+
+ACC:    75.68 %
+F1:     71.52 %
+TECA:   33.33 %
+MAE:    46.28
+SAE:    0.44
+"""
 
 #######################################################################################################################
 # Import external libs
@@ -51,7 +63,7 @@ setupPath = initPath('BaseNILM')
 # ------------------------------------------
 # Names
 # ------------------------------------------
-setupExp['name'] = 'Constraint_EM_REDD_DEF'                                                                             # Name of the simulation
+setupExp['name'] = 'Constraint_EM_REDD_TRA'                                                                             # Name of the simulation
 setupExp['author'] = 'Pascal Schirmer'                                                                                  # Name of the author
 
 # ------------------------------------------
@@ -64,7 +76,7 @@ setupExp['warn'] = 3                                                            
 # ------------------------------------------
 # Training/Testing
 # ------------------------------------------
-setupExp['method'] = 1                                                                                                  # 0) 1-fold with data split, 1) k-fold with cross validation, 2) transfer learning with different datasets, 3) id based
+setupExp['method'] = 2                                                                                                  # 0) 1-fold with data split, 1) k-fold with cross validation, 2) transfer learning with different datasets, 3) id based
 setupExp['trainBatch'] = 0                                                                                              # 0) all no batching, 1) fixed batch size (see data batch parameter), 2) id based
 setupExp['kfold'] = 10                                                                                                  # number of folds for method 1)
 setupExp['train'] = 1                                                                                                   # 0) no training (trying to load model), 1) training new model (or retraining)
@@ -98,7 +110,7 @@ setupDat['idV'] = [2]                                                           
 # ------------------------------------------
 setupDat['folder'] = 'redd'                                                                                             # name of the folder for the dataset under \data
 setupDat['house'] = 1                                                                                                   # only when loading nilmtk converted files with '.h5' format
-setupDat['train'] = ['redd2']                                                                                           # name of training datasets (multiple)
+setupDat['train'] = ['redd1']                                                                                           # name of training datasets (multiple)
 setupDat['test'] = 'redd2'                                                                                              # name of testing datasets (one)
 setupDat['val'] = 'redd2'                                                                                               # name of validation dataset (one)
 
