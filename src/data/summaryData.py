@@ -76,28 +76,45 @@ def summaryData(X, y, setupDat):
     # ------------------------------------------
     table = Texttable()
     table.set_deco(Texttable.HEADER)
-    table.set_cols_dtype(['i', 't', 't', 'a', 'a', 'a', 'a', 'a', 'a', 'a'])
-    table.set_cols_align(["l", "l", "l", "l", "l", "l", "l", "l", "l", "l"])
+    table.set_cols_dtype(['i', 't', 't', 't', 't', 't', 't', 't', 't', 't'])
+    table.set_cols_align(["l", "l", "l", "r", "r", "r", "r", "r", "r", "r"])
+    table.set_cols_width([4, 15, 8, 9, 9, 9, 9, 9, 9, 9])
     table.header(['ID', 'Feature', 'Unit', 'MIN', 'MAX', 'AVG', 'RMS', 'SUM', 'STD', 'Noise'])
 
     # ------------------------------------------
     # Msg In
     # ------------------------------------------
     print("INFO: Aggregated data")
-    print('-----------------------------------------------------------------------------------------------------------')
-    print('-----------------------------------------------------------------------------------------------------------')
+    print('-' * 115)
+    print('-' * 115)
 
     # ------------------------------------------
     # Iterate
     # ------------------------------------------
     for i in range(0, F):
-        table.add_row([i, namesF[i], unitsF[namesF[i]][0], np.min(X.iloc[:, i]), np.max(X.iloc[:, i]), np.mean(X.iloc[:, i]),
-                       rms(X.iloc[:, i]), np.sum(X.iloc[:, i]) / 3.6e6, np.std(X.iloc[:, i]),
-                       (1 - np.sum(np.sum(y.iloc[:, :]))/np.sum(X.iloc[:, i]))*100])
+        col = X.iloc[:, i]
 
-    # ------------------------------------------
-    # Msg In
-    # ------------------------------------------
+        v_min = np.min(col)
+        v_max = np.max(col)
+        v_avg = np.mean(col)
+        v_rms = rms(col)
+        v_sum = np.sum(col) / 3.6e6
+        v_std = np.std(col)
+        v_noise = (1 - np.sum(np.sum(y.iloc[:, :])) / np.sum(col)) * 100
+
+        table.add_row([
+            i,
+            namesF[i],
+            unitsF[namesF[i]][0],
+            f"{v_min:.2f}",
+            f"{v_max:.2f}",
+            f"{v_avg:.2f}",
+            f"{v_rms:.2f}",
+            f"{v_sum:.2f}",
+            f"{v_std:.2f}",
+            f"{v_noise:.2f}",
+        ])
+
     print(table.draw())
     print("\n")
 
@@ -109,30 +126,49 @@ def summaryData(X, y, setupDat):
     # ------------------------------------------
     table = Texttable()
     table.set_deco(Texttable.HEADER)
-    table.set_cols_dtype(['i', 't', 't', 'a', 'a', 'a', 'a', 'a', 'a', 'a'])
-    table.set_cols_align(["l", "l", "l", "l", "l", "l", "l", "l", "l", "l"])
+    table.set_cols_dtype(['i', 't', 't', 't', 't', 't', 't', 't', 't', 't'])
+    table.set_cols_align(["l", "l", "l", "r", "r", "r", "r", "r", "r", "r"])
+    table.set_cols_width([4, 15, 8, 9, 9, 9, 9, 9, 9, 9])
     table.header(['ID', 'Device', 'Unit', 'MIN', 'MAX', 'AVG', 'RMS', 'SUM', 'STD', 'ON'])
 
     # ------------------------------------------
     # Msg In
     # ------------------------------------------
     print("INFO: Appliance data")
-    print('-----------------------------------------------------------------------------------------------------------')
-    print('-----------------------------------------------------------------------------------------------------------')
+    print('-' * 115)
+    print('-' * 115)
 
     # ------------------------------------------
     # Iterate
     # ------------------------------------------
     for i in range(0, M):
-        activity = copy.deepcopy(y.iloc[:, i])
+        col = y.iloc[:, i]
+
+        activity = copy.deepcopy(col)
         activity[activity < setupDat['threshold']] = 0
         activity[activity >= setupDat['threshold']] = 1
-        table.add_row([i, namesM[i], unitsM[namesM[i]][0], np.min(y.iloc[:, i]), np.max(y.iloc[:, i]), np.mean(y.iloc[:, i]),
-                      rms(y.iloc[:, i]), np.sum(y.iloc[:, i]) / 3.6e6, np.std(y.iloc[:, i]), np.sum(activity)/len(activity)*100])
 
-    # ------------------------------------------
-    # Msg In
-    # ------------------------------------------
+        v_min = np.min(col)
+        v_max = np.max(col)
+        v_avg = np.mean(col)
+        v_rms = rms(col)
+        v_sum = np.sum(col) / 3.6e6
+        v_std = np.std(col)
+        v_on = np.sum(activity) / len(activity) * 100
+
+        table.add_row([
+            i,
+            namesM[i],
+            unitsM[namesM[i]][0],
+            f"{v_min:.2f}",
+            f"{v_max:.2f}",
+            f"{v_avg:.2f}",
+            f"{v_rms:.2f}",
+            f"{v_sum:.2f}",
+            f"{v_std:.2f}",
+            f"{v_on:.2f}",
+        ])
+
     print(table.draw())
     print("\n")
 

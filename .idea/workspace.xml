@@ -5,19 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ac4843f-95cf-4407-9cec-7a436b18cbf4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/mdl/mdl_CNN_Default/training_log.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mdl/mdl_DNN_Default/training_log.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mdl/mdl_LSTM_Default/training_log.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/startBus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/plotting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/trainMdlTF.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlTF.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/start.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mdlPara.py" beforeDir="false" afterPath="$PROJECT_DIR$/mdlPara.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/loadData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/loadData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/summaryData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/summaryData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/printResults.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/printResults.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM" value="28DQVBUCyd4LkP0uG9irMN3BHuJ" />
+    </persistenceIdMap>
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="233" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -29,28 +36,138 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;pascme05&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/pascme05/BaseNILM.git&quot;,
+    &quot;accountId&quot;: &quot;c633cdc3-8aa5-4cae-8925-04f9da26102e&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0000300974395187" />
+      <entry key="MS500" value="1.130342918596506" />
+      <entry key="S2" value="1.9241328152828512" />
+      <entry key="S5" value="2.7226657246580306" />
+      <entry key="S10" value="3.2340002856199623" />
+      <entry key="S30" value="3.7079197528487784" />
+      <entry key="S60" value="3.848697434764793" />
+      <entry key="M2" value="3.923099618518157" />
+      <entry key="M5" value="4.040556538953435" />
+      <entry key="M10" value="4.583115650525125" />
+      <entry key="M15" value="5.2043078920603945" />
+      <entry key="M30" value="6.465633905968174" />
+      <entry key="H1" value="7.888364305875759" />
+      <entry key="H2" value="11.93298146932982" />
+      <entry key="H4" value="23.653205942413763" />
+      <entry key="D1" value="73.3750717007341" />
+      <entry key="W1" value="94.71373214403862" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.8526598521627611" />
+      <entry key="MS500" value="1.0941571598110642" />
+      <entry key="S2" value="1.9070183989441374" />
+      <entry key="S5" value="2.71201457402303" />
+      <entry key="S10" value="3.2273481588831032" />
+      <entry key="S30" value="3.705276632408994" />
+      <entry key="S60" value="3.847311503738981" />
+      <entry key="M2" value="3.9223895585248822" />
+      <entry key="M5" value="4.040263236511972" />
+      <entry key="M10" value="4.582949671161299" />
+      <entry key="M15" value="5.204182567992972" />
+      <entry key="M30" value="6.465556384772562" />
+      <entry key="H1" value="7.88831775769599" />
+      <entry key="H2" value="11.932948723417747" />
+      <entry key="H4" value="23.653175619115416" />
+      <entry key="D1" value="73.3750555512615" />
+      <entry key="W1" value="94.71372910695192" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="28DQVBUCyd4LkP0uG9irMN3BHuJ" />
+  <component name="ProjectSessionTemplates">
+    <option name="panelTemplate">
+      <template>
+        <option name="modeId" value="Agent" />
+        <option name="model">
+          <model>
+            <option name="modelType" value="builtin_id" />
+            <option name="modelValue" value="auto" />
+          </model>
+        </option>
+        <option name="targetType" value="BACKGROUND" />
+        <option name="worktreeMode" value="WORKSPACE" />
+      </template>
+    </option>
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM/mdl/mdl_LSTM_Default",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.startBus.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM/data/bus28&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\data\bus28" />
+      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\mdl\mdl_LSTM_Default" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\mdl\mdl_CNN_Default" />
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\mdl\mdl_DNN_Default" />
-      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM" />
-      <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\setup\benchmark" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\setup\benchmark" />
@@ -63,6 +180,7 @@
   <component name="RunManager">
     <configuration name="start" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BaseNILM" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -73,6 +191,8 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
+      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/start.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -88,6 +208,13 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-50341a9f1f9c-c2ffad84badb-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.26222.68" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -98,6 +225,9 @@
       <updated>1650748697174</updated>
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -142,6 +272,21 @@
           <url>file://$PROJECT_DIR$/src/general/plotting.py</url>
           <line>218</line>
           <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/data/loadData.py</url>
+          <line>63</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/data/loadData.py</url>
+          <line>121</line>
+          <option name="timeStamp" value="110" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/data/loadData.py</url>
+          <line>167</line>
+          <option name="timeStamp" value="112" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

@@ -47,6 +47,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.model_selection import KFold
 import copy
 import scipy.io
+import pyarrow.parquet as pq
+import json as _json
 
 
 #######################################################################################################################
@@ -149,12 +151,48 @@ def loadMat(filename, setupDat, data, units):
 # ==============================================================================
 # Pickle
 # ==============================================================================
-def loadPkl(filename, data, units):
+def loadPkl(filename, data=None, units=None):
+    """
+    Load a NILM pickle. Returns [data, units].
+
+    Accepts the following shapes:
+        (data, units)          -> unpacked directly
+        {"data":..., "units":...}
+        {"X":..., "y":..., "units":...}
+        {"X":..., "y":...}     -> units defaulted to empty DataFrames
+    """
+
+    data = data if data is not None else {}
+    units = units if units is not None else {}
+
     try:
-        data, units = pickle.load(open(filename, "rb"))
+        with open(filename, "rb") as f:
+            obj = pickle.load(f)
+
+        # --- Case 1: 2-tuple ---
+        if isinstance(obj, tuple) and len(obj) == 2:
+            data, units = obj
+
+        # --- Case 2: dict with "data"/"units" keys ---
+        elif isinstance(obj, dict) and "data" in obj and "units" in obj:
+            data = obj["data"]
+            units = obj["units"]
+
+        # --- Case 3: dict with X/y/units at top level ---
+        elif isinstance(obj, dict) and "X" in obj and "y" in obj:
+            data = {"X": obj["X"], "y": obj["y"]}
+            units = obj.get("units",
+                            {"Input": pd.DataFrame(),
+                             "Output": pd.DataFrame()})
+
+        else:
+            print(f"ERROR: unrecognized pickle layout: {type(obj)}")
+            return [data, units]
+
         print("INFO: Pkl data file loaded")
-    except:
-        print("ERROR: Data file could not be loaded")
+
+    except Exception as e:
+        print(f"ERROR: Data file could not be loaded ({e})")
 
     return [data, units]
 
@@ -211,6 +249,74 @@ def loadH5(filename, data, units, setupDat):
         print("ERROR: Data file could not be loaded")
 
     return [data, units]
+
+
+# ==============================================================================
+# parquet
+# ==============================================================================
+def loadParquet(filename, data, units):
+    """
+    Load a NILM parquet file written by save_parquet().
+
+    Returns
+    -------
+    [data, units]
+        data  = {"X": DataFrame, "y": DataFrame}
+        units = {"Input": DataFrame(1×N), "Output": DataFrame(1×M)}
+    """
+    import pandas as pd
+    import pyarrow.parquet as pq
+    import json as _json
+
+    try:
+        table = pq.read_table(filename)
+        meta  = table.schema.metadata or {}
+        nilm  = _json.loads(meta[b"nilm"].decode("utf-8"))
+
+        df = table.to_pandas()
+
+        data["X"] = _rebuild_side(df, nilm["input_columns"],  kind="input")
+        data["y"] = _rebuild_side(df, nilm["output_columns"], kind="output")
+
+        units["Input"]  = pd.DataFrame(
+            [[nilm["input_units"].get(c, "") for c in nilm["input_columns"]]],
+            columns=nilm["input_columns"],
+        )
+        units["Output"] = pd.DataFrame(
+            [[nilm["output_units"].get(c, "") for c in nilm["output_columns"]]],
+            columns=nilm["output_columns"],
+        )
+
+        print("INFO: Parquet data file loaded")
+
+    except Exception as e:
+        print(f"ERROR: Parquet file could not be loaded ({e})")
+
+    return [data, units]
+
+
+def _rebuild_side(df, columns, kind):
+    """
+    Rebuild one side from the long-form parquet.
+
+    `columns` is the logical column order (["time","id",feat1,...]).
+    `c0` maps to columns[0], `c1` to columns[1], ...
+    """
+    import pandas as pd
+
+    block = df[df["kind"] == kind].sort_values("row").reset_index(drop=True)
+
+    # Map c0 -> columns[0], c1 -> columns[1], ...
+    rename = {f"c{i}": name for i, name in enumerate(columns)}
+
+    # Only keep the c-columns we expect
+    keep = [f"c{i}" for i in range(len(columns))]
+    existing = [c for c in keep if c in block.columns]
+    sub = block[existing].rename(columns=rename)
+
+    # Reindex to enforce the exact column order, even if some are missing
+    sub = sub.reindex(columns=columns)
+    return sub.reset_index(drop=True)
 
 
 #######################################################################################################################
@@ -288,6 +394,12 @@ def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, tr
         [data, units] = loadH5(filename, data, units, setupDat)
 
     # ==============================================================================
+    # Paraquet
+    # ==============================================================================
+    elif setupDat['type'] == 'parquet':
+        [data, units] = loadParquet(filename, data, units)
+
+    # ==============================================================================
     # Default
     # ==============================================================================
     else:
@@ -345,7 +457,7 @@ def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, tr
         # Select
         for i in range(0, len(energy)):
             energySel = energySel + energy[i]
-            if energySel/energyTotal > setupDat['outEnergy']:
+            if energySel / energyTotal > setupDat['outEnergy']:
                 try:
                     data['y'] = data['y'].drop(energy.index[i], axis=1)
                 except:
@@ -353,7 +465,7 @@ def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, tr
         setupDat['numOut'] = data['y'].shape[1] - 2
 
         # Msg
-        print("INFO: Selected appliance with a total energy amount of ", str(int(setupDat['outEnergy']*100)), "%")
+        print("INFO: Selected appliance with a total energy amount of ", str(int(setupDat['outEnergy'] * 100)), "%")
 
     # ==============================================================================
     # Limiting
@@ -574,8 +686,9 @@ def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, tr
     # ==============================================================================
     # Norm
     # ==============================================================================
-    [maxX, maxY, minX, minY, uX, uY, sX, sY, qX, qY, q1X, q1Y, q3X, q3Y] = normVal(data['X'].drop(['time', 'id'], axis=1),
-                                                                           data['y'].drop(['time', 'id'], axis=1))
+    [maxX, maxY, minX, minY, uX, uY, sX, sY, qX, qY, q1X, q1Y, q3X, q3Y] = normVal(
+        data['X'].drop(['time', 'id'], axis=1),
+        data['y'].drop(['time', 'id'], axis=1))
 
     # ==============================================================================
     # Labels
