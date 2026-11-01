@@ -150,8 +150,8 @@ setupPar['modelInpDim'] = 3                                                     
 # ------------------------------------------
 setupPar['frame'] = 1                                                                                                    # 0) no framing, 1) framing
 setupPar['feat'] = 0                                                                                                     # 0) raw data values, 1) statistical features (frame based), 2) statistical features (input based), 3) input and frame based features, 4) 2D features
-setupPar['window'] = 20                                                                                                  # window length (samples)
-setupPar['overlap'] = 19                                                                                                 # overlap between consecutive windows (no overlap during test if -1)
+setupPar['window'] = 21                                                                                                  # window length (samples)
+setupPar['overlap'] = 20                                                                                                 # overlap between consecutive windows (no overlap during test if -1)
 setupPar['outseq'] = 0                                                                                                   # 0) seq2point, x) length of the subsequence in samples
 setupPar['yFocus'] = 10                                                                                                  # focus point for seq2point (average if -1)
 setupPar['nDim'] = 2                                                                                                     # input dimension for model 1D (1), 2D (2), or 3D (3)
@@ -159,7 +159,7 @@ setupPar['nDim'] = 2                                                            
 # ------------------------------------------
 # Postprocessing
 # ------------------------------------------
-setupPar['ranking'] = 1                                                                                                  # 0) no feature ranking, 1) feature ranking using random forests
+setupPar['ranking'] = 0                                                                                                  # 0) no feature ranking, 1) feature ranking using random forests
 setupPar['outMin'] = 0                                                                                                   # limited output values (minimum)
 setupPar['outMax'] = 5500                                                                                                # limited output values (maximum)
 

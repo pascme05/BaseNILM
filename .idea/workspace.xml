@@ -6,14 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0ac4843f-95cf-4407-9cec-7a436b18cbf4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/GUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/GUI.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/core/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/core/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/core/help.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/core/help.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/core/theory.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/core/theory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/core/viz_inputs.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/core/viz_inputs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/views/mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/views/mode.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/testMdlPT.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/testMdlPT.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/trainMdlPT.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlPT.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/start.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +19,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="220" />
+    <option name="cachedIndexableFilesCount" value="286" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">

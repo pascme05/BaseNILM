@@ -148,7 +148,7 @@
    },
    "nested": false,
    "optional": false,
-   "default": 0
+   "default": 1
   },
   {
    "cat": "Training/Testing",
@@ -216,7 +216,7 @@
    },
    "nested": false,
    "optional": false,
-   "default": 1
+   "default": 0
   }
  ],
  "Dat": [
@@ -810,7 +810,7 @@
    },
    "nested": false,
    "optional": false,
-   "default": "CNN"
+   "default": "LSTM"
   },
   {
    "cat": "Solver",
@@ -878,7 +878,7 @@
    "options": null,
    "nested": false,
    "optional": false,
-   "default": 20
+   "default": 21
   },
   {
    "cat": "Framing and Features",
@@ -892,7 +892,7 @@
    "options": null,
    "nested": false,
    "optional": false,
-   "default": 19
+   "default": 20
   },
   {
    "cat": "Framing and Features",
@@ -955,7 +955,7 @@
    },
    "nested": false,
    "optional": false,
-   "default": 1
+   "default": 0
   },
   {
    "cat": "Postprocessing",

@@ -158,9 +158,9 @@ have been obtained using the default parameters of the toolkit.
 
 | Output | MAE (W)  | RMSE (W)  | SAE (p.u.) | TECA (%)  |
 |--------|----------|-----------|------------|-----------|
-| DNN    | 14.06    | 104.58    | 0.07       | 92.69     | 
-| CNN    | **9.65** | **63.59** | **0.04**   | **94.98** | 
-| LSTM   | 11.67    | 97.49     | 0.05       | 93.93     |
+| DNN    | 13.39    | 98.37     | 0.07       | 93.04     | 
+| CNN    | **9.13** | **62.64** | 0.04       | **95.25** | 
+| LSTM   | 9.55     | 73.99     | **0.03**   | 95.03     |
 
 As can be seen in the table above CNN outperforms all other approaches for all performance metrics.
 
