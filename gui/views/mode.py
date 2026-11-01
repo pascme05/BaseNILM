@@ -51,30 +51,43 @@ def theory_view(m):
 #######################################################################################################################
 # Parameters
 #######################################################################################################################
+def feature_cats():
+    """Categories of setupMdl that hold the feature lists (banner 'Features' of mdlPara.py)."""
+    return [p['cat'] for p in forms.schema().get('Mdl', []) if p.get('group') == 'Features']
+
+
 def parameters(m):
     d = A.MODES[m]
     secs = [d['section']] + list(d.get('extra', []))
-    titles = getattr(A, 'SECTION_TITLES', {})
+    if 'Mdl' in secs and feature_cats():                               # features get their own tab after 'Model'
+        secs.insert(secs.index('Mdl') + 1, 'Feat')
+    titles = {**getattr(A, 'SECTION_TITLES', {}), 'Feat': 'Features'}
     icons = {'Exp': ':material/science:', 'Dat': ':material/database:', 'Par': ':material/settings:',
-             'Mdl': ':material/neurology:', 'Grid': ':material/grid_on:'}
+             'Mdl': ':material/neurology:', 'Feat': ':material/insights:', 'Grid': ':material/grid_on:'}
+    fc = list(dict.fromkeys(feature_cats()))
     for tab, sec in zip(st.tabs([f"{icons.get(s_, '')} {titles.get(s_, s_)}" for s_ in secs]), secs):
         with tab:
             if sec == 'Grid':
                 from gui.core import grid
                 grid.form(forms.cfg())
                 continue
+            name = 'Mdl' if sec == 'Feat' else sec
+            cats = fc if sec == 'Feat' else ([c_ for c_ in dict.fromkeys(p['cat'] for p in forms.schema()[sec])
+                                              if c_ not in fc] if sec == 'Mdl' else None)
             c1, c2 = st.columns([5, 1])
             with c1:
                 st.caption(SECTION_TEXT.get(sec, ''))
             with c2:
-                forms.reset_section(sec)
-            forms.section(sec)
+                forms.reset_section(name, cats=cats, key=f"reset|{sec}")
+            forms.section(name, cats=cats)
 
 
 SECTION_TEXT = {'Exp': "Validation method and whether a model is trained and/or tested (setupExp of start.py).",
                 'Dat': "Dataset, appliances, sampling and pre-processing (setupDat of start.py).",
                 'Par': "Solver, model, framing, features and post-processing (setupPar of start.py).",
-                'Mdl': "Hyperparameters of the selected solver and the feature lists (setupMdl of mdlPara.py)."}
+                'Mdl': "Hyperparameters of the selected solver (setupMdl of mdlPara.py).",
+                'Feat': "Features computed from the input frames: statistical, rolling and 2D features (setupMdl"
+                        "['feat'], ['feat_roll'], ['feat2D'] of mdlPara.py); used when Features (Par) is switched on."}
 
 
 #######################################################################################################################

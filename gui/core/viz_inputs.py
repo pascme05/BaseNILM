@@ -340,7 +340,7 @@ def pipeline(cfg, d, key):
         yr, _ = resampleData(y[['time'] + sel].iloc[sl].reset_index(drop=True), fs_raw, setup)
     with c1:
         st.markdown(f"**1 · Resampling** {fmt(fs_raw)} Hz → {fmt(setup['fs'])} Hz "
-                    f"({len(X.iloc[sl]):,} → {len(Xr):,} samples, zero-order hold as in resampleData.py)")
+                    f"({len(X.iloc[sl]):,} → {len(Xr):,} samples; resampleData.py averages each new interval when downsampling)")
     inp = xin[0] if xin else None
     if inp is None:
         st.info("No input features.")
@@ -359,7 +359,8 @@ def pipeline(cfg, d, key):
         st.info("Framing is off (frame = 0): every time step is one sample.")
         return
     from plotly.subplots import make_subplots
-    W, ov = int(P.get('window', 20)), int(P.get('overlap', W - 1))
+    W = int(P.get('window', 20))
+    ov = int(P.get('overlap', W - 1))
     ov = W - 1 if ov < 0 else min(ov, W - 1)
     step = W - ov
     Xs, ys = Xr[xin].reset_index(drop=True), yr[sel].reset_index(drop=True) if sel else None

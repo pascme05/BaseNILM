@@ -228,4 +228,14 @@ def _simulation(cfg):
         _metrics_explorer(cfg)
 
 
-THEORY = {0: _simulation}
+def _hyper(cfg):
+    from gui.core import theory_opti
+    theory_opti._hyper(cfg)
+
+
+def _grid(cfg):
+    from gui.core import theory_opti
+    theory_opti._grid(cfg)
+
+
+THEORY = {0: _simulation, 1: _hyper, 2: _grid}

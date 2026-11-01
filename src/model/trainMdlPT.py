@@ -55,16 +55,14 @@ def trainMdlPT(data, setupDat, setupPar, setupMdl, setupExp):
     # ==============================================================================
     # CPU/GPU
     # ==============================================================================
-    if setupExp['gpu'] == 1:
-        os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-        physical_devices = tf.config.list_physical_devices('GPU')
-        if len(physical_devices) > 0:
-            tf.config.experimental.set_memory_growth(physical_devices[0], True)
-        else:
-            print("WARN: No GPU found, running on CPU")
+    # PyTorch uses the GPU only when it is selected and a CUDA build of PyTorch finds one
+    if setupExp['gpu'] == 1 and torch.cuda.is_available():
+        device = torch.device('cuda')
+        print("INFO: PyTorch runs on the GPU (" + torch.cuda.get_device_name(0) + ")")
     else:
-        os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
-        tf.config.set_visible_devices([], 'GPU')
+        if setupExp['gpu'] == 1:
+            print("WARN: PyTorch finds no GPU (CPU build of PyTorch or no CUDA device), running on CPU")
+        device = torch.device('cpu')
 
     # ==============================================================================
     # Parameters
@@ -180,14 +178,13 @@ def trainMdlPT(data, setupDat, setupPar, setupMdl, setupExp):
     # ==============================================================================
     # Activating Cuda
     # ==============================================================================
-    if torch.cuda.is_available():
-        mdl.cuda()
+    mdl.to(device)
 
     ###################################################################################################################
     # Loading
     ###################################################################################################################
     try:
-        mdl.load_state_dict(torch.load(mdlName))
+        mdl.load_state_dict(torch.load(mdlName, map_location=device))
         print("INFO: Model will be retrained")
     except:
         print("INFO: Model will be created")
@@ -246,8 +243,7 @@ def trainMdlPT(data, setupDat, setupPar, setupMdl, setupExp):
         # Update
         # ------------------------------------------
         for X, y in train:
-            if torch.cuda.is_available():
-                X, y = X.cuda(), y.cuda()
+            X, y = X.to(device), y.to(device)
 
             opt.zero_grad()
             target = mdl(X)
@@ -265,8 +261,7 @@ def trainMdlPT(data, setupDat, setupPar, setupMdl, setupExp):
         # Validation
         # ------------------------------------------
         for X, y in val:
-            if torch.cuda.is_available():
-                X, y = X.cuda(), y.cuda()
+            X, y = X.to(device), y.to(device)
 
             target = mdl(X)
             loss = cost_func(target, y)

@@ -54,16 +54,14 @@ def testMdlPT(data, setupDat, setupPar, setupExp):
     # ==============================================================================
     # CPU/GPU
     # ==============================================================================
-    if setupExp['gpu'] == 1:
-        os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-        physical_devices = tf.config.list_physical_devices('GPU')
-        if len(physical_devices) > 0:
-            tf.config.experimental.set_memory_growth(physical_devices[0], True)
-        else:
-            print("WARN: No GPU found, running on CPU")
+    # PyTorch uses the GPU only when it is selected and a CUDA build of PyTorch finds one
+    if setupExp['gpu'] == 1 and torch.cuda.is_available():
+        device = torch.device('cuda')
+        print("INFO: PyTorch runs on the GPU (" + torch.cuda.get_device_name(0) + ")")
     else:
-        os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
-        tf.config.set_visible_devices([], 'GPU')
+        if setupExp['gpu'] == 1:
+            print("WARN: PyTorch finds no GPU (CPU build of PyTorch or no CUDA device), running on CPU")
+        device = torch.device('cpu')
 
     # ==============================================================================
     # Variables
@@ -159,7 +157,7 @@ def testMdlPT(data, setupDat, setupPar, setupExp):
     # Loading
     ###################################################################################################################
     try:
-        mdl.load_state_dict(torch.load(mdlName))
+        mdl.load_state_dict(torch.load(mdlName, map_location=device))
         print("INFO: Model loaded")
     except Exception as e:
         sys.exit("ERROR: Model could not be loaded (" + str(mdlName) + "), train the model first: " + str(e))
@@ -175,8 +173,13 @@ def testMdlPT(data, setupDat, setupPar, setupExp):
     # ==============================================================================
     # Calc
     # ==============================================================================
-    target = mdl(torch.tensor(data['T']['X']))
-    dataPred['T']['y'] = target.detach().numpy()
+    # prediction in batches of 4096 frames (GPU memory), results back on the CPU
+    mdl.to(device)
+    mdl.eval()
+    with torch.no_grad():
+        target = [mdl(torch.from_numpy(Xb).to(device)).cpu()
+                  for Xb in np.array_split(data['T']['X'], max(1, int(np.ceil(data['T']['X'].shape[0] / 4096))))]
+    dataPred['T']['y'] = torch.cat(target).numpy()
     dataPred['T']['X'] = data['T']['X']
 
     # ==============================================================================

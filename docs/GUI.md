@@ -33,8 +33,15 @@ Stop the GUI with `Ctrl+C` in the terminal. Server settings (port, localhost onl
 | **Help** | Tutorials (the files of `setup/tutorials` and four optimisation tutorials), *Theory of the methods*, this guide |
 
 Every mode page has the views **Workflow** (flow chart of the pipeline with the current settings, skipped steps
-dashed), **Parameters** (tabs Experiment / Data / General / Model, grid mode also *Grid*), **Inputs** (data
-explorer), **Model** (network architecture, simulation and grid), **Theory** (simulation), **Run** and **Results**.
+dashed), **Parameters** (tabs Experiment / Data / General / Model / Features, grid mode also *Grid*), **Inputs** (data
+explorer), **Model** (network architecture, simulation and grid), **Theory** (all modes), **Run** and **Results**.
+
+The **Theory** view of the optimisation modes explains the method with interactive toy examples: *1 · Hyperparameter
+optimisation* — nested training / validation problem, grid vs random search, the Hyperband schedule of Keras-Tuner
+(brackets, trials and epochs computed for the configured *Epochs*, successive halving on learning curves) and the
+search space of the toolkit (TF hypermodel or the GridSearchCV grid of the selected SK model); *2 · Grid
+optimisation* — cost of a full factorial grid, the time span W / fs of the window × sampling grid, full grid vs
+one-at-a-time search with interacting parameters and run-to-run noise, and how to read the results.
 
 **Help › Theory of the methods** explains the model families with interactive toy examples: neuron, activation
 functions, gradient descent, dense network, convolution, LSTM, attention; random forest, KNN, SVM; DTW and NMF / DSC.
@@ -52,6 +59,8 @@ appear in the GUI automatically.
   values and are used.
 * The model parameters are grouped by solver family (*Sklearn*, *Pattern matching*, *Source separation*) with a
   sub-heading per model (RF, SVM, KNN, DTW, …); in basic mode only the sub-group of the selected model is shown.
+* The feature lists of `mdlPara.py` (statistical, rolling, 2D) have their own tab *Features*; they are used when
+  *Features* (General › Framing and features) is switched on.
 * **Configs**: *Save* writes `config/<name>.json`, *Load* reads it. `build_schema.py` also writes one ready-to-load
   config per start file of `setup/default`, `setup/tutorials`, `setup/benchmark` and `setup/journal`
   (`config/<folder>_<file>.json`, with the `mdlPara*.py` the file imports).
@@ -129,7 +138,7 @@ in the results browser. Long time series are thinned to 20,000 points for storag
 | `trainBatch = 2` | trains per id (`tempData`), it trained on all data per id before |
 | Loaders | clear errors with the reason, `csv` = `<name>_input.csv`, `_output.csv`, `_units.csv`, sub-folder fallback, H5 needs nilmtk |
 | Testing | stops with an error if the trained model is missing (it predicted with an untrained model) |
-| GPU | `gpu = 1` without GPU falls back to the CPU |
+| GPU | `gpu = 1` without GPU falls back to the CPU; the PT models follow `gpu` (they used CUDA whenever available and tested on the CPU), predict in batches on the selected device |
 | Normalisation | quantile output normalisation (5) transforms y (it used X); mean/std (3) divides by the standard deviation (it divided by the variance); Q1/Q3 (4) takes the quantiles of the right data — models trained before with options 3/4 must be retrained |
 | SK training | the model is always built from the current parameters (an existing model file was loaded and refitted, so changed parameters were ignored) |
 | KNN | new parameter `SK_KNN_weights` (uniform / distance, default distance as before); the loop always used 'distance' |
@@ -149,3 +158,5 @@ The default `start.py` run normalises its inputs with option 3, so the shipped m
 | `numpy` / `protobuf` conflicts after installing | Re-install `gui/requirements.txt` (it pins versions TensorFlow 2.16 accepts) |
 | The appliance list is a text field | The dataset is not loaded (large file or wrong folder/format) — open *Inputs* |
 | Model view fails | The pipeline stopped before `fit()`; the log of the toolkit is shown — usually a dataset / shape problem |
+| *No GPU found, running on CPU* with `gpu = 1` (TF) | TensorFlow ≥ 2.11 has no GPU support on native Windows (2.16 is a CPU build); use WSL2 with `pip install tensorflow[and-cuda]` |
+| *PyTorch finds no GPU* with `gpu = 1` (PT) | Install the CUDA build: `pip install --force-reinstall --no-deps torch==2.3.1 --index-url https://download.pytorch.org/whl/cu121` |

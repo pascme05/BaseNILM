@@ -295,8 +295,8 @@ RELEVANT = {
 SUB_ACTIVE = {sub: (lambda m: (lambda c: c['Par']['model'] == m))(sub)
               for sub in ('RF', 'SVM', 'KNN', 'DTW', 'GAK', 'sDTW', 'MVM', 'NMF', 'DSC')}
 CATEGORY_TITLES = {'Sklearn': 'Sklearn (RF, SVM, KNN)', 'Pattern matching': 'Pattern matching (DTW, GAK, sDTW, MVM)',
-                   'Source separation': 'Source separation (NMF, DSC)', 'feat_roll': 'Features · rolling (input based)', 'feat': 'Features · statistical (frame based)',
-                   'feat2D': 'Features · 2D (select only one)', 'Hyperparameters': 'Training (TF / PT)',
+                   'Source separation': 'Source separation (NMF, DSC)', 'feat_roll': 'Rolling features (input based)', 'feat': 'Statistical features (frame based)',
+                   'feat2D': '2D features (select only one)', 'Hyperparameters': 'Training (TF / PT)',
                    'Solver Parameters': 'Loss and optimiser (TF / PT)', 'Input/ Output Mapping': 'Inputs and outputs',
                    'Training/Testing': 'Training and testing', 'Datasets': 'Datasets', 'Pre-processing':
                    'Pre-processing', 'Framing and Features': 'Framing and features', 'Postprocessing':

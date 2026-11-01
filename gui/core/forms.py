@@ -36,6 +36,8 @@ from gui.core.help import HELP, CATEGORY_TITLES, RELEVANT, key as help_key, is_b
 # ==============================================================================
 import math
 
+import copy
+
 import streamlit as st
 
 WIDGET_PREFIXES = ('p|', 'g|', 'sb|name', 'sb|pick', 'grid|')
@@ -238,14 +240,25 @@ def section(name, cats=None, cols=3, exclude=()):
                    f"**Expert mode** in the sidebar to edit them (their current values are still used).")
 
 
-def reset_section(name, label='Reset to defaults'):
-    """Button restoring the defaults of a section (run settings are kept)."""
-    if st.button(label, key=f"reset|{name}", icon=':material/restart_alt:', type='tertiary'):
-        d = default_config().get(name, {})
-        if name == A.RUN_SECTION:
-            d = {**d, **{k: v for k, v in st.session_state.cfg[name].items() if k in A.RUN}}
-        st.session_state.cfg[name] = d
-        for k in [k for k in st.session_state if isinstance(k, str) and k.startswith(f"p|{name}|")]:
+def reset_section(name, label='Reset to defaults', cats=None, key=None):
+    """Button restoring the defaults of a section (run settings are kept); cats: only these categories."""
+    if st.button(label, key=key or f"reset|{name}", icon=':material/restart_alt:', type='tertiary'):
+        d = copy.deepcopy(default_config().get(name, {}))
+        if cats is not None:                                           # only the parameters of these categories
+            cur = st.session_state.cfg[name]
+            for p in schema()[name]:
+                if p['cat'] in cats:
+                    if p['nested']:
+                        cur.setdefault(p['cat'], {})[p['var']] = d.get(p['cat'], {}).get(p['var'], p['default'])
+                    else:
+                        cur[p['var']] = d.get(p['var'], p['default'])
+            pre = tuple(f"p|{name}|{c_}|" for c_ in cats)
+        else:
+            if name == A.RUN_SECTION:
+                d = {**d, **{k: v for k, v in st.session_state.cfg[name].items() if k in A.RUN}}
+            st.session_state.cfg[name] = d
+            pre = (f"p|{name}|",)
+        for k in [k for k in st.session_state if isinstance(k, str) and k.startswith(pre)]:
             del st.session_state[k]
         st.rerun()
 
