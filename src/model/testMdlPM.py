@@ -36,6 +36,7 @@ from dtw import *
 from tqdm import tqdm
 import time
 from sys import getsizeof
+from src.general.helpFnc import mdlSize
 
 
 #######################################################################################################################
@@ -213,7 +214,7 @@ def testMdlPM(data, setupPar, setupMdl, setupExp):
     # ==============================================================================
     print("INFO: Total inference time (ms): %.2f" % (testTime * 1000))
     print("INFO: Inference time per sample (us): %.2f" % (testTime / data['T']['X'].shape[0] * 1000 * 1000))
-    print("INFO: Model size (kB): %.2f" % (getsizeof(mdl) / 1024 / 8))
+    print("INFO: Model size (kB): %.2f" % (mdlSize(mdl) / 1024))
 
     # ==============================================================================
     # Input values

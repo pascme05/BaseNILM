@@ -14,7 +14,8 @@
 # Function Description
 #######################################################################################################################
 """
-This function resamples data using a zero-order-hold (zoh) approach
+This function resamples data: downsampling averages the samples of each new interval, upsampling uses a
+zero-order-hold (zoh) approach
 Inputs:     1) data:    input data
             2) fs_raw:  raw sampling frequency (Hz)
             3) setup:   includes all simulation variables
@@ -64,7 +65,7 @@ def resampleData(data, fs_raw, setupDat):
     # ==============================================================================
     # Interpolate
     # ==============================================================================
-    if fs == fs_raw:
+    if np.isclose(fs, fs_raw, rtol=1e-6):
         print("INFO: Sampling rate of the data is equivalent to target sampling rate %6.4f Hz" % fs)
         out = data
     else:
@@ -73,6 +74,21 @@ def resampleData(data, fs_raw, setupDat):
         # ------------------------------------------
         for i in range(0, len(fields)):
             out[:, i] = zoh(t, data['time'], data[fields[i]])
+
+        # ------------------------------------------
+        # Downsampling: mean over each new interval
+        # ------------------------------------------
+        # (zero-order hold would pick single samples and lose short events, the mean keeps the energy)
+        if fs < fs_raw:
+            k = np.floor((data['time'].values - t[0]) * fs + 1e-9).astype(int)
+            k = np.clip(k, 0, len(t) - 1)
+            cnt = np.bincount(k, minlength=len(t))
+            for i in range(0, len(fields)):
+                if fields[i] in ('time', 'id'):
+                    continue
+                val = np.nan_to_num(np.asarray(data[fields[i]].values, dtype=float))
+                avg = np.bincount(k, weights=val, minlength=len(t))
+                out[:, i] = np.where(cnt > 0, avg / np.maximum(cnt, 1), out[:, i])
 
         # ------------------------------------------
         # Out

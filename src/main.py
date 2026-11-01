@@ -135,7 +135,7 @@ def main(setupExp, setupDat, setupPar, setupMdl, setupPath):
                         tempData['T']['X'] = copy.deepcopy(data['T']['X'].loc[data['T']['X']['id'] == id])
                         tempData['T']['y'] = copy.deepcopy(data['T']['y'].loc[data['T']['y']['id'] == id])
                         tempData['V'] = copy.deepcopy(data['V'])
-                        train(data, setupExp, setupDat, setupPar, setupMdl)
+                        train(tempData, setupExp, setupDat, setupPar, setupMdl)
                 else:
                     print("INFO: Training using all data at once")
                     train(data, setupExp, setupDat, setupPar, setupMdl)
@@ -281,7 +281,7 @@ def main(setupExp, setupDat, setupPar, setupMdl, setupPath):
                         tempData['T']['X'] = copy.deepcopy(data['T']['X'].loc[data['T']['X']['id'] == id])
                         tempData['T']['y'] = copy.deepcopy(data['T']['y'].loc[data['T']['y']['id'] == id])
                         tempData['V'] = copy.deepcopy(data['V'])
-                        train(data, setupExp, setupDat, setupPar, setupMdl)
+                        train(tempData, setupExp, setupDat, setupPar, setupMdl)
                 else:
                     print("INFO: Training using all data at once")
                     train(data, setupExp, setupDat, setupPar, setupMdl)
@@ -376,7 +376,7 @@ def main(setupExp, setupDat, setupPar, setupMdl, setupPath):
                     tempData['T']['X'] = copy.deepcopy(data['T']['X'].loc[data['T']['X']['id'] == id])
                     tempData['T']['y'] = copy.deepcopy(data['T']['y'].loc[data['T']['y']['id'] == id])
                     tempData['V'] = copy.deepcopy(data['V'])
-                    train(data, setupExp, setupDat, setupPar, setupMdl)
+                    train(tempData, setupExp, setupDat, setupPar, setupMdl)
             else:
                 print("INFO: Training using all data at once")
                 train(data, setupExp, setupDat, setupPar, setupMdl)

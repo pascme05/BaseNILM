@@ -91,6 +91,7 @@ setupDat['batch'] = 100000                                                      
 setupDat['Shuffle'] = False                                                                                              # False: no shuffling, True: shuffling data when splitting
 setupDat['rT'] = 10/12                                                                                                   # training proportion (0, 1)
 setupDat['rV'] = 0.2                                                                                                     # validation proportion (0, 1) as percentage from training proportion
+setupDat['valSplit'] = 0                                                                                                 # validation data: 0) part of the training data (first rV share), 1) held out from the training data (last rV share or ids idV)
 setupDat['idT'] = [2]                                                                                                    # list of testing ids for method 3)
 setupDat['idV'] = [2]                                                                                                    # list of validation ids for method 3)
 

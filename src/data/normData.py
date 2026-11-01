@@ -142,12 +142,12 @@ def normData(X, y, setupDat, setupExp, inv):
             print("INFO: Input QT normalisation")
             if inv == 1:
                 Xt = qX.inverse_transform(X)
-                X = pd.DataFrame(Xt, columns=X.columns)
+                X = pd.DataFrame(Xt, columns=X.columns) if hasattr(X, 'columns') else Xt
                 X = X * (maxX - minX) + minX
             else:
                 X = (X - minX) / (maxX - minX)
                 Xt = qX.transform(X)
-                X = pd.DataFrame(Xt, columns=X.columns)
+                X = pd.DataFrame(Xt, columns=X.columns) if hasattr(X, 'columns') else Xt
 
         # ------------------------------------------
         # None
@@ -209,13 +209,13 @@ def normData(X, y, setupDat, setupExp, inv):
         elif setupDat['outNorm'] == 5:
             print("INFO: Output QT normalisation")
             if inv == 1:
-                yt = qY.inverse_transform(X)
-                y = pd.DataFrame(yt, columns=y.columns)
+                yt = qY.inverse_transform(y)
+                y = pd.DataFrame(yt, columns=y.columns) if hasattr(y, 'columns') else yt
                 y = y * (maxY - minY) + minY
             else:
                 y = (y - minY) / (maxY - minY)
-                yt = qY.transform(X)
-                y = pd.DataFrame(yt, columns=y.columns)
+                yt = qY.transform(y)
+                y = pd.DataFrame(yt, columns=y.columns) if hasattr(y, 'columns') else yt
 
         # ------------------------------------------
         # None

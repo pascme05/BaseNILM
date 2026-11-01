@@ -81,7 +81,7 @@ def performance(yPred, yTrue, yPred_L, yTrue_L, setupDat):
         Acc[i]  = 1 - (sum(abs(yTrue_L[:, i] - yPred_L[:, i])) / len(yTrue_L))
         F1[i]   = f1_score(yTrue_L[:, i], yPred_L[:, i], average='weighted')
         R2[i] = r2_score(yTrue[:, i], yPred[:, i])
-        TECA[i] = 1 - sum(abs(yPred[:, i] - yTrue[:, i])) / (sum(yTrue[:, i]) + 1e-6) / 2
+        TECA[i] = 1 - sum(abs(yPred[:, i] - yTrue[:, i])) / (sum(abs(yTrue[:, i])) + 1e-6) / 2
         Rmse[i] = np.sqrt(mean_squared_error(yTrue[:, i], yPred[:, i]))
         Mae[i]  = mean_absolute_error(yTrue[:, i], yPred[:, i])
         Max[i] = np.max(abs(yTrue[:, i] - yPred[:, i]))

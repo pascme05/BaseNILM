@@ -59,8 +59,8 @@ def featureRank(X, y, setupDat, setupMdl, setupPar):
     # ==============================================================================
     # Variables
     # ==============================================================================
-    scores = np.zeros((X.shape[1], len(setupDat['out'])))
-    err = np.zeros((X.shape[1], len(setupDat['out'])))
+    scores = np.zeros((X.shape[1], y.shape[1]))
+    err = np.zeros((X.shape[1], y.shape[1]))
 
     ###################################################################################################################
     # Pre-Processing
@@ -84,7 +84,7 @@ def featureRank(X, y, setupDat, setupMdl, setupPar):
     # ==============================================================================
     if setupPar['ranking'] == 1:
         print("INFO: Running Feature Ranking")
-        for i in range(0, len(setupDat['out'])):
+        for i in range(0, y.shape[1]):
             mdl = mdl.fit(X_train.values, np.squeeze(y_train.values[:, i]))
             result = permutation_importance(mdl, X_test.values, np.squeeze(y_test.values[:, i]), n_repeats=10, random_state=42, n_jobs=2)
             scores[:, i] = result.importances_mean

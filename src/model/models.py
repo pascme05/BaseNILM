@@ -37,7 +37,7 @@ import math
 # Loss Metric
 # ==============================================================================
 def lossMetric(y_true, y_pred):
-    return 1 - k.sum(k.abs(y_pred - y_true)) / (k.sum(y_true) + k.epsilon()) / 2
+    return 1 - k.sum(k.abs(y_pred - y_true)) / (k.sum(k.abs(y_true)) + k.epsilon()) / 2
 
 
 #######################################################################################################################
@@ -400,7 +400,7 @@ class ptMdlCNN(nn.Module):
 # ------------------------------------------
 # DNN
 # ------------------------------------------
-def tfMdloptiR(hp):
+def tfMdloptiR(hp, out=1):
     # Input
     mdl = keras.Sequential()
     mdl.add(tf.keras.layers.Flatten())
@@ -409,11 +409,11 @@ def tfMdloptiR(hp):
     hp_units = hp.Int('units', min_value=64, max_value=512, step=64)
     for i in range(hp.Int("dnn_layers", 2, 6, step=1)):
         mdl.add(keras.layers.Dense(units=hp_units, activation='relu'))
-    mdl.add(keras.layers.Dense(5, activation='linear'))
+    mdl.add(keras.layers.Dense(out, activation='linear'))
 
     # Learner
     hp_learning_rate = hp.Choice('learning_rate', values=[1e-1, 5e-2, 1e-2])
-    mdl.compile(optimizer=keras.optimizers.Adam(learning_rate=hp_learning_rate), loss='mae', metrics='mse')
+    mdl.compile(optimizer=keras.optimizers.Adam(learning_rate=hp_learning_rate), loss='mae', metrics=['mse'])
 
     return mdl
 
@@ -421,7 +421,7 @@ def tfMdloptiR(hp):
 # ------------------------------------------
 # CNN
 # ------------------------------------------
-def tfMdloptiRCNN(hp):
+def tfMdloptiRCNN(hp, out=1):
     # Input
     mdl = keras.Sequential()
 
@@ -449,11 +449,11 @@ def tfMdloptiRCNN(hp):
         mdl.add(tf.keras.layers.Dense(hp.Int("units_" + str(i), 64, 512, step=64), activation="relu"))
 
     # Output
-    mdl.add(tf.keras.layers.Dense(5, activation='linear'))
+    mdl.add(tf.keras.layers.Dense(out, activation='linear'))
 
     # Compile
     hp_learning_rate = hp.Choice('learning_rate', values=[1e-2, 1e-3, 1e-4])
-    mdl.compile(optimizer=keras.optimizers.Adam(learning_rate=hp_learning_rate), loss='mae', metrics='mse')
+    mdl.compile(optimizer=keras.optimizers.Adam(learning_rate=hp_learning_rate), loss='mae', metrics=['mse'])
 
     return mdl
 
@@ -461,7 +461,7 @@ def tfMdloptiRCNN(hp):
 # ==============================================================================
 # Classification Model
 # ==============================================================================
-def tfMdloptiC(hp):
+def tfMdloptiC(hp, out=1):
     # Input
     mdl = keras.Sequential()
     mdl.add(tf.keras.layers.Flatten())
@@ -470,11 +470,11 @@ def tfMdloptiC(hp):
     hp_units = hp.Int('units', min_value=64, max_value=512, step=64)
     for i in range(hp.Int("dnn_layers", 2, 6, step=1)):
         mdl.add(keras.layers.Dense(units=hp_units, activation='relu'))
-    mdl.add(keras.layers.Dense(1, activation='sigmoid'))
+    mdl.add(keras.layers.Dense(out, activation='sigmoid'))
 
     # Learner
     hp_learning_rate = hp.Choice('learning_rate', values=[1e-1, 5e-2, 1e-2])
     mdl.compile(optimizer=keras.optimizers.Adam(learning_rate=hp_learning_rate), loss='BinaryCrossentropy',
-                metrics='accuracy')
+                metrics=['accuracy'])
 
     return mdl

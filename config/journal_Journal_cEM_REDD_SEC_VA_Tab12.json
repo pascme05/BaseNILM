@@ -1,0 +1,147 @@
+{
+  "_meta": {
+    "tool": "BaseNILM",
+    "format": "config",
+    "source": "setup/journal/Journal_cEM_REDD_SEC_VA_Tab12.py"
+  },
+  "Exp": {
+    "name": "Constraint_EM_REDD_ALL",
+    "author": "Pascal Schirmer",
+    "sim": 0,
+    "gpu": 1,
+    "warn": 3,
+    "save": 0,
+    "log": 0,
+    "plot": 0,
+    "method": 1,
+    "trainBatch": 0,
+    "kfold": 10,
+    "train": 1,
+    "test": 1
+  },
+  "Dat": {
+    "type": "mat",
+    "freq": "LF",
+    "dim": 2,
+    "batch": 100000,
+    "Shuffle": false,
+    "rT": 0.8333333333333334,
+    "rV": 0.2,
+    "idT": [
+      2
+    ],
+    "idV": [
+      2
+    ],
+    "folder": "redd",
+    "house": 1,
+    "train": [
+      "redd2"
+    ],
+    "test": "redd2",
+    "val": "redd2",
+    "inp": [],
+    "out": [],
+    "outFeat": 0,
+    "outEnergy": 0.0,
+    "fs": 0.3333333333333333,
+    "lim": 0,
+    "weightNorm": 0,
+    "inpNorm": 0,
+    "outNorm": 0,
+    "inpNoise": 0,
+    "outNoise": 0,
+    "inpFil": 0,
+    "outFil": 0,
+    "inpFilLen": 61,
+    "outFilLen": 61,
+    "threshold": 25,
+    "balance": 0,
+    "ghost": 0
+  },
+  "Par": {
+    "method": 0,
+    "solver": "PM",
+    "model": "MVM",
+    "modelInpDim": 3,
+    "frame": 1,
+    "feat": 0,
+    "window": 15,
+    "overlap": 14,
+    "outseq": 15,
+    "yFocus": 14,
+    "nDim": 2,
+    "ranking": 0,
+    "outMin": 0,
+    "outMax": 10000
+  },
+  "Mdl": {
+    "batch": 1000,
+    "epoch": 50,
+    "patience": 10,
+    "valsteps": 25,
+    "shuffle": "False",
+    "verbose": 2,
+    "loss": "mae",
+    "metric": "TECA",
+    "opt": "Adam",
+    "lr": 0.001,
+    "beta1": 0.9,
+    "beta2": 0.999,
+    "eps": 1e-08,
+    "rho": 0.9,
+    "mom": 0.0,
+    "SK_RF_depth": 5,
+    "SK_RF_state": 0,
+    "SK_RF_estimators": 16,
+    "SK_SVM_kernel": "rbf",
+    "SK_SVM_C": 100,
+    "SK_SVM_gamma": 0.1,
+    "SK_SVM_epsilon": 0.1,
+    "SK_KNN_neighbors": 5,
+    "SK_KNN_weights": "distance",
+    "PM_Gen_cDTW": 0.01,
+    "PM_DTW_metric": "euclidean",
+    "PM_DTW_const": "none",
+    "PM_GAK_sigma": 2000,
+    "PM_sDTW_gamma": 0.5,
+    "PM_MVM_steps": 10,
+    "PM_MVM_metric": "euclidean",
+    "PM_MVM_const": "none",
+    "SS_Gen_lr": 1e-09,
+    "SS_DSC_n": 20,
+    "feat_roll": {
+      "EWMA": [
+        0
+      ],
+      "EWMS": [
+        0
+      ],
+      "diff": 1
+    },
+    "feat": {
+      "Mean": 0,
+      "Std": 0,
+      "RMS": 1,
+      "Peak2Rms": 0,
+      "Median": 1,
+      "Min": 1,
+      "Max": 1,
+      "Per25": 1,
+      "Per75": 1,
+      "Energy": 0,
+      "Var": 0,
+      "Range": 1,
+      "3rdMoment": 0,
+      "4thMoment": 0
+    },
+    "feat2D": {
+      "PQ": 1,
+      "VI": 0,
+      "REC": 0,
+      "GAF": 0,
+      "MKF": 0,
+      "DFIA": 0
+    }
+  }
+}

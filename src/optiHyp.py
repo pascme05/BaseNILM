@@ -197,7 +197,7 @@ def optiHyp(setupExp, setupDat, setupPar, setupMdl, setupPath):
     # Machine Learning
     # ------------------------------------------
     if setupPar['solver'] == 'SK':
-        trainMdlSKopti(dataTrain, setupPar)
+        trainMdlSKopti(dataTrain, setupPar, setupExp)
 
     # ------------------------------------------
     # Deep Learning
@@ -208,5 +208,5 @@ def optiHyp(setupExp, setupDat, setupPar, setupMdl, setupPath):
     ###################################################################################################################
     # MSG Out
     ###################################################################################################################
-    print("DONE: Running PyDTS (Optimising)")
+    print("DONE: Running BaseNILM (Optimising)")
     print('----------------------')

@@ -32,9 +32,11 @@ from src.model.models import ptMdlDNN, ptMdlCNN
 import os
 import tensorflow as tf
 import torch
+import sys
 import time
 import numpy as np
 from sys import getsizeof
+from src.general.helpFnc import mdlSize
 
 
 #######################################################################################################################
@@ -55,7 +57,10 @@ def testMdlPT(data, setupDat, setupPar, setupExp):
     if setupExp['gpu'] == 1:
         os.environ['CUDA_VISIBLE_DEVICES'] = '0'
         physical_devices = tf.config.list_physical_devices('GPU')
-        tf.config.experimental.set_memory_growth(physical_devices[0], True)
+        if len(physical_devices) > 0:
+            tf.config.experimental.set_memory_growth(physical_devices[0], True)
+        else:
+            print("WARN: No GPU found, running on CPU")
     else:
         os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
         tf.config.set_visible_devices([], 'GPU')
@@ -156,8 +161,8 @@ def testMdlPT(data, setupDat, setupPar, setupExp):
     try:
         mdl.load_state_dict(torch.load(mdlName))
         print("INFO: Model loaded")
-    except:
-        print("ERROR: Model could not be loaded")
+    except Exception as e:
+        sys.exit("ERROR: Model could not be loaded (" + str(mdlName) + "), train the model first: " + str(e))
 
     ###################################################################################################################
     # Calculation
@@ -185,7 +190,7 @@ def testMdlPT(data, setupDat, setupPar, setupExp):
     ###################################################################################################################
     print("INFO: Total inference time (ms): %.2f" % (testTime * 1000))
     print("INFO: Inference time per sample (us): %.2f" % (testTime / data['T']['X'].shape[0] * 1000 * 1000))
-    print("INFO: Model size (kB): %.2f" % (getsizeof(mdl) / 1024 / 8))
+    print("INFO: Model size (kB): %.2f" % (mdlSize(mdl) / 1024))
 
     ###################################################################################################################
     # References

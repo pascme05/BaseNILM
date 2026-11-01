@@ -42,7 +42,7 @@ def mdlPara(setupMdl):
     setupMdl['epoch'] = 50                                                                                               # number of epochs for training
     setupMdl['patience'] = 10                                                                                            # number of epochs as patience during training
     setupMdl['valsteps'] = 25                                                                                            # number of validation steps
-    setupMdl['shuffle'] = 'False'                                                                                        # shuffling data before training (after splitting data)
+    setupMdl['shuffle'] = 'False'                                                                                        # shuffling data before training (after splitting data), TF: the training data are always shuffled by tf.data
     setupMdl['verbose'] = 2                                                                                              # level of detail for showing training information (0 silent)
 
     # ==============================================================================
@@ -80,6 +80,7 @@ def mdlPara(setupMdl):
     # KNN
     # ------------------------------------------
     setupMdl['SK_KNN_neighbors'] = 5                                                                                     # number of neighbors
+    setupMdl['SK_KNN_weights'] = 'distance'                                                                              # weighting of the neighbours 1) 'uniform', 2) 'distance'
 
     ###################################################################################################################
     # Pattern Matching Parameters

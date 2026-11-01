@@ -5,13 +5,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ac4843f-95cf-4407-9cec-7a436b18cbf4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/startBus.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/BaseNILM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BaseNILM.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/app.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/assets/Arch.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/assets/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/callbacks.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/database.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/formatSetup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/loadData.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/mainGUI.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/tabConfig.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/tabMain.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/tabPara.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/tabProfile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/tabResult.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mdlPara.py" beforeDir="false" afterPath="$PROJECT_DIR$/mdlPara.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/loadData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/loadData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/summaryData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/summaryData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/printResults.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/printResults.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/normData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/normData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/resampleData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/resampleData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/createSeq.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/createSeq.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/featureRank.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/featureRank.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/helpFnc.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/helpFnc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/performance.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/performance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/save.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/save.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/testMdlCU.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/testMdlCU.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/testMdlPM.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/testMdlPM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/testMdlPT.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/testMdlPT.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/testMdlSK.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/testMdlSK.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/testMdlSS.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/testMdlSS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/testMdlTF.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/testMdlTF.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/trainMdlCU.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlCU.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/trainMdlPM.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlPM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/trainMdlPT.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlPT.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/trainMdlSK.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlSK.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/trainMdlSKopti.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlSKopti.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/trainMdlSS.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlSS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/trainMdlTF.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlTF.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/trainMdlTFopti.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/trainMdlTFopti.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/optiGrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/optiGrid.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/optiHyp.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/optiHyp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/start.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +63,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="233" />
+    <option name="cachedIndexableFilesCount" value="220" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -57,23 +96,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000300974395187" />
-      <entry key="MS500" value="1.130342918596506" />
-      <entry key="S2" value="1.9241328152828512" />
-      <entry key="S5" value="2.7226657246580306" />
-      <entry key="S10" value="3.2340002856199623" />
-      <entry key="S30" value="3.7079197528487784" />
-      <entry key="S60" value="3.848697434764793" />
-      <entry key="M2" value="3.923099618518157" />
-      <entry key="M5" value="4.040556538953435" />
-      <entry key="M10" value="4.583115650525125" />
-      <entry key="M15" value="5.2043078920603945" />
-      <entry key="M30" value="6.465633905968174" />
-      <entry key="H1" value="7.888364305875759" />
-      <entry key="H2" value="11.93298146932982" />
-      <entry key="H4" value="23.653205942413763" />
-      <entry key="D1" value="73.3750717007341" />
-      <entry key="W1" value="94.71373214403862" />
+      <entry key="MS100" value="1.9486960233845632" />
+      <entry key="MS500" value="4.54380484352761" />
+      <entry key="S2" value="9.058570614900564" />
+      <entry key="S5" value="11.711470489965494" />
+      <entry key="S10" value="13.100614392696842" />
+      <entry key="S30" value="14.292660290473467" />
+      <entry key="S60" value="14.635617248027811" />
+      <entry key="M2" value="14.815127995226323" />
+      <entry key="M5" value="14.996671567891967" />
+      <entry key="M10" value="15.559845504000963" />
+      <entry key="M15" value="16.187792429405732" />
+      <entry key="M30" value="17.456361003148945" />
+      <entry key="H1" value="18.883155999082454" />
+      <entry key="H2" value="22.929565312972933" />
+      <entry key="H4" value="34.65032158016844" />
+      <entry key="D1" value="84.37375926440897" />
+      <entry key="W1" value="105.71349366165525" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -95,23 +134,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.8526598521627611" />
-      <entry key="MS500" value="1.0941571598110642" />
-      <entry key="S2" value="1.9070183989441374" />
-      <entry key="S5" value="2.71201457402303" />
-      <entry key="S10" value="3.2273481588831032" />
-      <entry key="S30" value="3.705276632408994" />
-      <entry key="S60" value="3.847311503738981" />
-      <entry key="M2" value="3.9223895585248822" />
-      <entry key="M5" value="4.040263236511972" />
-      <entry key="M10" value="4.582949671161299" />
-      <entry key="M15" value="5.204182567992972" />
-      <entry key="M30" value="6.465556384772562" />
-      <entry key="H1" value="7.88831775769599" />
-      <entry key="H2" value="11.932948723417747" />
-      <entry key="H4" value="23.653175619115416" />
-      <entry key="D1" value="73.3750555512615" />
-      <entry key="W1" value="94.71372910695192" />
+      <entry key="MS100" value="1.6369785394477414" />
+      <entry key="MS500" value="4.419367600164508" />
+      <entry key="S2" value="8.989710123038117" />
+      <entry key="S5" value="11.672963181028008" />
+      <entry key="S10" value="13.078238972993955" />
+      <entry key="S30" value="14.284266854583775" />
+      <entry key="S60" value="14.631282761173827" />
+      <entry key="M2" value="14.812924426614213" />
+      <entry key="M5" value="14.995776150415548" />
+      <entry key="M10" value="15.559377706166014" />
+      <entry key="M15" value="16.18746572653198" />
+      <entry key="M30" value="17.456182703504503" />
+      <entry key="H1" value="18.883059036565857" />
+      <entry key="H2" value="22.929507353950566" />
+      <entry key="H4" value="34.65027864927872" />
+      <entry key="D1" value="84.37374101332388" />
+      <entry key="W1" value="105.71349032430417" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -138,29 +177,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.startBus.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM/data/bus28&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.start.executor": "Run",
+    "Python.startBus.executor": "Run",
+    "Python.start_gui.executor": "Run",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/schir/OneDrive/Studium/34_Github/BaseNILM/data/bus28",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "to.speed.mode.migration.done": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\schir\OneDrive\Studium\34_Github\BaseNILM\data\bus28" />
@@ -178,6 +220,13 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
+      <steps>
+        <latexmkCompile id="b0f9e9de-e96a-411e-94c3-2744f697b693" />
+        <pdfViewer id="b9f6404c-9be7-42b7-86de-ab7920e1458c" />
+      </steps>
+      <method v="2" />
+    </configuration>
     <configuration name="start" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BaseNILM" />
       <option name="ENV_FILES" value="" />
@@ -211,7 +260,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-50341a9f1f9c-c2ffad84badb-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.26222.68" />
+        <option value="bundled-python-sdk-73a66231627c-5bd6d13a2a75-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-262.10968.92" />
       </set>
     </attachedChunks>
   </component>
@@ -250,18 +299,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/model/trainMdlTF.py</url>
-          <line>218</line>
+          <line>224</line>
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/model/testMdlSS.py</url>
-          <line>85</line>
+          <line>87</line>
           <option name="timeStamp" value="97" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/gui/formatSetup.py</url>
-          <line>57</line>
-          <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/train.py</url>
@@ -275,17 +319,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/data/loadData.py</url>
-          <line>63</line>
+          <line>65</line>
           <option name="timeStamp" value="109" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/data/loadData.py</url>
-          <line>121</line>
+          <line>130</line>
           <option name="timeStamp" value="110" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/data/loadData.py</url>
-          <line>167</line>
+          <line>176</line>
           <option name="timeStamp" value="112" />
         </line-breakpoint>
       </breakpoints>

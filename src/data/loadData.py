@@ -46,6 +46,8 @@ from os.path import join as pjoin
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import KFold
 import copy
+import os
+import sys
 import scipy.io
 import pyarrow.parquet as pq
 import json as _json
@@ -59,16 +61,23 @@ import json as _json
 # ==============================================================================
 def loadXlsx(filename, data, units):
     try:
-        data['X'] = pd.read_excel(filename, sheet_name='input')
-        data['y'] = pd.read_excel(filename, sheet_name='output')
-        unitsRaw = pd.read_excel(filename, sheet_name='units')
+        if filename.lower().endswith('.csv'):
+            # csv: <name>_input.csv, <name>_output.csv and <name>_units.csv (columns 'Input' and 'Output')
+            base = filename[:-4]
+            data['X'] = pd.read_csv(base + '_input.csv')
+            data['y'] = pd.read_csv(base + '_output.csv')
+            unitsRaw = pd.read_csv(base + '_units.csv')
+        else:
+            data['X'] = pd.read_excel(filename, sheet_name='input')
+            data['y'] = pd.read_excel(filename, sheet_name='output')
+            unitsRaw = pd.read_excel(filename, sheet_name='units')
         units['Input'] = pd.DataFrame(columns=data['X'].columns)
         units['Input'].loc[0] = unitsRaw['Input'].dropna().values
         units['Output'] = pd.DataFrame(columns=data['y'].columns)
         units['Output'].loc[0] = unitsRaw['Output'].dropna().values
-        print("INFO: Xlsx data file loaded")
-    except:
-        print("ERROR: Data file could not be loaded")
+        print("INFO: Xlsx/csv data file loaded")
+    except Exception as e:
+        print("ERROR: Data file could not be loaded (" + str(e) + ")")
 
     return [data, units]
 
@@ -142,8 +151,8 @@ def loadMat(filename, setupDat, data, units):
 
         # Msg
         print("INFO: Mat data file loaded")
-    except:
-        print("ERROR: Data file could not be loaded")
+    except Exception as e:
+        print("ERROR: Data file could not be loaded (" + str(e) + ")")
 
     return [data, units, setupDat]
 
@@ -207,6 +216,7 @@ def loadH5(filename, data, units, setupDat):
         # ------------------------------------------
         # raw = DataSet(filename)
         elec = []
+        raise NotImplementedError("H5 loading needs nilmtk and must be configured in loadH5() (DataSet, building)")
         # elec = raw.buildings[setupDat['house']].elec
         app = next(elec[1].load(sample_period=int(1 / setupDat['fs'])))
 
@@ -245,8 +255,8 @@ def loadH5(filename, data, units, setupDat):
         # Msg
         # ------------------------------------------
         print("INFO: H5 data file loaded")
-    except:
-        print("ERROR: Data file could not be loaded")
+    except Exception as e:
+        print("ERROR: Data file could not be loaded (" + str(e) + ")")
 
     return [data, units]
 
@@ -320,6 +330,25 @@ def _rebuild_side(df, columns, kind):
 
 
 #######################################################################################################################
+# Validation split
+#######################################################################################################################
+def splitVal(idxT, setupDat, shu, val):
+    """
+    Selects the training (val = 0) or validation (val = 1) indices out of the training part idxT.
+    setupDat['valSplit'] = 0: the validation data are the first rV share of the training part and the whole training
+    part is used for training (validation is part of the training data), 1: the last rV share is held out for the
+    validation and not used for training.
+    """
+    if setupDat.get('valSplit', 0) == 1:
+        idxTrain, idxVal = train_test_split(idxT, test_size=setupDat['rV'], random_state=42, shuffle=shu)
+        return idxVal if val == 1 else idxTrain
+    if val == 1:
+        idxVal, _ = train_test_split(idxT, test_size=(1 - setupDat['rV']), random_state=42, shuffle=shu)
+        return idxVal
+    return idxT
+
+
+#######################################################################################################################
 # Function
 #######################################################################################################################
 def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, train, fold):
@@ -358,10 +387,10 @@ def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, tr
         filename = pjoin(path, name)
         print("INFO: Loading dataset from head-folder: \data")
     else:
-        try:
-            filename = pjoin(path, setupDat['folder'], name)
+        filename = pjoin(path, setupDat['folder'], name)
+        if os.path.isfile(filename) or (setupDat['type'] == 'csv' and os.path.isfile(filename[:-4] + '_input.csv')):
             print("INFO: Loading dataset from sub-folder: \data\ " + str(setupDat['folder']))
-        except:
+        else:
             filename = pjoin(path, name)
             msg = "WARN: Sub-folder not found trying head-folder: \data"
             setupExp = warnMsg(msg, 1, 1, setupExp)
@@ -403,7 +432,13 @@ def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, tr
     # Default
     # ==============================================================================
     else:
-        print("ERROR: Data format not available")
+        sys.exit("ERROR: Data format not available: " + str(setupDat['type']))
+
+    # ==============================================================================
+    # Check
+    # ==============================================================================
+    if not isinstance(data, dict) or 'X' not in data or 'y' not in data:
+        sys.exit("ERROR: Data file could not be loaded: " + str(filename))
 
     ###################################################################################################################
     # Pre-Processing
@@ -456,7 +491,7 @@ def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, tr
 
         # Select
         for i in range(0, len(energy)):
-            energySel = energySel + energy[i]
+            energySel = energySel + energy.iloc[i]
             if energySel / energyTotal > setupDat['outEnergy']:
                 try:
                     data['y'] = data['y'].drop(energy.index[i], axis=1)
@@ -508,7 +543,7 @@ def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, tr
             setupDat['numOut'] = setupDat['numOut'] - 1
 
             # Warn
-            msg = "WARN: Constant column in X data " + str(col) + " will be removed"
+            msg = "WARN: Constant column in y data " + str(col) + " will be removed"
             setupExp = warnMsg(msg, 1, 1, setupExp)
 
     ###################################################################################################################
@@ -517,108 +552,77 @@ def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, tr
     # ==============================================================================
     # 1-Fold
     # ==============================================================================
+    # ==============================================================================
+    # Init
+    # ==============================================================================
+    # X and y are always split with the same indices (shuffling keeps the rows of X and y aligned and the
+    # training, testing and validation calls draw the same random split)
+    numRows = min(len(data['X']), len(data['y']))
+    idx = np.arange(numRows)
+    valSplit = setupDat.get('valSplit', 0)
+    sel = idx
+
+    # ==============================================================================
+    # 1-Fold
+    # ==============================================================================
     if method == 0:
+        # ------------------------------------------
+        # Split
+        # ------------------------------------------
+        idxT, idxTest = train_test_split(idx, test_size=(1 - setupDat['rT']), random_state=42, shuffle=shu)
+
         # ------------------------------------------
         # Training
         # ------------------------------------------
         if train == 1:
-            data['X'], _ = train_test_split(data['X'], test_size=(1 - setupDat['rT']), random_state=None, shuffle=shu)
-            data['y'], _ = train_test_split(data['y'], test_size=(1 - setupDat['rT']), random_state=None, shuffle=shu)
+            sel = splitVal(idxT, setupDat, shu, 0)
 
         # ------------------------------------------
         # Testing
         # ------------------------------------------
         elif train == 2:
-            _, data['X'] = train_test_split(data['X'], test_size=(1 - setupDat['rT']), random_state=None, shuffle=shu)
-            _, data['y'] = train_test_split(data['y'], test_size=(1 - setupDat['rT']), random_state=None, shuffle=shu)
+            sel = idxTest
 
         # ------------------------------------------
         # Validation
         # ------------------------------------------
         else:
-            # Split
-            X, _ = train_test_split(data['X'], test_size=(1 - setupDat['rT']), random_state=None, shuffle=False)
-            y, _ = train_test_split(data['y'], test_size=(1 - setupDat['rT']), random_state=None, shuffle=False)
-
-            # Extract
-            data['X'], _ = train_test_split(X, test_size=(1 - setupDat['rV']), random_state=None, shuffle=shu)
-            data['y'], _ = train_test_split(y, test_size=(1 - setupDat['rV']), random_state=None, shuffle=shu)
+            sel = splitVal(idxT, setupDat, shu, 1)
 
     # ==============================================================================
     # k-Fold
     # ==============================================================================
     elif method == 1:
         # ------------------------------------------
-        # Init
+        # Split
         # ------------------------------------------
-        kfX = KFold(n_splits=setupExp['kfold'])
-        kfX.get_n_splits(data['X'])
-        kfy = KFold(n_splits=setupExp['kfold'])
-        kfy.get_n_splits(data['y'])
+        kf = KFold(n_splits=setupExp['kfold'])
+        idxT, idxTest = list(kf.split(idx))[fold - 1]
 
         # ------------------------------------------
         # Training
         # ------------------------------------------
         if train == 1:
-            # X
-            iter = 0
-            for idx, _ in kfX.split(data['X']):
-                iter = iter + 1
-                if iter == fold:
-                    data['X'] = data['X'].iloc[idx, :]
-                    break
-
-            # y
-            iter = 0
-            for idx, _ in kfy.split(data['y']):
-                iter = iter + 1
-                if iter == fold:
-                    data['y'] = data['y'].iloc[idx, :]
-                    break
+            sel = splitVal(idxT, setupDat, shu, 0)
 
         # ------------------------------------------
         # Testing
         # ------------------------------------------
         elif train == 2:
-            # X
-            iter = 0
-            for idx1, idx2 in kfX.split(data['X']):
-                iter = iter + 1
-                if iter == fold:
-                    data['X'] = data['X'].iloc[idx2, :]
-                    break
-
-            # y
-            iter = 0
-            for idx1, idx2 in kfy.split(data['y']):
-                iter = iter + 1
-                if iter == fold:
-                    data['y'] = data['y'].iloc[idx2, :]
-                    break
+            sel = idxTest
 
         # ------------------------------------------
         # Validation
         # ------------------------------------------
         else:
-            # X
-            iter = 0
-            for idx, _ in kfX.split(data['X']):
-                iter = iter + 1
-                if iter == fold:
-                    data['X'] = data['X'].iloc[idx, :]
-                    break
+            sel = splitVal(idxT, setupDat, shu, 1)
 
-            # y
-            iter = 0
-            for idx, _ in kfy.split(data['y']):
-                iter = iter + 1
-                if iter == fold:
-                    data['y'] = data['y'].iloc[idx, :]
-                    break
-
-            # Extract
-            data['X'], _ = train_test_split(data['X'], test_size=(1 - setupDat['rV']), random_state=None, shuffle=shu)
-            data['y'], _ = train_test_split(data['y'], test_size=(1 - setupDat['rV']), random_state=None, shuffle=shu)
+    # ==============================================================================
+    # Apply
+    # ==============================================================================
+    if method == 0 or method == 1:
+        data['X'] = data['X'].iloc[sel, :]
+        data['y'] = data['y'].iloc[sel, :]
 
     # ==============================================================================
     # Transfer
@@ -641,6 +645,10 @@ def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, tr
         # Training
         # ------------------------------------------
         if train == 1:
+            # Init
+            if valSplit == 1:
+                idTest = list(idTest) + [sel for sel in idVal if sel not in idTest]
+
             # Split
             for sel in idTest:
                 data['X'].drop(data['X'][data['X']['id'] == sel].index, inplace=True)
@@ -722,7 +730,7 @@ def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, tr
             # Msg
             msg = "WARN: NaN in X data column " + str(names) + " detected using interpolation"
             setupExp = warnMsg(msg, 1, 0, setupExp)
-            print("WARN: NaN in X data column %s detected using interpolation", names)
+            print("WARN: NaN in X data column %s detected using interpolation" % names)
 
     # ------------------------------------------
     # Output
@@ -733,9 +741,9 @@ def loadData(setupExp, setupDat, setupPar, setupMdl, setupPath, name, method, tr
             data['y'][names] = data['y'][names].interpolate(limit_direction='both')
 
             # Msg
-            msg = "WARN: NaN in X data column " + str(names) + " detected using interpolation"
+            msg = "WARN: NaN in y data column " + str(names) + " detected using interpolation"
             setupExp = warnMsg(msg, 1, 0, setupExp)
-            print("WARN: NaN in y data column %s detected using interpolation", names)
+            print("WARN: NaN in y data column %s detected using interpolation" % names)
 
     # ==============================================================================
     # Removing NaN/Inf

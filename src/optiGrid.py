@@ -29,6 +29,7 @@ Outputs:    None
 # Internal
 # ==============================================================================
 from src.main import main
+import time
 
 # ==============================================================================
 # External
@@ -72,6 +73,7 @@ def optiGrid(setupExp, setupDat, setupPar, setupMdl, setupPath):
             # ==============================================================================
             setupExp['name'] = setupExp['nameInit'] + '_Grid' + str(i) + str(ii)
             setupExp['save'] = 1
+            setupExp['tStart'] = time.time()
 
             # ==============================================================================
             # Select Parameter

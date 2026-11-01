@@ -32,8 +32,10 @@ from numpy import load
 from scipy import optimize
 from tqdm import tqdm
 from sklearn.decomposition import SparseCoder
+import sys
 import time
 from sys import getsizeof
+from src.general.helpFnc import mdlSize
 
 
 #######################################################################################################################
@@ -66,8 +68,8 @@ def testMdlSS(data, setupDat, setupPar, setupExp):
     try:
         mdl = load(mdlName, allow_pickle=True)
         print("INFO: Model loaded")
-    except:
-        print("ERROR: Model could not be loaded")
+    except Exception as e:
+        sys.exit("ERROR: Model could not be loaded (" + str(mdlName) + "), train the model first: " + str(e))
 
     ###################################################################################################################
     # Calculation
@@ -141,7 +143,7 @@ def testMdlSS(data, setupDat, setupPar, setupExp):
     # ==============================================================================
     print("INFO: Total inference time (ms): %.2f" % (testTime * 1000))
     print("INFO: Inference time per sample (us): %.2f" % (testTime / data['T']['X'].shape[0] * 1000 * 1000))
-    print("INFO: Model size (kB): %.2f" % (getsizeof(mdl) / 1024 / 8))
+    print("INFO: Model size (kB): %.2f" % (mdlSize(mdl) / 1024))
 
     ###################################################################################################################
     # References

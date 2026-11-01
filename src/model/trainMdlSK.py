@@ -32,9 +32,11 @@ from sklearn.svm import SVR, SVC
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 from sklearn.multioutput import MultiOutputRegressor, MultiOutputClassifier
 import joblib
+import os
 import numpy as np
 import time
 from sys import getsizeof
+from src.general.helpFnc import mdlSize
 
 
 #######################################################################################################################
@@ -78,11 +80,11 @@ def trainMdlSK(data, setupPar, setupMdl, setupExp):
     if data['T']['y'].ndim == 1:
         # KNN
         if setupPar['model'] == "KNN":
-            for ii, weights in enumerate(['uniform', 'distance']):
-                if setupPar['method'] == 0:
-                    mdl = neighbors.KNeighborsRegressor(n_neighbors=setupMdl['SK_KNN_neighbors'], weights=weights, n_jobs=nCPU)
-                else:
-                    mdl = neighbors.KNeighborsClassifier(n_neighbors=setupMdl['SK_KNN_neighbors'], weights=weights, n_jobs=nCPU)
+            weights = setupMdl.get('SK_KNN_weights', 'distance')
+            if setupPar['method'] == 0:
+                mdl = neighbors.KNeighborsRegressor(n_neighbors=setupMdl['SK_KNN_neighbors'], weights=weights, n_jobs=nCPU)
+            else:
+                mdl = neighbors.KNeighborsClassifier(n_neighbors=setupMdl['SK_KNN_neighbors'], weights=weights, n_jobs=nCPU)
 
         # RF
         if setupPar['model'] == "RF":
@@ -107,13 +109,13 @@ def trainMdlSK(data, setupPar, setupMdl, setupExp):
     else:
         # KNN
         if setupPar['model'] == "KNN":
-            for ii, weights in enumerate(['uniform', 'distance']):
-                if setupPar['method'] == 0:
-                    mdl = MultiOutputRegressor(neighbors.KNeighborsRegressor(n_neighbors=setupMdl['SK_KNN_neighbors'],
-                                                                             weights=weights, n_jobs=nCPU))
-                else:
-                    mdl = MultiOutputClassifier(neighbors.KNeighborsClassifier(n_neighbors=setupMdl['SK_KNN_neighbors'],
-                                                                               weights=weights, n_jobs=nCPU))
+            weights = setupMdl.get('SK_KNN_weights', 'distance')
+            if setupPar['method'] == 0:
+                mdl = MultiOutputRegressor(neighbors.KNeighborsRegressor(n_neighbors=setupMdl['SK_KNN_neighbors'],
+                                                                         weights=weights, n_jobs=nCPU))
+            else:
+                mdl = MultiOutputClassifier(neighbors.KNeighborsClassifier(n_neighbors=setupMdl['SK_KNN_neighbors'],
+                                                                           weights=weights, n_jobs=nCPU))
 
         # RF
         if setupPar['model'] == "RF":
@@ -141,12 +143,12 @@ def trainMdlSK(data, setupPar, setupMdl, setupExp):
     # ==============================================================================
     # Load Model
     # ==============================================================================
-    try:
-        mdl = joblib.load(mdlName)
-        print("INFO: Model exist and will be retrained!")
-    except:
-        joblib.dump(mdl, mdlName)
-        print("INFO: Model does not exist and will be created!")
+    # (sklearn models cannot be trained further: the model is always built from the current parameters, an existing
+    # model file is overwritten after the training)
+    if os.path.isfile(mdlName):
+        print("INFO: Model exists and will be replaced by a new model with the current parameters")
+    else:
+        print("INFO: Model does not exist and will be created")
 
     # ==============================================================================
     # Start timer
@@ -174,4 +176,4 @@ def trainMdlSK(data, setupPar, setupMdl, setupExp):
     ###################################################################################################################
     print("INFO: Total training time (sec): %.2f" % trainTime)
     print("INFO: Training time per sample (ms): %.2f" % (trainTime/data['T']['X'].shape[0]*1000))
-    print("INFO: Model size (kB): %.2f" % (getsizeof(mdl) / 1024 / 8))
+    print("INFO: Model size (kB): %.2f" % (mdlSize(mdl) / 1024))

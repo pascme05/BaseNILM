@@ -34,6 +34,8 @@ import keras_tuner as kt
 import numpy as np
 import os
 import datetime
+import json
+from functools import partial
 from sklearn.utils import class_weight
 
 
@@ -55,7 +57,10 @@ def trainMdlTFopti(data, setupDat, setupPar, setupMdl, setupExp):
     if setupExp['gpu'] == 1:
         os.environ['CUDA_VISIBLE_DEVICES'] = '0'
         physical_devices = tf.config.list_physical_devices('GPU')
-        tf.config.experimental.set_memory_growth(physical_devices[0], True)
+        if len(physical_devices) > 0:
+            tf.config.experimental.set_memory_growth(physical_devices[0], True)
+        else:
+            print("WARN: No GPU found, running on CPU")
     else:
         os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
         tf.config.set_visible_devices([], 'GPU')
@@ -115,11 +120,20 @@ def trainMdlTFopti(data, setupDat, setupPar, setupMdl, setupExp):
     # ==============================================================================
     # Tuner
     # ==============================================================================
+    # Output size (as in trainMdlTF)
+    if setupDat['numOut'] == 1:
+        if setupPar['outseq'] >= 1:
+            out = data['T']['y'].shape[1]
+        else:
+            out = 1
+    else:
+        out = setupDat['numOut']
+
     if setupPar['method'] == 0:
-        tuner = kt.Hyperband(tfMdloptiRCNN, objective=kt.Objective("val_loss", direction="min"),
+        tuner = kt.Hyperband(partial(tfMdloptiRCNN, out=out), objective=kt.Objective("val_loss", direction="min"),
                              max_epochs=EPOCHS, factor=3, overwrite=True, directory='mdl', project_name=mdlName)
     else:
-        tuner = kt.Hyperband(tfMdloptiC, objective=kt.Objective("val_loss", direction="min"),
+        tuner = kt.Hyperband(partial(tfMdloptiC, out=out), objective=kt.Objective("val_loss", direction="min"),
                              max_epochs=EPOCHS, factor=3, overwrite=True, directory='mdl', project_name=mdlName)
 
     # ==============================================================================
@@ -142,6 +156,23 @@ def trainMdlTFopti(data, setupDat, setupPar, setupMdl, setupExp):
     # Output
     ###################################################################################################################
     mdl.summary()
-    val_acc_per_epoch = history.history['loss']
-    best_epoch = val_acc_per_epoch.index(max(val_acc_per_epoch)) + 1
+    val_loss_per_epoch = history.history.get('val_loss', history.history['loss'])
+    best_epoch = int(np.argmin(val_loss_per_epoch)) + 1
     print('Best epoch: %d' % (best_epoch,))
+    print('Best hyperparameters: ' + str(best_hps.values))
+
+    # ==============================================================================
+    # Save
+    # ==============================================================================
+    trials = []
+    for trial in tuner.oracle.trials.values():
+        trials.append({'trial': trial.trial_id, 'status': str(trial.status), 'score': trial.score,
+                       'hp': {key: val for key, val in trial.hyperparameters.values.items()}})
+    result = {'solver': 'TF', 'model': setupPar['model'], 'name': setupExp['name'], 'objective': 'val_loss',
+              'best': dict(best_hps.values), 'best_epoch': best_epoch,
+              'history': {key: [float(v) for v in val] for key, val in history.history.items()}, 'trials': trials}
+    path = os.path.join('results', setupExp['name'])
+    os.makedirs(path, exist_ok=True)
+    with open(os.path.join(path, 'opti_' + setupPar['model'] + '_' + setupExp['name'] + '.json'), 'w') as file:
+        json.dump(result, file, indent=2, default=str)
+    print("INFO: Optimisation results saved to " + path)

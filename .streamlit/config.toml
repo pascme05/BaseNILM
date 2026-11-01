@@ -1,0 +1,20 @@
+# Streamlit settings of the BaseNILM GUI (read when the GUI is started from the repository root)
+[server]
+address = "localhost"          # local use only, not reachable from the network
+port = 8501
+maxUploadSize = 500            # MB, data workbooks can be large
+runOnSave = false
+
+[browser]
+gatherUsageStats = false
+serverAddress = "localhost"
+
+[theme]
+base = "light"
+primaryColor = "#2a78d6"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f6f6f4"
+textColor = "#0b0b0b"
+
+[client]
+toolbarMode = "minimal"

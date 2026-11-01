@@ -219,3 +219,8 @@ __marimo__/
 
 /docu/DOC_231122_Docu_BaseNILM.docx
 .idea/
+
+# BaseNILM GUI (runs and probes)
+config/_gui_*
+results/**/gui_run.*
+mdl/*_gui_probe*

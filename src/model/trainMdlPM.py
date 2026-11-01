@@ -31,6 +31,7 @@ from numpy import savez_compressed
 import numpy as np
 import time
 from sys import getsizeof
+from src.general.helpFnc import mdlSize
 
 
 #######################################################################################################################
@@ -115,4 +116,4 @@ def trainMdlPM(data, setupPar, setupExp):
     ###################################################################################################################
     print("INFO: Total training time (sec): %.2f" % trainTime)
     print("INFO: Training time per sample (ms): %.2f" % (trainTime/data['T']['X'].shape[0]*1000))
-    print("INFO: Model size (kB): %.2f" % (getsizeof(mdl) / 1024 / 8))
+    print("INFO: Model size (kB): %.2f" % (mdlSize(mdl) / 1024))

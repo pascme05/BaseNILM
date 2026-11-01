@@ -36,6 +36,7 @@ import os
 from sklearn.utils import class_weight
 import time
 from sys import getsizeof
+from src.general.helpFnc import mdlSize
 from tensorflow.keras.callbacks import CSVLogger
 
 
@@ -48,7 +49,7 @@ from tensorflow.keras.callbacks import CSVLogger
 def lossMetric(y_true, y_pred):
     y_true = k.cast(y_true, dtype=tf.float32)
     y_pred = k.cast(y_pred, dtype=tf.float32)
-    return 1 - k.sum(k.abs(y_pred - y_true)) / (k.sum(y_true) + k.epsilon()) / 2
+    return 1 - k.sum(k.abs(y_pred - y_true)) / (k.sum(k.abs(y_true)) + k.epsilon()) / 2
 
 
 #######################################################################################################################
@@ -69,7 +70,10 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     if setupExp['gpu'] == 1:
         os.environ['CUDA_VISIBLE_DEVICES'] = '0'
         physical_devices = tf.config.list_physical_devices('GPU')
-        tf.config.experimental.set_memory_growth(physical_devices[0], True)
+        if len(physical_devices) > 0:
+            tf.config.experimental.set_memory_growth(physical_devices[0], True)
+        else:
+            print("WARN: No GPU found, running on CPU")
     else:
         os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
         tf.config.set_visible_devices([], 'GPU')
@@ -204,8 +208,10 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     ###################################################################################################################
     # Loading
     ###################################################################################################################
+    retrain = False
     try:
         mdl.load_weights(mdlName)
+        retrain = True
         print("INFO: Model will be retrained")
     except:
         print("INFO: Model will be created")
@@ -233,7 +239,7 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
                                           momentum=setupMdl['mom'], epsilon=setupMdl['eps'])
 
     # SGD
-    elif setupMdl['opt'] == 'SDG':
+    elif setupMdl['opt'] in ('SDG', 'SGD'):
         opt = tf.keras.optimizers.SGD(learning_rate=setupMdl['lr'], momentum=setupMdl['mom'])
 
     # Adam
@@ -271,7 +277,7 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     # ------------------------------------------
     # Log Files
     # ------------------------------------------
-    callbacks.append(CSVLogger(log_file, append=True))
+    callbacks.append(CSVLogger(log_file, append=retrain))
 
     # ==============================================================================
     # Start timer
@@ -295,4 +301,4 @@ def trainMdlTF(data, setupDat, setupPar, setupMdl, setupExp):
     ###################################################################################################################
     print("INFO: Total training time (sec): %.2f" % trainTime)
     print("INFO: Training time per sample (ms): %.2f" % (trainTime / data['T']['X'].shape[0] * 1000))
-    print("INFO: Model size (kB): %.2f" % (getsizeof(mdl) / 1024 / 8))
+    print("INFO: Model size (kB): %.2f" % (mdlSize(mdl) / 1024))

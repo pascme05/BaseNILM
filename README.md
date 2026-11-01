@@ -98,6 +98,19 @@ loads (deferrable loads). If you don't want to train simply set 'setupExp['train
 test run are already stored in BaseNILM \mdl. For changing parameters and adapting the parameters please refer to 
 the documentation in BaseNILM \docu.
 
+## Graphical User Interface
+BaseNILM includes a local browser GUI (Streamlit) that edits all parameters of start.py and mdlPara.py, visualises the
+datasets (time series, energy shares, split, framing), shows the architecture of the neural network, runs the
+simulation, hyperparameter and grid optimisation and displays the results interactively. The toolkit itself is
+unchanged, start.py can still be used as before.
+
+```
+pip install -r gui/requirements.txt
+python start_gui.py                      # opens http://localhost:8501
+```
+
+The user guide is in docs/GUI.md (also on the Documentation page of the GUI).
+
 
 # Architecture
 The aim of the PyDTS toolkit is to model the input and output relation of a household energy system, namely $\hat{y}=f(X)$ 

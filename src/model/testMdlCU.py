@@ -33,6 +33,7 @@ import tensorflow as tf
 import tensorflow.keras.backend as k
 import time
 from sys import getsizeof
+from src.general.helpFnc import mdlSize
 
 
 #######################################################################################################################
@@ -42,7 +43,7 @@ from sys import getsizeof
 # Loss Metric
 # ==============================================================================
 def lossMetric(y_true, y_pred):
-    return 1 - k.sum(k.abs(y_pred - y_true)) / (k.sum(y_true) + k.epsilon()) / 2
+    return 1 - k.sum(k.abs(y_pred - y_true)) / (k.sum(k.abs(y_true)) + k.epsilon()) / 2
 
 
 #######################################################################################################################
@@ -63,7 +64,10 @@ def testMdlCU(data, setupDat, setupPar, setupMdl, setupExp):
     if setupExp['gpu'] == 1:
         os.environ['CUDA_VISIBLE_DEVICES'] = '0'
         physical_devices = tf.config.list_physical_devices('GPU')
-        tf.config.experimental.set_memory_growth(physical_devices[0], True)
+        if len(physical_devices) > 0:
+            tf.config.experimental.set_memory_growth(physical_devices[0], True)
+        else:
+            print("WARN: No GPU found, running on CPU")
     else:
         os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
         tf.config.set_visible_devices([], 'GPU')
@@ -119,7 +123,7 @@ def testMdlCU(data, setupDat, setupPar, setupMdl, setupExp):
     ###################################################################################################################
     print("INFO: Total inference time (ms): %.2f" % (testTime * 1000))
     print("INFO: Inference time per sample (us): %.2f" % (testTime / data['T']['X'].shape[0] * 1000 * 1000))
-    print("INFO: Model size (kB): %.2f" % (getsizeof(mdl) / 1024 / 8))
+    print("INFO: Model size (kB): %.2f" % (mdlSize(mdl) / 1024))
 
     ###################################################################################################################
     # References

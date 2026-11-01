@@ -123,15 +123,15 @@ def normVal(X, y):
     minY = np.nanmin(y, axis=0)
     uX = np.nanmean(X, axis=0)
     uY = np.nanmean(y, axis=0)
-    sX = np.nanvar(X, axis=0)
-    sY = np.nanvar(y, axis=0)
+    sX = np.nanstd(X, axis=0)
+    sY = np.nanstd(y, axis=0)
     Xnorm = (X - minX) / (maxX - minX)
     ynorm = (y - minY) / (maxY - minY)
     qX.fit_transform(Xnorm)
     qY.fit_transform(ynorm)
     q1X = Xnorm.quantile(0.25)
-    q1Y = Xnorm.quantile(0.25)
-    q3X = ynorm.quantile(0.75)
+    q1Y = ynorm.quantile(0.25)
+    q3X = Xnorm.quantile(0.75)
     q3Y = ynorm.quantile(0.75)
 
     return [maxX, maxY, minX, minY, uX, uY, sX, sY, qX, qY, q1X, q1Y, q3X, q3Y]
@@ -201,7 +201,23 @@ def activeSection(X, y, setupDat, setupExp):
 
 
 #######################################################################################################################
-# Balancing Section
+# Model Size
+#######################################################################################################################
+def mdlSize(mdl):
+    """Size of the model parameters in bytes (Keras / PyTorch: number of parameters x 4 B, otherwise pickled size)."""
+    try:
+        if hasattr(mdl, 'count_params'):
+            return mdl.count_params() * 4
+        if hasattr(mdl, 'parameters'):
+            return sum(p.numel() for p in mdl.parameters()) * 4
+        import pickle
+        return len(pickle.dumps(mdl))
+    except Exception:
+        return 0
+
+
+#######################################################################################################################
+# Balance Data
 #######################################################################################################################
 def balanceData(X, y, setupDat, setupExp, ratio):
     # ==============================================================================
