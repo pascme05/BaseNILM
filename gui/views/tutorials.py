@@ -82,10 +82,17 @@ def page():
     st.caption("Guided scenarios for the operating modes. *Load* sets the configuration of the tutorial — your current "
                "configuration is replaced, save it first in the sidebar if needed. The values under *What you should "
                "see* come from runs of the tutorial configurations.")
-    modes = sorted({t['mode'] for t in tut.TUTORIALS})
-    m = st.segmented_control("Mode", ['all'] + modes, default='all', key='tut|mode',
-                             format_func=lambda x: 'All modes' if x == 'all' else _mode(x))
-    lst = [t for t in tut.TUTORIALS if m in (None, 'all') or t['mode'] == m]
+    secs = [s for s in tut.SECTIONS if any(t['section'] == s for t in tut.TUTORIALS)]
+    cur = st.session_state.get('tutorial')
+    if cur and 'tut|sec' not in st.session_state:
+        st.session_state['tut|sec'] = next((t['section'] for t in tut.TUTORIALS if t['id'] == cur), secs[0])
+    s = st.segmented_control("Section", ['all'] + secs, default=secs[0], key='tut|sec',
+                             format_func=lambda x: 'All sections' if x == 'all' else x)
+    lst = [t for t in tut.TUTORIALS if s in (None, 'all') or t['section'] == s]
+    if s == 'Quick start':
+        st.info("Quick start: the default configuration with the pretrained DNN, CNN and LSTM in mdl/. Training is "
+                "off, so a run only tests the model and shows results within about a minute.",
+                icon=':material/bolt:')
     c1, c2 = st.columns([2, 5])
     with c1:
         ids = [t['id'] for t in lst]

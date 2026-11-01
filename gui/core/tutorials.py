@@ -19,7 +19,7 @@ Every tutorial is a config (config/tutorials/<id>.json) made of a base config an
 (run settings: '<RUN_SECTION>.var'). Write the configs with 'python -m gui.core.tutorials'. The 'look' texts must
 come from runs of the tutorial configs — never invent the numbers.
 
-Entry: {'id', 'mode', 'level' (Beginner | Intermediate | Advanced), 'minutes', 'base' (config name, default
+Entry: {'id', 'section' (one of SECTIONS), 'mode', 'level' (Beginner | Intermediate | Advanced), 'minutes', 'base' (config name, default
 'default'), 'title', 'story', 'goals' [..], 'changes' {..}, 'steps' [..], 'look' (markdown), 'exercise' [..]}
 """
 
@@ -231,7 +231,45 @@ _GUI = [
 ]
 
 
-TUTORIALS = _build() + _GUI
+# Quick start (GUI only): the default configuration with the pretrained models mdl/mdl_<model>_Default.weights.h5
+# (AMPds2, window 21, 1-fold). Training is off, so a run only loads the model and tests it (about a minute).
+_QUICK_MDL = {
+    'DNN': ("Feed-forward network (DNN)",
+            "three dense layers of 32 units on the flattened window — the smallest and fastest of the three models",
+            "The DNN has no notion of the order of the samples in the window; it recognises steady power levels "
+            "well, but transitions and short events less sharply than the CNN and LSTM."),
+    'CNN': ("Convolutional network (CNN)",
+            "five 1D convolution layers that learn local patterns (edges, plateaus) in the window, followed by "
+            "three dense layers",
+            "The convolutions detect the switching edges of the appliances; expect sharper on/off transitions than "
+            "with the DNN."),
+    'LSTM': ("Recurrent network (LSTM)",
+             "LSTM layers that read the window sample by sample and keep a memory of the trajectory",
+             "The LSTM follows the time evolution of the load; it is the slowest of the three models at test time."),
+}
+_QUICK = [
+    {'id': f"Quick_{i}_{m}", 'section': 'Quick start', 'mode': 0, 'level': 'Beginner', 'minutes': 1,
+     'base': 'default', 'title': f"Pretrained {title}",
+     'story': f"You want to see BaseNILM working without waiting for a training. This tutorial uses the default "
+              f"setup (AMPds2, five appliances, 1-fold split) with the pretrained {m}: {desc}. Training is switched "
+              f"off, so the run only loads mdl/mdl_{m}_Default.weights.h5 and disaggregates the test data "
+              f"(about 15–30 s on a CPU).",
+     'goals': ["run a simulation with a pretrained model", "read the disaggregation results",
+               "compare the default model families"],
+     'changes': {f"{A.RUN_SECTION}.train": 0, f"{A.RUN_SECTION}.test": 1, f"{A.RUN_SECTION}.method": 0,
+                 f"{A.RUN_SECTION}.name": 'Default', 'Par.model': m, 'Par.window': 21, 'Par.overlap': 20,
+                 'Par.yFocus': 10},
+     'steps': ["Open *Model*: check the layers of the network — the input is a window of 21 samples.",
+               "Run the simulation: no training, the pretrained weights are loaded and tested.",
+               "Open *Results*: compare the predicted and true appliance power and the scores per appliance."],
+     'look': look + " Keep the experiment name 'Default' and the window of 21 samples — the pretrained weights "
+                    "only fit this setup.",
+     'exercise': ["Load the other two quick-start tutorials and compare the scores.",
+                  "Switch training on (*Run settings*), change the experiment name and train your own model."]}
+    for i, (m, (title, desc, look)) in enumerate(_QUICK_MDL.items(), start=1)]
+
+SECTIONS = ['Quick start', 'Toolkit', 'Optimisation']                 # sections of the tutorials page (in order)
+TUTORIALS = _QUICK + [dict(t, section='Toolkit') for t in _build()] + [dict(t, section='Optimisation') for t in _GUI]
 
 
 #######################################################################################################################

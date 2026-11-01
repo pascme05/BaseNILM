@@ -30,7 +30,7 @@ Stop the GUI with `Ctrl+C` in the terminal. Server settings (port, localhost onl
 | **1 · Hyperparameter optimisation** | Keras-Tuner Hyperband (TF) / GridSearchCV (SK) via `optiHyp.py` |
 | **2 · Grid optimisation** | Simulations over a grid of one or two freely chosen parameters (e.g. window × fs) |
 | **Results browser** | All folders of `results/`, incl. runs started with the start scripts |
-| **Help** | Tutorials (the files of `setup/tutorials` and four optimisation tutorials), *Theory of the methods*, this guide |
+| **Help** | Tutorials in three sections: *Quick start* (pretrained default DNN, CNN and LSTM, training off — results in under a minute), *Toolkit* (the files of `setup/tutorials`) and *Optimisation* (four tutorials), *Theory of the methods*, this guide |
 
 Every mode page has the views **Workflow** (flow chart of the pipeline with the current settings, skipped steps
 dashed), **Parameters** (tabs Experiment / Data / General / Model / Features, grid mode also *Grid*), **Inputs** (data

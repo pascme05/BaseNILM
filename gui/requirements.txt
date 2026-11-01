@@ -1,6 +1,8 @@
 # GUI of the toolkit (in addition to requirements.txt of the toolkit)
 # Streamlit >= 1.61 needs protobuf >= 5.26, TensorFlow 2.16 needs protobuf < 5 -> keep the pins below together
 streamlit>=1.50,<1.61
+# Starlette >= 1.0 breaks the /media route of Streamlit 1.60 (images, logo, favicon -> HTTP 500)
+starlette>=0.40,<1
 protobuf>=3.20.3,<5,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5
 numpy>=1.25,<2
 plotly>=6.0

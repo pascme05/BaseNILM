@@ -41,7 +41,7 @@ TAGLINE = "Choose the dataset here, then open an operating mode in the sidebar. 
           "mdlPara.py are edited in the GUI and stored as JSON config (sidebar); the data are read with the loaders " \
           "of the toolkit."
 SRC_PATHS = ['', 'src']                                               # added to sys.path (relative to ROOT)
-LOGO = None
+LOGO = 'gui/assets/logo.png'                                          # wide logo (square icon: logo_icon.png)
 DOC = 'docs/GUI.md'                                                   # user guide shown on the Documentation page
 
 #######################################################################################################################

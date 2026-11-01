@@ -7,11 +7,11 @@
     "warn": 3,
     "save": 0,
     "log": 0,
-    "plot": 0,
+    "plot": 1,
     "method": 0,
     "trainBatch": 0,
     "kfold": 10,
-    "train": 1,
+    "train": 0,
     "test": 1
   },
   "Dat": {
@@ -64,7 +64,7 @@
   "Par": {
     "method": 0,
     "solver": "TF",
-    "model": "LSTM",
+    "model": "CNN",
     "modelInpDim": 3,
     "frame": 1,
     "feat": 0,

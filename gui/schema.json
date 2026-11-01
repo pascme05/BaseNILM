@@ -148,7 +148,7 @@
    },
    "nested": false,
    "optional": false,
-   "default": 1
+   "default": 0
   },
   {
    "cat": "Training/Testing",
@@ -216,7 +216,7 @@
    },
    "nested": false,
    "optional": false,
-   "default": 0
+   "default": 1
   }
  ],
  "Dat": [
@@ -810,7 +810,7 @@
    },
    "nested": false,
    "optional": false,
-   "default": "LSTM"
+   "default": "CNN"
   },
   {
    "cat": "Solver",
